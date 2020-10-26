@@ -1,0 +1,15 @@
+{
+    "version": "0.1",
+    "commands": [
+        {
+            "name": "msl",
+            "source": "git@github.com:DerekSelander/LLDB.git",
+            "commit": "37582674754ddf97fd9863c06e0c4fe6114ee5ff"
+        },
+        {
+            "name": "lookup",
+            "source": "git@github.com:DerekSelander/LLDB.git",
+            "commit": "37582674754ddf97fd9863c06e0c4fe6114ee5ff"
+        }
+    ]
+}
