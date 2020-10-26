@@ -28,8 +28,6 @@
 /* Begin PBXFileReference section */
 		AB5BB239253DED5A002886E6 /* LLDB-scriptable */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LLDB-scriptable"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5BB23C253DED5A002886E6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		AB5BB25A253ECA22002886E6 /* lldbinit.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = lldbinit.py; sourceTree = "<group>"; };
-		AB5BB2D825416BBA002886E6 /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				AB5BB23C253DED5A002886E6 /* main.swift */,
-				AB5BB25A253ECA22002886E6 /* lldbinit.py */,
-				AB5BB2D825416BBA002886E6 /* package.json */,
 			);
 			path = "LLDB-scriptable";
 			sourceTree = "<group>";

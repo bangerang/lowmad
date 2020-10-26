@@ -132,8 +132,8 @@ struct Lowmad: ParsableCommand {
         })
         var subset: [String]?
 
-        @Option(help: "Install from package file, both file path and Git URL is supported")
-        var packageURL: String?
+        @Option(help: "Install from manifest file, both file path and Git URL is supported")
+        var manifestURL: String?
 
         @Option(help: "Clone from specific commit")
         var commit: String?
@@ -177,29 +177,29 @@ struct Lowmad: ParsableCommand {
                 }
 
                 try copyFilesToScriptsFolder(from: try Folder(path: "\(Lowmad.localPath)/\(Lowmad.name)/temp"), subset: subset) { file in
-                    try saveToPackageFile(file: file, source: gitURL, commit: commitToUse)
+                    try saveToManifestFile(file: file, source: gitURL, commit: commitToUse)
                 }
-            } else if let package = packageURL {
+            } else if let manifest = manifestURL {
                 let regexString = "((git|ssh|http(s)?)|(git@[\\w\\.]+))(:(//)?)([\\w\\.@\\:/\\-~]+)(\\.git)(/)?"
                 let regex = try NSRegularExpression(pattern: regexString)
-                let results = regex.matches(in: package, range: NSRange(package.startIndex..., in: package))
+                let results = regex.matches(in: manifest, range: NSRange(manifest.startIndex..., in: manifest))
                 let file: File
                 if results.isEmpty {
-                    file = try File(path: package)
+                    file = try File(path: manifest)
                     guard file.extension == "json" else {
-                        throw "✖  \(Lowmad.name): ".red.bold + "Package file has wrong file extension"
+                        throw "✖  \(Lowmad.name): ".red.bold + "manifest file has wrong file extension"
                     }
 
                 } else {
                     shell("cd \(Lowmad.localPath)/\(Lowmad.name)/temp")
-                    shell("git clone \(package) package")
-                    file = try File(path: "\(Lowmad.localPath)/\(Lowmad.name)/temp/package/package.json")
+                    shell("git clone \(manifest) manifest")
+                    file = try File(path: "\(Lowmad.localPath)/\(Lowmad.name)/temp/manifest/manifest.json")
                 }
 
-                let packageStruct = try JSONDecoder().decode(Package.self, from: try file.read())
+                let manifestStruct = try JSONDecoder().decode(LLDB_scriptable.Manifest.self, from: try file.read())
                 var dict: [String: [String: [String]]] = [:]
 
-                for command in packageStruct.commands {
+                for command in manifestStruct.commands {
                     if dict[command.source] == nil {
                         dict[command.source] = [:]
                     }
@@ -217,12 +217,12 @@ struct Lowmad: ParsableCommand {
                     for (commit, subset) in value {
                         shell("cd \(path) && git checkout \(commit)")
                         try copyFilesToScriptsFolder(from: try Folder(path: path), subset: subset) { file in
-                           try saveToPackageFile(file: file, source: key, commit: commit)
+                           try saveToManifestFile(file: file, source: key, commit: commit)
                         }
                     }
                 }
             } else {
-                throw "✖  \(Lowmad.name): ".red.bold + "Please supply a git URL or a package file."
+                throw "✖  \(Lowmad.name): ".red.bold + "Please supply a git URL or a manifest file."
             }
 
             print("✔  \(Lowmad.name): ".green.bold + "Installation was successful! 🎉".bold)
@@ -277,33 +277,34 @@ struct Lowmad: ParsableCommand {
             }
         }
 
-        func saveToPackageFile(file: File, source: String, commit: String) throws {
-            var package: Package
-            var packageFile: File
+        func saveToManifestFile(file: File, source: String, commit: String) throws {
+            var manifest: LLDB_scriptable.Manifest
+            var manifestFile: File
 
             let environment = try Lowmad.getEnvironment()
             let commandsFolder = try Folder(path: environment.commandsPath)
 
-            if commandsFolder.containsFile(named: "package.json") {
-                packageFile = try commandsFolder.file(named: "package.json")
-                package = try JSONDecoder().decode(Package.self, from: try packageFile.read())
+            if commandsFolder.containsFile(named: "manifest.json") {
+                manifestFile = try commandsFolder.file(named: "manifest.json")
+                manifest = try JSONDecoder().decode(LLDB_scriptable.Manifest.self, from: try manifestFile.read())
             } else {
-                package = Package(version: "0.1", commands: [])
-                packageFile = try commandsFolder.createFile(named: "package.json")
+
+                manifest = LLDB_scriptable.Manifest(version: "0.1", commands: [])
+                manifestFile = try commandsFolder.createFile(named: "manifest.json")
             }
 
             let newCommand = Command(name: file.nameExcludingExtension, source: source, commit: commit)
 
-            if let index = package.commands.firstIndex(where: { $0.name == newCommand.name && $0.source == newCommand.source }) {
-                package.commands[index] = newCommand
+            if let index = manifest.commands.firstIndex(where: { $0.name == newCommand.name && $0.source == newCommand.source }) {
+                manifest.commands[index] = newCommand
             } else {
-                package.commands.append(newCommand)
+                manifest.commands.append(newCommand)
             }
 
             let encoder = JSONEncoder()
             encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
-            let data = try encoder.encode(package)
-            try packageFile.write(data)
+            let data = try encoder.encode(manifest)
+            try manifestFile.write(data)
         }
     }
 
@@ -315,7 +316,7 @@ struct Lowmad: ParsableCommand {
                 print("i  \(Lowmad.name): ".cyan.bold + "No commands found".bold)
                 return
             }
-            print("i  \(Lowmad.name): ".cyan.bold + "Installed commands".bold)
+            print("Installed commands at \(commandsFolder.path)".bold)
             for file in commandsFolder.files {
                 if file.extension == "py" {
                     print(file.nameExcludingExtension)
@@ -422,9 +423,17 @@ struct Lowmad: ParsableCommand {
         }
     }
 
+    struct Manifest: ParsableCommand {
+        func run() throws {
+            let environment = try Lowmad.getEnvironment()
+            let commandsFolder = try Folder(path: environment.commandsPath)
+            print("\(try commandsFolder.file(named: "manifest.json").path)")
+        }
+    }
+
     static var configuration = CommandConfiguration(
-        abstract: "A utility manager for LLDB scripts",
-        subcommands: [Init.self, Install.self, List.self, Uninstall.self, Generate.self],
+        abstract: "A command line tool for managing and generating LLDB scripts.",
+        subcommands: [Init.self, Install.self, List.self, Uninstall.self, Generate.self, Manifest.self],
         defaultSubcommand: Install.self)
 }
 
@@ -445,8 +454,8 @@ func shell(_ command: String, disableOutput: Bool = true) -> String {
     return output
 }
 
-// MARK: - Package
-struct Package: Codable {
+// MARK: - Manifest
+struct Manifest: Codable {
     let version: String
     var commands: [Command]
 }
