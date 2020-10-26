@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  LLDB-scriptable
+//  lowmad
 //
 //  Created by Johan Thorell on 2020-10-19.
 //
@@ -196,7 +196,7 @@ struct Lowmad: ParsableCommand {
                     file = try File(path: "\(Lowmad.localPath)/\(Lowmad.name)/temp/manifest/manifest.json")
                 }
 
-                let manifestStruct = try JSONDecoder().decode(LLDB_scriptable.Manifest.self, from: try file.read())
+                let manifestStruct = try JSONDecoder().decode(lowmad.Manifest.self, from: try file.read())
                 var dict: [String: [String: [String]]] = [:]
 
                 for command in manifestStruct.commands {
@@ -278,7 +278,7 @@ struct Lowmad: ParsableCommand {
         }
 
         func saveToManifestFile(file: File, source: String, commit: String) throws {
-            var manifest: LLDB_scriptable.Manifest
+            var manifest: lowmad.Manifest
             var manifestFile: File
 
             let environment = try Lowmad.getEnvironment()
@@ -286,10 +286,10 @@ struct Lowmad: ParsableCommand {
 
             if commandsFolder.containsFile(named: "manifest.json") {
                 manifestFile = try commandsFolder.file(named: "manifest.json")
-                manifest = try JSONDecoder().decode(LLDB_scriptable.Manifest.self, from: try manifestFile.read())
+                manifest = try JSONDecoder().decode(lowmad.Manifest.self, from: try manifestFile.read())
             } else {
 
-                manifest = LLDB_scriptable.Manifest(version: "0.1", commands: [])
+                manifest = lowmad.Manifest(version: "0.1", commands: [])
                 manifestFile = try commandsFolder.createFile(named: "manifest.json")
             }
 

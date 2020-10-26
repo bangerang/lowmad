@@ -26,7 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AB5BB239253DED5A002886E6 /* LLDB-scriptable */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LLDB-scriptable"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB5BB239253DED5A002886E6 /* lowmad */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lowmad; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5BB23C253DED5A002886E6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,7 +47,7 @@
 		AB5BB230253DED59002886E6 = {
 			isa = PBXGroup;
 			children = (
-				AB5BB23B253DED5A002886E6 /* LLDB-scriptable */,
+				AB5BB23B253DED5A002886E6 /* lowmad */,
 				AB5BB23A253DED5A002886E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,25 +55,25 @@
 		AB5BB23A253DED5A002886E6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB5BB239253DED5A002886E6 /* LLDB-scriptable */,
+				AB5BB239253DED5A002886E6 /* lowmad */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AB5BB23B253DED5A002886E6 /* LLDB-scriptable */ = {
+		AB5BB23B253DED5A002886E6 /* lowmad */ = {
 			isa = PBXGroup;
 			children = (
 				AB5BB23C253DED5A002886E6 /* main.swift */,
 			);
-			path = "LLDB-scriptable";
+			path = lowmad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AB5BB238253DED5A002886E6 /* LLDB-scriptable */ = {
+		AB5BB238253DED5A002886E6 /* lowmad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB5BB240253DED5A002886E6 /* Build configuration list for PBXNativeTarget "LLDB-scriptable" */;
+			buildConfigurationList = AB5BB240253DED5A002886E6 /* Build configuration list for PBXNativeTarget "lowmad" */;
 			buildPhases = (
 				AB5BB235253DED5A002886E6 /* Sources */,
 				AB5BB236253DED5A002886E6 /* Frameworks */,
@@ -83,14 +83,14 @@
 			);
 			dependencies = (
 			);
-			name = "LLDB-scriptable";
+			name = lowmad;
 			packageProductDependencies = (
 				AB5BB245253DEDBB002886E6 /* ArgumentParser */,
 				AB5BB249253DEF99002886E6 /* Files */,
 				ABA476252544569000FD4B5F /* Rainbow */,
 			);
 			productName = "LLDB-scriptable";
-			productReference = AB5BB239253DED5A002886E6 /* LLDB-scriptable */;
+			productReference = AB5BB239253DED5A002886E6 /* lowmad */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -107,7 +107,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AB5BB234253DED5A002886E6 /* Build configuration list for PBXProject "LLDB-scriptable" */;
+			buildConfigurationList = AB5BB234253DED5A002886E6 /* Build configuration list for PBXProject "lowmad" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,7 +125,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB5BB238253DED5A002886E6 /* LLDB-scriptable */,
+				AB5BB238253DED5A002886E6 /* lowmad */,
 			);
 		};
 /* End PBXProject section */
@@ -282,7 +282,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AB5BB234253DED5A002886E6 /* Build configuration list for PBXProject "LLDB-scriptable" */ = {
+		AB5BB234253DED5A002886E6 /* Build configuration list for PBXProject "lowmad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB5BB23E253DED5A002886E6 /* Debug */,
@@ -291,7 +291,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB5BB240253DED5A002886E6 /* Build configuration list for PBXNativeTarget "LLDB-scriptable" */ = {
+		AB5BB240253DED5A002886E6 /* Build configuration list for PBXNativeTarget "lowmad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB5BB241253DED5A002886E6 /* Debug */,

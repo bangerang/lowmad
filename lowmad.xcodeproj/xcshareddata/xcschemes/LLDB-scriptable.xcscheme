@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AB5BB238253DED5A002886E6"
-               BuildableName = "LLDB-scriptable"
-               BlueprintName = "LLDB-scriptable"
-               ReferencedContainer = "container:LLDB-scriptable.xcodeproj">
+               BuildableName = "lowmad"
+               BlueprintName = "lowmad"
+               ReferencedContainer = "container:lowmad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AB5BB238253DED5A002886E6"
-            BuildableName = "LLDB-scriptable"
-            BlueprintName = "LLDB-scriptable"
-            ReferencedContainer = "container:LLDB-scriptable.xcodeproj">
+            BuildableName = "lowmad"
+            BlueprintName = "lowmad"
+            ReferencedContainer = "container:lowmad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AB5BB238253DED5A002886E6"
-            BuildableName = "LLDB-scriptable"
-            BlueprintName = "LLDB-scriptable"
-            ReferencedContainer = "container:LLDB-scriptable.xcodeproj">
+            BuildableName = "lowmad"
+            BlueprintName = "lowmad"
+            ReferencedContainer = "container:lowmad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
