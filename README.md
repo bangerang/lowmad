@@ -1,7 +1,7 @@
 <p align="center">
   <img width="30%" src="logo_transparent.png">
 </p>
-A command line tool for managing and generating LLDB scripts
+A command line tool for managing and generating LLDB scripts.
 <h2>Features</h2>
 <p>Recursively fetch all LLDB scripts from a repo</p>
 <pre><code>$ lowmad install git@github.com:DerekSelander/LLDB.git</code></pre>
