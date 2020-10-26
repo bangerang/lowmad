@@ -37,7 +37,7 @@ A command line tool for managing and generating LLDB scripts.
   </tr>
   <tr>
     <td>uninstall</td>
-    <td>Unistall scripts.</td> 
+    <td>Uninstall scripts.</td> 
   </tr>
     <tr>
     <td>list</td>
