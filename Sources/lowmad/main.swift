@@ -22,7 +22,7 @@ struct Lowmad: ParsableCommand {
         let environmentFile = try File(path: "\(Lowmad.localPath)/\(Lowmad.name)/environment.json")
         return try JSONDecoder().decode(Environment.self, from: try environmentFile.read())
     }
-    
+
     struct Init: ParsableCommand {
         private enum CodingKeys: CodingKey {}
 
@@ -387,7 +387,7 @@ struct Lowmad: ParsableCommand {
             import optparse
 
             def __lldb_init_module(debugger, internal_dict):
-                debugger.HandleCommand('command script add -f \(name).handle_command \(name) -h "Short documentation here"')
+                debugger.HandleCommand(‘command script add -f \(name).handle_command \(name) -h "Short documentation here"')
 
             def handle_command(debugger, command, exe_ctx, result, internal_dict):
 
@@ -411,8 +411,8 @@ struct Lowmad: ParsableCommand {
                 parser.add_option("-m", "--module",
                                   action="store",
                                   default=None,
-                                  dest="module",
-                                  help="This is a placeholder option to show you how to use options with strings")
+                                  dest=“module”,
+                                  help=“This is a placeholder option to show you how to use options with strings")
                 parser.add_option("-c", "--check_if_true",
                                   action="store_true",
                                   default=False,
@@ -470,16 +470,5 @@ struct Environment: Codable {
     let commandsPath: String
 }
 
-var firstPrint = true
-func print(_ items: Any...) {
-    if let string = items[0] as? String {
-        if firstPrint {
-            firstPrint = false
-            Swift.print("\n" + string)
-        } else {
-            Swift.print(string)
-        }
-    }
-}
-
 Lowmad.main()
+
