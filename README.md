@@ -20,9 +20,9 @@ A command line tool for managing and generating LLDB scripts.
 <br>
 <p><b>lowmad</b> creates and maintains a manifest file for you containing all your installed scripts. This is very convenient if you want to share your scripts with others or setting up a new machine. <b>lowmad</b> also supports installation from a manifest file</p>
 <pre><code>$ lowmad install --manifest-url my/path/to/manifest.json</code></pre>
-<h2>Installation</h2>
+<h2>Installation using <a href="https://github.com/yonaskolb/mint">Mint</a></h2>
 <pre>
-<code>$ brew install lowmad</code>
+<code>$ mint install bangerang/lowmad</code>
 <code>$ lowmad init</code>
 </pre>
 <h2>Available commands</h2>
