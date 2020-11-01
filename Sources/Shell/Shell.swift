@@ -1,10 +1,3 @@
-//
-//  Git.swift
-//  lowmad
-//
-//  Created by Johan Thorell on 2020-10-31.
-//
-
 import Foundation
 import SwiftCLI
 
