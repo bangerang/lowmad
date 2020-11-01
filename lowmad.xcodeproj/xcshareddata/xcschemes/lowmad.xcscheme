@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "lowmad::lowmad"
-               BuildableName = "lowmad"
-               BlueprintName = "lowmad"
+               BlueprintIdentifier = "Lowmad::Lowmad"
+               BuildableName = "Lowmad"
+               BlueprintName = "Lowmad"
                ReferencedContainer = "container:lowmad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "lowmad::lowmadTests"
-               BuildableName = "lowmadTests.xctest"
-               BlueprintName = "lowmadTests"
+               BlueprintIdentifier = "Lowmad::LowmadTests"
+               BuildableName = "LowmadTests.xctest"
+               BlueprintName = "LowmadTests"
                ReferencedContainer = "container:lowmad.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -54,9 +54,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "lowmad::lowmad"
-            BuildableName = "lowmad"
-            BlueprintName = "lowmad"
+            BlueprintIdentifier = "Lowmad::Lowmad"
+            BuildableName = "Lowmad"
+            BlueprintName = "Lowmad"
             ReferencedContainer = "container:lowmad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -4,24 +4,27 @@
 import PackageDescription
 
 let package = Package(
-    name: "lowmad",
+    name: "Lowmad",
     platforms: [
         .macOS(.v10_15)
     ],
     products: [
-        .executable(name: "lowmad", targets: ["lowmad"]),
+        .executable(name: "lowmad", targets: ["Lowmad"]),
     ],
     dependencies: [
-        .package(url: "git@github.com:apple/swift-argument-parser.git", from: "0.3.1"),
         .package(url: "git@github.com:onevcat/Rainbow.git", from: "3.2.0"),
-        .package(url: "git@github.com:JohnSundell/Files.git", from: "4.2.0")
+        .package(url: "git@github.com:JohnSundell/Files.git", from: "4.2.0"),
+        .package(url: "https://github.com/jakeheis/SwiftCLI", from: "6.0.0")
     ],
     targets: [
-        .target(
-            name: "lowmad",
-            dependencies: ["Files", "Rainbow", .product(name: "ArgumentParser", package: "swift-argument-parser")]),
+        .target(name: "Lowmad", dependencies: ["LowmadCLI"]),
+        .target(name: "LowmadCLI", dependencies: ["Rainbow", "SwiftCLI", "LowmadKit"]),
+        .target(name: "Shell", dependencies: ["SwiftCLI"]),
+        .target(name: "LowmadKit", dependencies: ["Rainbow", "SwiftCLI", "Files", "Git", "Shell", "World"]),
+        .target(name: "Git", dependencies: ["Shell"]),
+        .target(name: "World", dependencies: ["Git", "Files", "SwiftCLI"]),
         .testTarget(
-            name: "lowmadTests",
-            dependencies: ["lowmad"]),
+            name: "LowmadTests",
+            dependencies: ["Lowmad", "World"]),
     ]
 )

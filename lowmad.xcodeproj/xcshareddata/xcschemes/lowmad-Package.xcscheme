@@ -14,9 +14,79 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "lowmad::lowmad"
-               BuildableName = "lowmad"
-               BlueprintName = "lowmad"
+               BlueprintIdentifier = "Lowmad::LowmadCLI"
+               BuildableName = "LowmadCLI.framework"
+               BlueprintName = "LowmadCLI"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::Shell"
+               BuildableName = "Shell.framework"
+               BlueprintName = "Shell"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::World"
+               BuildableName = "World.framework"
+               BlueprintName = "World"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::Git"
+               BuildableName = "Git.framework"
+               BlueprintName = "Git"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::Lowmad"
+               BuildableName = "Lowmad"
+               BlueprintName = "Lowmad"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::LowmadKit"
+               BuildableName = "LowmadKit.framework"
+               BlueprintName = "LowmadKit"
                ReferencedContainer = "container:lowmad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +102,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "lowmad::lowmadTests"
-               BuildableName = "lowmadTests.xctest"
-               BlueprintName = "lowmadTests"
+               BlueprintIdentifier = "Lowmad::LowmadTests"
+               BuildableName = "LowmadTests.xctest"
+               BlueprintName = "LowmadTests"
                ReferencedContainer = "container:lowmad.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -50,16 +120,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "lowmad::lowmad"
-            BuildableName = "lowmad"
-            BlueprintName = "lowmad"
-            ReferencedContainer = "container:lowmad.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

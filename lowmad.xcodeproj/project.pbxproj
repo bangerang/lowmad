@@ -3,74 +3,580 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		"lowmad::lowmadPackageTests::ProductTarget" /* lowmadPackageTests */ = {
+		"Lowmad::LowmadPackageTests::ProductTarget" /* LowmadPackageTests */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_34 /* Build configuration list for PBXAggregateTarget "lowmadPackageTests" */;
+			buildConfigurationList = OBJ_193 /* Build configuration list for PBXAggregateTarget "LowmadPackageTests" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_37 /* PBXTargetDependency */,
+				OBJ_196 /* PBXTargetDependency */,
 			);
-			name = lowmadPackageTests;
-			productName = lowmadPackageTests;
+			name = LowmadPackageTests;
+			productName = LowmadPackageTests;
+		};
+		"Lowmad::lowmad::ProductTarget" /* lowmad */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_300 /* Build configuration list for PBXAggregateTarget "lowmad" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_303 /* PBXTargetDependency */,
+			);
+			name = lowmad;
+			productName = lowmad;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		AB81DCEA254B5CD8007B6208 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = AB81DCE9254B5CD8007B6208 /* ArgumentParser */; };
-		AB81DCF1254B5D05007B6208 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = AB81DCF0254B5D05007B6208 /* Files */; };
-		AB81DCF8254B5D2D007B6208 /* Rainbow in Frameworks */ = {isa = PBXBuildFile; productRef = AB81DCF7254B5D2D007B6208 /* Rainbow */; };
-		OBJ_25 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* main.swift */; };
-		OBJ_32 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* XCTestManifests.swift */; };
-		OBJ_44 /* lowmadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* lowmadTests.swift */; };
+		ABCFB303254F27F70092D58D /* ListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCFB302254F27F70092D58D /* ListCommand.swift */; };
+		ABCFB317254F28C00092D58D /* UninstallCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCFB316254F28C00092D58D /* UninstallCommand.swift */; };
+		ABCFB329254F2A4B0092D58D /* GenerateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCFB328254F2A4B0092D58D /* GenerateCommand.swift */; };
+		ABCFB33B254F2B7E0092D58D /* DumpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCFB33A254F2B7E0092D58D /* DumpCommand.swift */; };
+		OBJ_100 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* Package.swift */; };
+		OBJ_106 /* Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Git.swift */; };
+		OBJ_108 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_109 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_119 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* main.swift */; };
+		OBJ_120 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* temp.swift */; };
+		OBJ_122 /* LowmadCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */; };
+		OBJ_123 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
+		OBJ_124 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_125 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_126 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_127 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_128 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_129 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_146 /* InitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* InitCommand.swift */; };
+		OBJ_147 /* InstallCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* InstallCommand.swift */; };
+		OBJ_148 /* LowmadCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* LowmadCommand.swift */; };
+		OBJ_149 /* LowmadCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* LowmadCLI.swift */; };
+		OBJ_151 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
+		OBJ_152 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_153 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_154 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_155 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_156 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_157 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_169 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Command.swift */; };
+		OBJ_170 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Environment.swift */; };
+		OBJ_171 /* LowmadKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* LowmadKit.swift */; };
+		OBJ_172 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Manifest.swift */; };
+		OBJ_174 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_175 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_176 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_177 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_178 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_179 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_191 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_202 /* LowmadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* LowmadTests.swift */; };
+		OBJ_203 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* XCTestManifests.swift */; };
+		OBJ_205 /* LowmadCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */; };
+		OBJ_206 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
+		OBJ_207 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_208 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_209 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_210 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_211 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_212 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_226 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* BackgroundColor.swift */; };
+		OBJ_227 /* CodesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_64 /* CodesParser.swift */; };
+		OBJ_228 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_65 /* Color.swift */; };
+		OBJ_229 /* ControlCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* ControlCode.swift */; };
+		OBJ_230 /* ModesExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* ModesExtractor.swift */; };
+		OBJ_231 /* OutputTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* OutputTarget.swift */; };
+		OBJ_232 /* Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* Rainbow.swift */; };
+		OBJ_233 /* String+Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* String+Rainbow.swift */; };
+		OBJ_234 /* StringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* StringGenerator.swift */; };
+		OBJ_235 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* Style.swift */; };
+		OBJ_236 /* XcodeColorsSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* XcodeColorsSupport.swift */; };
+		OBJ_243 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Package.swift */; };
+		OBJ_248 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Shell.swift */; };
+		OBJ_250 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_256 /* ArgumentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* ArgumentList.swift */; };
+		OBJ_257 /* ArgumentListManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* ArgumentListManipulator.swift */; };
+		OBJ_258 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* CLI.swift */; };
+		OBJ_259 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* Command.swift */; };
+		OBJ_260 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* Compatibility.swift */; };
+		OBJ_261 /* CompletionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* CompletionGenerator.swift */; };
+		OBJ_262 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Error.swift */; };
+		OBJ_263 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* HelpCommand.swift */; };
+		OBJ_264 /* HelpMessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* HelpMessageGenerator.swift */; };
+		OBJ_265 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Input.swift */; };
+		OBJ_266 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* Option.swift */; };
+		OBJ_267 /* OptionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* OptionGroup.swift */; };
+		OBJ_268 /* OptionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* OptionRegistry.swift */; };
+		OBJ_269 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* Parameter.swift */; };
+		OBJ_270 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* Parser.swift */; };
+		OBJ_271 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* Path.swift */; };
+		OBJ_272 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Stream.swift */; };
+		OBJ_273 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* Task.swift */; };
+		OBJ_274 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* Term.swift */; };
+		OBJ_275 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* Validation.swift */; };
+		OBJ_276 /* ValueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* ValueBox.swift */; };
+		OBJ_277 /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* VersionCommand.swift */; };
+		OBJ_284 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* Package.swift */; };
+		OBJ_289 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* World.swift */; };
+		OBJ_291 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_292 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_293 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_294 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_93 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* Files.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AB81DCDE254B5C3E007B6208 /* PBXContainerItemProxy */ = {
+		ABCFB2DD254F12D00092D58D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "lowmad::lowmad";
-			remoteInfo = lowmad;
+			remoteGlobalIDString = "Lowmad::LowmadCLI";
+			remoteInfo = LowmadCLI;
 		};
-		AB81DCE1254B5C3F007B6208 /* PBXContainerItemProxy */ = {
+		ABCFB2DE254F12D00092D58D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "lowmad::lowmadTests";
-			remoteInfo = lowmadTests;
+			remoteGlobalIDString = "Lowmad::LowmadKit";
+			remoteInfo = LowmadKit;
+		};
+		ABCFB2DF254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Rainbow::Rainbow";
+			remoteInfo = Rainbow;
+		};
+		ABCFB2E0254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::World";
+			remoteInfo = World;
+		};
+		ABCFB2E1254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Files::Files";
+			remoteInfo = Files;
+		};
+		ABCFB2E2254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Git";
+			remoteInfo = Git;
+		};
+		ABCFB2E3254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Shell";
+			remoteInfo = Shell;
+		};
+		ABCFB2E4254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		ABCFB2E5254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		ABCFB2E6254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Shell";
+			remoteInfo = Shell;
+		};
+		ABCFB2E7254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		ABCFB2E8254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Files::Files";
+			remoteInfo = Files;
+		};
+		ABCFB2E9254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Git";
+			remoteInfo = Git;
+		};
+		ABCFB2EA254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Shell";
+			remoteInfo = Shell;
+		};
+		ABCFB2EB254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		ABCFB2EC254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Rainbow::Rainbow";
+			remoteInfo = Rainbow;
+		};
+		ABCFB2ED254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::World";
+			remoteInfo = World;
+		};
+		ABCFB2EE254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Files::Files";
+			remoteInfo = Files;
+		};
+		ABCFB2EF254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Git";
+			remoteInfo = Git;
+		};
+		ABCFB2F0254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Shell";
+			remoteInfo = Shell;
+		};
+		ABCFB2F1254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		ABCFB2F2254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::LowmadKit";
+			remoteInfo = LowmadKit;
+		};
+		ABCFB2F3254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Rainbow::Rainbow";
+			remoteInfo = Rainbow;
+		};
+		ABCFB2F4254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::World";
+			remoteInfo = World;
+		};
+		ABCFB2F5254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Files::Files";
+			remoteInfo = Files;
+		};
+		ABCFB2F6254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Git";
+			remoteInfo = Git;
+		};
+		ABCFB2F7254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Shell";
+			remoteInfo = Shell;
+		};
+		ABCFB2F8254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		ABCFB2F9254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Lowmad";
+			remoteInfo = Lowmad;
+		};
+		ABCFB2FA254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::LowmadCLI";
+			remoteInfo = LowmadCLI;
+		};
+		ABCFB2FB254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::LowmadKit";
+			remoteInfo = LowmadKit;
+		};
+		ABCFB2FC254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Rainbow::Rainbow";
+			remoteInfo = Rainbow;
+		};
+		ABCFB2FD254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::World";
+			remoteInfo = World;
+		};
+		ABCFB2FE254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Files::Files";
+			remoteInfo = Files;
+		};
+		ABCFB2FF254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Git";
+			remoteInfo = Git;
+		};
+		ABCFB300254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Shell";
+			remoteInfo = Shell;
+		};
+		ABCFB301254F12D00092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		ABCFB30B254F27F80092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::LowmadTests";
+			remoteInfo = LowmadTests;
+		};
+		ABCFB314254F27F80092D58D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Lowmad";
+			remoteInfo = Lowmad;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		OBJ_12 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		OBJ_13 /* lowmadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lowmadTests.swift; sourceTree = "<group>"; };
-		OBJ_17 /* logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_transparent.png; sourceTree = "<group>"; };
-		OBJ_18 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		OBJ_19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ABCFB302254F27F70092D58D /* ListCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommand.swift; sourceTree = "<group>"; };
+		ABCFB316254F28C00092D58D /* UninstallCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninstallCommand.swift; sourceTree = "<group>"; };
+		ABCFB328254F2A4B0092D58D /* GenerateCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCommand.swift; sourceTree = "<group>"; };
+		ABCFB33A254F2B7E0092D58D /* DumpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumpCommand.swift; sourceTree = "<group>"; };
+		"Files::Files::Product" /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Files.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Lowmad::Git::Product" /* Git.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Git.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Lowmad::Lowmad::Product" /* Lowmad */ = {isa = PBXFileReference; lastKnownFileType = text; path = Lowmad; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LowmadCLI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Lowmad::LowmadKit::Product" /* LowmadKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LowmadKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Lowmad::LowmadTests::Product" /* LowmadTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = LowmadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Lowmad::Shell::Product" /* Shell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Lowmad::World::Product" /* World.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = World.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_11 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		OBJ_12 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
+		OBJ_15 /* InitCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitCommand.swift; sourceTree = "<group>"; };
+		OBJ_16 /* InstallCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallCommand.swift; sourceTree = "<group>"; };
+		OBJ_17 /* LowmadCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowmadCommand.swift; sourceTree = "<group>"; };
+		OBJ_18 /* LowmadCLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowmadCLI.swift; sourceTree = "<group>"; };
+		OBJ_20 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		OBJ_21 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		OBJ_22 /* LowmadKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowmadKit.swift; sourceTree = "<group>"; };
+		OBJ_23 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
+		OBJ_25 /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		OBJ_27 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		OBJ_30 /* LowmadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowmadTests.swift; sourceTree = "<group>"; };
+		OBJ_31 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_35 /* ArgumentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentList.swift; sourceTree = "<group>"; };
+		OBJ_36 /* ArgumentListManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentListManipulator.swift; sourceTree = "<group>"; };
+		OBJ_37 /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		OBJ_38 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		OBJ_39 /* Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
+		OBJ_40 /* CompletionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionGenerator.swift; sourceTree = "<group>"; };
+		OBJ_41 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		OBJ_42 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
+		OBJ_43 /* HelpMessageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMessageGenerator.swift; sourceTree = "<group>"; };
+		OBJ_44 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		OBJ_45 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		OBJ_46 /* OptionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionGroup.swift; sourceTree = "<group>"; };
+		OBJ_47 /* OptionRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionRegistry.swift; sourceTree = "<group>"; };
+		OBJ_48 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
+		OBJ_49 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		OBJ_50 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		OBJ_51 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		OBJ_52 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		OBJ_53 /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		OBJ_54 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		OBJ_55 /* ValueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueBox.swift; sourceTree = "<group>"; };
+		OBJ_56 /* VersionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCommand.swift; sourceTree = "<group>"; };
+		OBJ_57 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/johanthorell/Documents/Development/Lowmad/.build/checkouts/SwiftCLI/Package.swift; sourceTree = "<group>"; };
+		OBJ_59 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/johanthorell/Documents/Development/Lowmad/.build/checkouts/Files/Package.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		"lowmad::lowmad::Product" /* lowmad */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = lowmad; sourceTree = BUILT_PRODUCTS_DIR; };
-		"lowmad::lowmadTests::Product" /* lowmadTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = lowmadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_60 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		OBJ_62 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/johanthorell/Documents/Development/Lowmad/.build/checkouts/Rainbow/Package.swift; sourceTree = "<group>"; };
+		OBJ_63 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
+		OBJ_64 /* CodesParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesParser.swift; sourceTree = "<group>"; };
+		OBJ_65 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		OBJ_66 /* ControlCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCode.swift; sourceTree = "<group>"; };
+		OBJ_67 /* ModesExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModesExtractor.swift; sourceTree = "<group>"; };
+		OBJ_68 /* OutputTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTarget.swift; sourceTree = "<group>"; };
+		OBJ_69 /* Rainbow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rainbow.swift; sourceTree = "<group>"; };
+		OBJ_70 /* String+Rainbow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Rainbow.swift"; sourceTree = "<group>"; };
+		OBJ_71 /* StringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringGenerator.swift; sourceTree = "<group>"; };
+		OBJ_72 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		OBJ_73 /* XcodeColorsSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeColorsSupport.swift; sourceTree = "<group>"; };
+		OBJ_85 /* logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_transparent.png; sourceTree = "<group>"; };
+		OBJ_86 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		OBJ_87 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_9 /* Git.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Git.swift; sourceTree = "<group>"; };
+		"Rainbow::Rainbow::Product" /* Rainbow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rainbow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftCLI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_26 /* Frameworks */ = {
+		OBJ_107 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				AB81DCF8254B5D2D007B6208 /* Rainbow in Frameworks */,
-				AB81DCF1254B5D05007B6208 /* Files in Frameworks */,
-				AB81DCEA254B5CD8007B6208 /* ArgumentParser in Frameworks */,
+				OBJ_108 /* Shell.framework in Frameworks */,
+				OBJ_109 /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_45 /* Frameworks */ = {
+		OBJ_121 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_122 /* LowmadCLI.framework in Frameworks */,
+				OBJ_123 /* LowmadKit.framework in Frameworks */,
+				OBJ_124 /* Rainbow.framework in Frameworks */,
+				OBJ_125 /* World.framework in Frameworks */,
+				OBJ_126 /* Files.framework in Frameworks */,
+				OBJ_127 /* Git.framework in Frameworks */,
+				OBJ_128 /* Shell.framework in Frameworks */,
+				OBJ_129 /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_150 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_151 /* LowmadKit.framework in Frameworks */,
+				OBJ_152 /* Rainbow.framework in Frameworks */,
+				OBJ_153 /* World.framework in Frameworks */,
+				OBJ_154 /* Files.framework in Frameworks */,
+				OBJ_155 /* Git.framework in Frameworks */,
+				OBJ_156 /* Shell.framework in Frameworks */,
+				OBJ_157 /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_173 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_174 /* Rainbow.framework in Frameworks */,
+				OBJ_175 /* World.framework in Frameworks */,
+				OBJ_176 /* Files.framework in Frameworks */,
+				OBJ_177 /* Git.framework in Frameworks */,
+				OBJ_178 /* Shell.framework in Frameworks */,
+				OBJ_179 /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_204 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_205 /* LowmadCLI.framework in Frameworks */,
+				OBJ_206 /* LowmadKit.framework in Frameworks */,
+				OBJ_207 /* Rainbow.framework in Frameworks */,
+				OBJ_208 /* World.framework in Frameworks */,
+				OBJ_209 /* Files.framework in Frameworks */,
+				OBJ_210 /* Git.framework in Frameworks */,
+				OBJ_211 /* Shell.framework in Frameworks */,
+				OBJ_212 /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_237 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_249 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_250 /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_278 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_290 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_291 /* Files.framework in Frameworks */,
+				OBJ_292 /* Git.framework in Frameworks */,
+				OBJ_293 /* Shell.framework in Frameworks */,
+				OBJ_294 /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_94 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
@@ -80,118 +586,476 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		OBJ_10 /* Tests */ = {
+		OBJ_10 /* Lowmad */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_11 /* lowmadTests */,
+				OBJ_11 /* main.swift */,
+				OBJ_12 /* temp.swift */,
+			);
+			name = Lowmad;
+			path = Sources/Lowmad;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_13 /* LowmadCLI */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_14 /* Commands */,
+				OBJ_18 /* LowmadCLI.swift */,
+			);
+			name = LowmadCLI;
+			path = Sources/LowmadCLI;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_14 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_15 /* InitCommand.swift */,
+				OBJ_16 /* InstallCommand.swift */,
+				OBJ_17 /* LowmadCommand.swift */,
+				ABCFB302254F27F70092D58D /* ListCommand.swift */,
+				ABCFB316254F28C00092D58D /* UninstallCommand.swift */,
+				ABCFB328254F2A4B0092D58D /* GenerateCommand.swift */,
+				ABCFB33A254F2B7E0092D58D /* DumpCommand.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		OBJ_19 /* LowmadKit */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_20 /* Command.swift */,
+				OBJ_21 /* Environment.swift */,
+				OBJ_22 /* LowmadKit.swift */,
+				OBJ_23 /* Manifest.swift */,
+			);
+			name = LowmadKit;
+			path = Sources/LowmadKit;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_24 /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_25 /* Shell.swift */,
+			);
+			name = Shell;
+			path = Sources/Shell;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_26 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_27 /* World.swift */,
+			);
+			name = World;
+			path = Sources/World;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_28 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_29 /* LowmadTests */,
 			);
 			name = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_11 /* lowmadTests */ = {
+		OBJ_29 /* LowmadTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* XCTestManifests.swift */,
-				OBJ_13 /* lowmadTests.swift */,
+				OBJ_30 /* LowmadTests.swift */,
+				OBJ_31 /* XCTestManifests.swift */,
 			);
-			name = lowmadTests;
-			path = Tests/lowmadTests;
+			name = LowmadTests;
+			path = Tests/LowmadTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_14 /* Products */ = {
+		OBJ_32 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				"lowmad::lowmadTests::Product" /* lowmadTests.xctest */,
-				"lowmad::lowmad::Product" /* lowmad */,
+				OBJ_33 /* SwiftCLI 6.0.2 */,
+				OBJ_58 /* Files 4.2.0 */,
+				OBJ_61 /* Rainbow 3.2.0 */,
 			);
-			name = Products;
-			sourceTree = BUILT_PRODUCTS_DIR;
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		OBJ_33 /* SwiftCLI 6.0.2 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_34 /* SwiftCLI */,
+				OBJ_57 /* Package.swift */,
+			);
+			name = "SwiftCLI 6.0.2";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_34 /* SwiftCLI */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_35 /* ArgumentList.swift */,
+				OBJ_36 /* ArgumentListManipulator.swift */,
+				OBJ_37 /* CLI.swift */,
+				OBJ_38 /* Command.swift */,
+				OBJ_39 /* Compatibility.swift */,
+				OBJ_40 /* CompletionGenerator.swift */,
+				OBJ_41 /* Error.swift */,
+				OBJ_42 /* HelpCommand.swift */,
+				OBJ_43 /* HelpMessageGenerator.swift */,
+				OBJ_44 /* Input.swift */,
+				OBJ_45 /* Option.swift */,
+				OBJ_46 /* OptionGroup.swift */,
+				OBJ_47 /* OptionRegistry.swift */,
+				OBJ_48 /* Parameter.swift */,
+				OBJ_49 /* Parser.swift */,
+				OBJ_50 /* Path.swift */,
+				OBJ_51 /* Stream.swift */,
+				OBJ_52 /* Task.swift */,
+				OBJ_53 /* Term.swift */,
+				OBJ_54 /* Validation.swift */,
+				OBJ_55 /* ValueBox.swift */,
+				OBJ_56 /* VersionCommand.swift */,
+			);
+			name = SwiftCLI;
+			path = .build/checkouts/SwiftCLI/Sources/SwiftCLI;
+			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
-				OBJ_10 /* Tests */,
-				OBJ_14 /* Products */,
-				OBJ_17 /* logo_transparent.png */,
-				OBJ_18 /* LICENSE */,
-				OBJ_19 /* README.md */,
+				OBJ_28 /* Tests */,
+				OBJ_32 /* Dependencies */,
+				OBJ_74 /* Products */,
+				OBJ_85 /* logo_transparent.png */,
+				OBJ_86 /* LICENSE */,
+				OBJ_87 /* README.md */,
 			);
 			name = "";
 			sourceTree = "<group>";
 		};
+		OBJ_58 /* Files 4.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_59 /* Package.swift */,
+				OBJ_60 /* Files.swift */,
+			);
+			name = "Files 4.2.0";
+			path = .build/checkouts/Files/Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_61 /* Rainbow 3.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_62 /* Package.swift */,
+				OBJ_63 /* BackgroundColor.swift */,
+				OBJ_64 /* CodesParser.swift */,
+				OBJ_65 /* Color.swift */,
+				OBJ_66 /* ControlCode.swift */,
+				OBJ_67 /* ModesExtractor.swift */,
+				OBJ_68 /* OutputTarget.swift */,
+				OBJ_69 /* Rainbow.swift */,
+				OBJ_70 /* String+Rainbow.swift */,
+				OBJ_71 /* StringGenerator.swift */,
+				OBJ_72 /* Style.swift */,
+				OBJ_73 /* XcodeColorsSupport.swift */,
+			);
+			name = "Rainbow 3.2.0";
+			path = .build/checkouts/Rainbow/Sources;
+			sourceTree = SOURCE_ROOT;
+		};
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_8 /* lowmad */,
+				OBJ_8 /* Git */,
+				OBJ_10 /* Lowmad */,
+				OBJ_13 /* LowmadCLI */,
+				OBJ_19 /* LowmadKit */,
+				OBJ_24 /* Shell */,
+				OBJ_26 /* World */,
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_8 /* lowmad */ = {
+		OBJ_74 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* main.swift */,
+				"Lowmad::LowmadKit::Product" /* LowmadKit.framework */,
+				"Rainbow::Rainbow::Product" /* Rainbow.framework */,
+				"SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */,
+				"Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */,
+				"Lowmad::Lowmad::Product" /* Lowmad */,
+				"Files::Files::Product" /* Files.framework */,
+				"Lowmad::Shell::Product" /* Shell.framework */,
+				"Lowmad::Git::Product" /* Git.framework */,
+				"Lowmad::World::Product" /* World.framework */,
+				"Lowmad::LowmadTests::Product" /* LowmadTests.xctest */,
 			);
-			name = lowmad;
-			path = Sources/lowmad;
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_8 /* Git */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* Git.swift */,
+			);
+			name = Git;
+			path = Sources/Git;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		"lowmad::SwiftPMPackageDescription" /* lowmadPackageDescription */ = {
+		"Files::Files" /* Files */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_28 /* Build configuration list for PBXNativeTarget "lowmadPackageDescription" */;
+			buildConfigurationList = OBJ_89 /* Build configuration list for PBXNativeTarget "Files" */;
 			buildPhases = (
-				OBJ_31 /* Sources */,
+				OBJ_92 /* Sources */,
+				OBJ_94 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = lowmadPackageDescription;
-			productName = lowmadPackageDescription;
+			name = Files;
+			productName = Files;
+			productReference = "Files::Files::Product" /* Files.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"lowmad::lowmad" /* lowmad */ = {
+		"Files::SwiftPMPackageDescription" /* FilesPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_21 /* Build configuration list for PBXNativeTarget "lowmad" */;
+			buildConfigurationList = OBJ_96 /* Build configuration list for PBXNativeTarget "FilesPackageDescription" */;
 			buildPhases = (
-				OBJ_24 /* Sources */,
-				OBJ_26 /* Frameworks */,
+				OBJ_99 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = lowmad;
-			packageProductDependencies = (
-				AB81DCE9254B5CD8007B6208 /* ArgumentParser */,
-				AB81DCF0254B5D05007B6208 /* Files */,
-				AB81DCF7254B5D2D007B6208 /* Rainbow */,
+			name = FilesPackageDescription;
+			productName = FilesPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"Lowmad::Git" /* Git */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_102 /* Build configuration list for PBXNativeTarget "Git" */;
+			buildPhases = (
+				OBJ_105 /* Sources */,
+				OBJ_107 /* Frameworks */,
 			);
-			productName = lowmad;
-			productReference = "lowmad::lowmad::Product" /* lowmad */;
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_110 /* PBXTargetDependency */,
+				OBJ_112 /* PBXTargetDependency */,
+			);
+			name = Git;
+			productName = Git;
+			productReference = "Lowmad::Git::Product" /* Git.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Lowmad::Lowmad" /* Lowmad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_115 /* Build configuration list for PBXNativeTarget "Lowmad" */;
+			buildPhases = (
+				OBJ_118 /* Sources */,
+				OBJ_121 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_130 /* PBXTargetDependency */,
+				OBJ_132 /* PBXTargetDependency */,
+				OBJ_134 /* PBXTargetDependency */,
+				OBJ_136 /* PBXTargetDependency */,
+				OBJ_138 /* PBXTargetDependency */,
+				OBJ_139 /* PBXTargetDependency */,
+				OBJ_140 /* PBXTargetDependency */,
+				OBJ_141 /* PBXTargetDependency */,
+			);
+			name = Lowmad;
+			productName = Lowmad;
+			productReference = "Lowmad::Lowmad::Product" /* Lowmad */;
 			productType = "com.apple.product-type.tool";
 		};
-		"lowmad::lowmadTests" /* lowmadTests */ = {
+		"Lowmad::LowmadCLI" /* LowmadCLI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_39 /* Build configuration list for PBXNativeTarget "lowmadTests" */;
+			buildConfigurationList = OBJ_142 /* Build configuration list for PBXNativeTarget "LowmadCLI" */;
 			buildPhases = (
-				OBJ_42 /* Sources */,
-				OBJ_45 /* Frameworks */,
+				OBJ_145 /* Sources */,
+				OBJ_150 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_46 /* PBXTargetDependency */,
+				OBJ_158 /* PBXTargetDependency */,
+				OBJ_159 /* PBXTargetDependency */,
+				OBJ_160 /* PBXTargetDependency */,
+				OBJ_161 /* PBXTargetDependency */,
+				OBJ_162 /* PBXTargetDependency */,
+				OBJ_163 /* PBXTargetDependency */,
+				OBJ_164 /* PBXTargetDependency */,
 			);
-			name = lowmadTests;
-			productName = lowmadTests;
-			productReference = "lowmad::lowmadTests::Product" /* lowmadTests.xctest */;
+			name = LowmadCLI;
+			productName = LowmadCLI;
+			productReference = "Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Lowmad::LowmadKit" /* LowmadKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_165 /* Build configuration list for PBXNativeTarget "LowmadKit" */;
+			buildPhases = (
+				OBJ_168 /* Sources */,
+				OBJ_173 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_180 /* PBXTargetDependency */,
+				OBJ_181 /* PBXTargetDependency */,
+				OBJ_182 /* PBXTargetDependency */,
+				OBJ_183 /* PBXTargetDependency */,
+				OBJ_184 /* PBXTargetDependency */,
+				OBJ_185 /* PBXTargetDependency */,
+			);
+			name = LowmadKit;
+			productName = LowmadKit;
+			productReference = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Lowmad::LowmadTests" /* LowmadTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_198 /* Build configuration list for PBXNativeTarget "LowmadTests" */;
+			buildPhases = (
+				OBJ_201 /* Sources */,
+				OBJ_204 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_213 /* PBXTargetDependency */,
+				OBJ_214 /* PBXTargetDependency */,
+				OBJ_215 /* PBXTargetDependency */,
+				OBJ_216 /* PBXTargetDependency */,
+				OBJ_217 /* PBXTargetDependency */,
+				OBJ_218 /* PBXTargetDependency */,
+				OBJ_219 /* PBXTargetDependency */,
+				OBJ_220 /* PBXTargetDependency */,
+				OBJ_221 /* PBXTargetDependency */,
+			);
+			name = LowmadTests;
+			productName = LowmadTests;
+			productReference = "Lowmad::LowmadTests::Product" /* LowmadTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"Lowmad::Shell" /* Shell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_244 /* Build configuration list for PBXNativeTarget "Shell" */;
+			buildPhases = (
+				OBJ_247 /* Sources */,
+				OBJ_249 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_251 /* PBXTargetDependency */,
+			);
+			name = Shell;
+			productName = Shell;
+			productReference = "Lowmad::Shell::Product" /* Shell.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Lowmad::SwiftPMPackageDescription" /* LowmadPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_187 /* Build configuration list for PBXNativeTarget "LowmadPackageDescription" */;
+			buildPhases = (
+				OBJ_190 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LowmadPackageDescription;
+			productName = LowmadPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"Lowmad::World" /* World */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_285 /* Build configuration list for PBXNativeTarget "World" */;
+			buildPhases = (
+				OBJ_288 /* Sources */,
+				OBJ_290 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_295 /* PBXTargetDependency */,
+				OBJ_296 /* PBXTargetDependency */,
+				OBJ_297 /* PBXTargetDependency */,
+				OBJ_298 /* PBXTargetDependency */,
+			);
+			name = World;
+			productName = World;
+			productReference = "Lowmad::World::Product" /* World.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Rainbow::Rainbow" /* Rainbow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_222 /* Build configuration list for PBXNativeTarget "Rainbow" */;
+			buildPhases = (
+				OBJ_225 /* Sources */,
+				OBJ_237 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rainbow;
+			productName = Rainbow;
+			productReference = "Rainbow::Rainbow::Product" /* Rainbow.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Rainbow::SwiftPMPackageDescription" /* RainbowPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_239 /* Build configuration list for PBXNativeTarget "RainbowPackageDescription" */;
+			buildPhases = (
+				OBJ_242 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RainbowPackageDescription;
+			productName = RainbowPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"SwiftCLI::SwiftCLI" /* SwiftCLI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_252 /* Build configuration list for PBXNativeTarget "SwiftCLI" */;
+			buildPhases = (
+				OBJ_255 /* Sources */,
+				OBJ_278 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftCLI;
+			productName = SwiftCLI;
+			productReference = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"SwiftCLI::SwiftPMPackageDescription" /* SwiftCLIPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_280 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */;
+			buildPhases = (
+				OBJ_283 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftCLIPackageDescription;
+			productName = SwiftCLIPackageDescription;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -210,131 +1074,936 @@
 				en,
 			);
 			mainGroup = OBJ_5 /*  */;
-			packageReferences = (
-				AB81DCE8254B5CD8007B6208 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
-				AB81DCEF254B5D05007B6208 /* XCRemoteSwiftPackageReference "Files" */,
-				AB81DCF6254B5D2D007B6208 /* XCRemoteSwiftPackageReference "Rainbow" */,
-			);
-			productRefGroup = OBJ_14 /* Products */;
+			productRefGroup = OBJ_74 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"lowmad::lowmad" /* lowmad */,
-				"lowmad::SwiftPMPackageDescription" /* lowmadPackageDescription */,
-				"lowmad::lowmadPackageTests::ProductTarget" /* lowmadPackageTests */,
-				"lowmad::lowmadTests" /* lowmadTests */,
+				"Files::Files" /* Files */,
+				"Files::SwiftPMPackageDescription" /* FilesPackageDescription */,
+				"Lowmad::Git" /* Git */,
+				"Lowmad::Lowmad" /* Lowmad */,
+				"Lowmad::LowmadCLI" /* LowmadCLI */,
+				"Lowmad::LowmadKit" /* LowmadKit */,
+				"Lowmad::SwiftPMPackageDescription" /* LowmadPackageDescription */,
+				"Lowmad::LowmadPackageTests::ProductTarget" /* LowmadPackageTests */,
+				"Lowmad::LowmadTests" /* LowmadTests */,
+				"Rainbow::Rainbow" /* Rainbow */,
+				"Rainbow::SwiftPMPackageDescription" /* RainbowPackageDescription */,
+				"Lowmad::Shell" /* Shell */,
+				"SwiftCLI::SwiftCLI" /* SwiftCLI */,
+				"SwiftCLI::SwiftPMPackageDescription" /* SwiftCLIPackageDescription */,
+				"Lowmad::World" /* World */,
+				"Lowmad::lowmad::ProductTarget" /* lowmad */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_24 /* Sources */ = {
+		OBJ_105 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_25 /* main.swift in Sources */,
+				OBJ_106 /* Git.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_31 /* Sources */ = {
+		OBJ_118 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_32 /* Package.swift in Sources */,
+				OBJ_119 /* main.swift in Sources */,
+				OBJ_120 /* temp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_42 /* Sources */ = {
+		OBJ_145 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_43 /* XCTestManifests.swift in Sources */,
-				OBJ_44 /* lowmadTests.swift in Sources */,
+				ABCFB303254F27F70092D58D /* ListCommand.swift in Sources */,
+				ABCFB33B254F2B7E0092D58D /* DumpCommand.swift in Sources */,
+				OBJ_146 /* InitCommand.swift in Sources */,
+				ABCFB329254F2A4B0092D58D /* GenerateCommand.swift in Sources */,
+				ABCFB317254F28C00092D58D /* UninstallCommand.swift in Sources */,
+				OBJ_147 /* InstallCommand.swift in Sources */,
+				OBJ_148 /* LowmadCommand.swift in Sources */,
+				OBJ_149 /* LowmadCLI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_168 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_169 /* Command.swift in Sources */,
+				OBJ_170 /* Environment.swift in Sources */,
+				OBJ_171 /* LowmadKit.swift in Sources */,
+				OBJ_172 /* Manifest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_190 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_191 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_201 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_202 /* LowmadTests.swift in Sources */,
+				OBJ_203 /* XCTestManifests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_225 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_226 /* BackgroundColor.swift in Sources */,
+				OBJ_227 /* CodesParser.swift in Sources */,
+				OBJ_228 /* Color.swift in Sources */,
+				OBJ_229 /* ControlCode.swift in Sources */,
+				OBJ_230 /* ModesExtractor.swift in Sources */,
+				OBJ_231 /* OutputTarget.swift in Sources */,
+				OBJ_232 /* Rainbow.swift in Sources */,
+				OBJ_233 /* String+Rainbow.swift in Sources */,
+				OBJ_234 /* StringGenerator.swift in Sources */,
+				OBJ_235 /* Style.swift in Sources */,
+				OBJ_236 /* XcodeColorsSupport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_242 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_243 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_247 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_248 /* Shell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_255 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_256 /* ArgumentList.swift in Sources */,
+				OBJ_257 /* ArgumentListManipulator.swift in Sources */,
+				OBJ_258 /* CLI.swift in Sources */,
+				OBJ_259 /* Command.swift in Sources */,
+				OBJ_260 /* Compatibility.swift in Sources */,
+				OBJ_261 /* CompletionGenerator.swift in Sources */,
+				OBJ_262 /* Error.swift in Sources */,
+				OBJ_263 /* HelpCommand.swift in Sources */,
+				OBJ_264 /* HelpMessageGenerator.swift in Sources */,
+				OBJ_265 /* Input.swift in Sources */,
+				OBJ_266 /* Option.swift in Sources */,
+				OBJ_267 /* OptionGroup.swift in Sources */,
+				OBJ_268 /* OptionRegistry.swift in Sources */,
+				OBJ_269 /* Parameter.swift in Sources */,
+				OBJ_270 /* Parser.swift in Sources */,
+				OBJ_271 /* Path.swift in Sources */,
+				OBJ_272 /* Stream.swift in Sources */,
+				OBJ_273 /* Task.swift in Sources */,
+				OBJ_274 /* Term.swift in Sources */,
+				OBJ_275 /* Validation.swift in Sources */,
+				OBJ_276 /* ValueBox.swift in Sources */,
+				OBJ_277 /* VersionCommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_283 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_284 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_288 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_289 /* World.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_93 /* Files.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_100 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_37 /* PBXTargetDependency */ = {
+		OBJ_110 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "lowmad::lowmadTests" /* lowmadTests */;
-			targetProxy = AB81DCE1254B5C3F007B6208 /* PBXContainerItemProxy */;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = ABCFB2E3254F12D00092D58D /* PBXContainerItemProxy */;
 		};
-		OBJ_46 /* PBXTargetDependency */ = {
+		OBJ_112 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "lowmad::lowmad" /* lowmad */;
-			targetProxy = AB81DCDE254B5C3E007B6208 /* PBXContainerItemProxy */;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = ABCFB2E5254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_130 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::LowmadCLI" /* LowmadCLI */;
+			targetProxy = ABCFB2DD254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_132 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::LowmadKit" /* LowmadKit */;
+			targetProxy = ABCFB2F2254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_134 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Rainbow::Rainbow" /* Rainbow */;
+			targetProxy = ABCFB2F3254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_136 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::World" /* World */;
+			targetProxy = ABCFB2F4254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_138 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Files::Files" /* Files */;
+			targetProxy = ABCFB2F5254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_139 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = ABCFB2F6254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_140 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = ABCFB2F7254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_141 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = ABCFB2F8254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_158 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::LowmadKit" /* LowmadKit */;
+			targetProxy = ABCFB2DE254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_159 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Rainbow::Rainbow" /* Rainbow */;
+			targetProxy = ABCFB2EC254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_160 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::World" /* World */;
+			targetProxy = ABCFB2ED254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_161 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Files::Files" /* Files */;
+			targetProxy = ABCFB2EE254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_162 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = ABCFB2EF254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = ABCFB2F0254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_164 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = ABCFB2F1254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_180 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Rainbow::Rainbow" /* Rainbow */;
+			targetProxy = ABCFB2DF254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_181 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::World" /* World */;
+			targetProxy = ABCFB2E0254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_182 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Files::Files" /* Files */;
+			targetProxy = ABCFB2E8254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_183 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = ABCFB2E9254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_184 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = ABCFB2EA254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_185 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = ABCFB2EB254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_196 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::LowmadTests" /* LowmadTests */;
+			targetProxy = ABCFB30B254F27F80092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_213 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Lowmad" /* Lowmad */;
+			targetProxy = ABCFB2F9254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::LowmadCLI" /* LowmadCLI */;
+			targetProxy = ABCFB2FA254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_215 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::LowmadKit" /* LowmadKit */;
+			targetProxy = ABCFB2FB254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_216 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Rainbow::Rainbow" /* Rainbow */;
+			targetProxy = ABCFB2FC254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_217 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::World" /* World */;
+			targetProxy = ABCFB2FD254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_218 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Files::Files" /* Files */;
+			targetProxy = ABCFB2FE254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_219 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = ABCFB2FF254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = ABCFB300254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_221 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = ABCFB301254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_251 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = ABCFB2E4254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_295 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Files::Files" /* Files */;
+			targetProxy = ABCFB2E1254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_296 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = ABCFB2E2254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_297 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = ABCFB2E6254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_298 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = ABCFB2E7254F12D00092D58D /* PBXContainerItemProxy */;
+		};
+		OBJ_303 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Lowmad::Lowmad" /* Lowmad */;
+			targetProxy = ABCFB314254F27F80092D58D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_22 /* Debug */ = {
+		OBJ_103 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = lowmad.xcodeproj/lowmad_Info.plist;
+				INFOPLIST_FILE = Lowmad.xcodeproj/Git_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-					"@executable_path",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Git;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lowmad;
+				TARGET_NAME = Git;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
-		OBJ_23 /* Release */ = {
+		OBJ_104 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = lowmad.xcodeproj/lowmad_Info.plist;
+				INFOPLIST_FILE = Lowmad.xcodeproj/Git_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-					"@executable_path",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Git;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lowmad;
+				TARGET_NAME = Git;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
-		OBJ_29 /* Debug */ = {
+		OBJ_116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/Lowmad_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Lowmad;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/Lowmad_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Lowmad;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_143 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/LowmadCLI_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = LowmadCLI;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LowmadCLI;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/LowmadCLI_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = LowmadCLI;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LowmadCLI;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_166 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/LowmadKit_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = LowmadKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LowmadKit;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/LowmadKit_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = LowmadKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LowmadKit;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_188 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Users/johanthorell/Downloads/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk -package-description-version 5.3.0";
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.3.0";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
+		};
+		OBJ_189 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.3.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_194 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_199 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/LowmadTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LowmadTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_200 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/LowmadTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LowmadTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/Rainbow_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Rainbow;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Rainbow;
+			};
+			name = Debug;
+		};
+		OBJ_224 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/Rainbow_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Rainbow;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Rainbow;
+			};
+			name = Release;
+		};
+		OBJ_240 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 4.0.0";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_241 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 4.0.0";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/Shell_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Shell;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Shell;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_246 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/Shell_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Shell;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = Shell;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/SwiftCLI_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftCLI;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SwiftCLI;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_254 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/SwiftCLI_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftCLI;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = SwiftCLI;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.1.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_282 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.1.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_286 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/World_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = World;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = World;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_287 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Lowmad.xcodeproj/World_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = World;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = World;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
 		};
 		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -351,7 +2020,7 @@
 					"SWIFT_PACKAGE=1",
 					"DEBUG=1",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,22 +2032,13 @@
 			};
 			name = Debug;
 		};
-		OBJ_30 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Users/johanthorell/Downloads/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk -package-description-version 5.3.0";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		OBJ_35 /* Debug */ = {
+		OBJ_301 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_36 /* Release */ = {
+		OBJ_302 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -397,79 +2057,157 @@
 					"$(inherited)",
 					"SWIFT_PACKAGE=1",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
-		OBJ_40 /* Debug */ = {
+		OBJ_90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = lowmad.xcodeproj/lowmadTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				INFOPLIST_FILE = Lowmad.xcodeproj/Files_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Files;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lowmadTests;
+				TARGET_NAME = Files;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
-		OBJ_41 /* Release */ = {
+		OBJ_91 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = lowmad.xcodeproj/lowmadTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				INFOPLIST_FILE = Lowmad.xcodeproj/Files_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Files;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lowmadTests;
+				TARGET_NAME = Files;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.0.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode12.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.0.0";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		OBJ_102 /* Build configuration list for PBXNativeTarget "Git" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_103 /* Debug */,
+				OBJ_104 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_115 /* Build configuration list for PBXNativeTarget "Lowmad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_116 /* Debug */,
+				OBJ_117 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_142 /* Build configuration list for PBXNativeTarget "LowmadCLI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_143 /* Debug */,
+				OBJ_144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_165 /* Build configuration list for PBXNativeTarget "LowmadKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_166 /* Debug */,
+				OBJ_167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_187 /* Build configuration list for PBXNativeTarget "LowmadPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_188 /* Debug */,
+				OBJ_189 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_193 /* Build configuration list for PBXAggregateTarget "LowmadPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_194 /* Debug */,
+				OBJ_195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_198 /* Build configuration list for PBXNativeTarget "LowmadTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_199 /* Debug */,
+				OBJ_200 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		OBJ_2 /* Build configuration list for PBXProject "lowmad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -479,88 +2217,88 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_21 /* Build configuration list for PBXNativeTarget "lowmad" */ = {
+		OBJ_222 /* Build configuration list for PBXNativeTarget "Rainbow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_22 /* Debug */,
-				OBJ_23 /* Release */,
+				OBJ_223 /* Debug */,
+				OBJ_224 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_28 /* Build configuration list for PBXNativeTarget "lowmadPackageDescription" */ = {
+		OBJ_239 /* Build configuration list for PBXNativeTarget "RainbowPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_29 /* Debug */,
-				OBJ_30 /* Release */,
+				OBJ_240 /* Debug */,
+				OBJ_241 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_34 /* Build configuration list for PBXAggregateTarget "lowmadPackageTests" */ = {
+		OBJ_244 /* Build configuration list for PBXNativeTarget "Shell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_35 /* Debug */,
-				OBJ_36 /* Release */,
+				OBJ_245 /* Debug */,
+				OBJ_246 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_39 /* Build configuration list for PBXNativeTarget "lowmadTests" */ = {
+		OBJ_252 /* Build configuration list for PBXNativeTarget "SwiftCLI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_40 /* Debug */,
-				OBJ_41 /* Release */,
+				OBJ_253 /* Debug */,
+				OBJ_254 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_280 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_281 /* Debug */,
+				OBJ_282 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_285 /* Build configuration list for PBXNativeTarget "World" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_286 /* Debug */,
+				OBJ_287 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_300 /* Build configuration list for PBXAggregateTarget "lowmad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_301 /* Debug */,
+				OBJ_302 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_89 /* Build configuration list for PBXNativeTarget "Files" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_90 /* Debug */,
+				OBJ_91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_96 /* Build configuration list for PBXNativeTarget "FilesPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_97 /* Debug */,
+				OBJ_98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		AB81DCE8254B5CD8007B6208 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-argument-parser";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.1;
-			};
-		};
-		AB81DCEF254B5D05007B6208 /* XCRemoteSwiftPackageReference "Files" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JohnSundell/Files";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
-			};
-		};
-		AB81DCF6254B5D2D007B6208 /* XCRemoteSwiftPackageReference "Rainbow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Rainbow";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		AB81DCE9254B5CD8007B6208 /* ArgumentParser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AB81DCE8254B5CD8007B6208 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = ArgumentParser;
-		};
-		AB81DCF0254B5D05007B6208 /* Files */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AB81DCEF254B5D05007B6208 /* XCRemoteSwiftPackageReference "Files" */;
-			productName = Files;
-		};
-		AB81DCF7254B5D2D007B6208 /* Rainbow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AB81DCF6254B5D2D007B6208 /* XCRemoteSwiftPackageReference "Rainbow" */;
-			productName = Rainbow;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = OBJ_1 /* Project object */;
 }
