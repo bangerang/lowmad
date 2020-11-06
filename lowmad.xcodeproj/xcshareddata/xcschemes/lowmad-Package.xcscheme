@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::Lowmad"
+               BuildableName = "Lowmad"
+               BlueprintName = "Lowmad"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::Git"
+               BuildableName = "Git.framework"
+               BlueprintName = "Git"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Lowmad::LowmadCLI"
                BuildableName = "LowmadCLI.framework"
                BlueprintName = "LowmadCLI"
@@ -42,51 +70,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Lowmad::World"
-               BuildableName = "World.framework"
-               BlueprintName = "World"
-               ReferencedContainer = "container:lowmad.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Lowmad::Git"
-               BuildableName = "Git.framework"
-               BlueprintName = "Git"
-               ReferencedContainer = "container:lowmad.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Lowmad::Lowmad"
-               BuildableName = "Lowmad"
-               BlueprintName = "Lowmad"
-               ReferencedContainer = "container:lowmad.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Lowmad::LowmadKit"
                BuildableName = "LowmadKit.framework"
                BlueprintName = "LowmadKit"
+               ReferencedContainer = "container:lowmad.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Lowmad::World"
+               BuildableName = "World.framework"
+               BlueprintName = "World"
                ReferencedContainer = "container:lowmad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

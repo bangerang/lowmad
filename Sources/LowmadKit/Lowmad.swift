@@ -38,26 +38,30 @@ public class Lowmad {
         let lldbInitScript = """
         import lldb
         import os
+        import json
 
         def __lldb_init_module(debugger, internal_dict):
             file_path = os.path.realpath(__file__)
             dir_name = os.path.dirname(file_path)
-            load_python_scripts_dir(dir_name + '/commands')
+            load_python_scripts_dir(dir_name)
+            with open('/usr/local/lib/lowmad/environment.json') as json_file:
+                data = json.load(json_file)
+                commandsPath = os.path.realpath(data['commandsPath'])
+                if not dir_name in commandsPath:
+                    load_python_scripts_dir(commandsPath)
 
         def load_python_scripts_dir(dir_name):
             this_files_basename = os.path.basename(__file__)
             cmd = ''
-            for file in os.listdir(dir_name):
-                if file.endswith('.py'):
-                    cmd = 'command script import '
-                elif file.endswith('.txt'):
-                    cmd = 'command source -e0 -s1 '
-                else:
-                    continue
-
-                if file != this_files_basename:
-                    fullpath = dir_name + '/' + file
-                    lldb.debugger.HandleCommand(cmd + fullpath)
+            for r, d, f in os.walk(dir_name):
+                for file in f:
+                    if '.py' in file:
+                        cmd = 'command script import '
+                    else:
+                        continue
+                    if file != this_files_basename:
+                        fullpath = os.path.join(r, file)
+                        lldb.debugger.HandleCommand(cmd + fullpath)
         """
 
         let localFolder = try Current.localFolder()
@@ -335,7 +339,7 @@ public class Lowmad {
                      import optparse
 
                      def __lldb_init_module(debugger, internal_dict):
-                         debugger.HandleCommand(‘command script add -f \(name).handle_command \(name) -h "Short documentation here"')
+                         debugger.HandleCommand('command script add -f \(name).handle_command \(name) -h "Short documentation here"')
 
                      def handle_command(debugger, command, exe_ctx, result, internal_dict):
 
@@ -359,8 +363,8 @@ public class Lowmad {
                          parser.add_option("-m", "--module",
                                            action="store",
                                            default=None,
-                                           dest=“module”,
-                                           help=“This is a placeholder option to show you how to use options with strings")
+                                           dest="module",
+                                           help="This is a placeholder option to show you how to use options with strings")
                          parser.add_option("-c", "--check_if_true",
                                            action="store_true",
                                            default=False,
