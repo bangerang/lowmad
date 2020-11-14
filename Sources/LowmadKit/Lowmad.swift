@@ -438,7 +438,7 @@ public class Lowmad {
     public func runPush(message: String, branch: String?, pullBefore: Bool) throws {
         var environment = try getEnvironment()
         let commandsFolder = try Folder(path: environment.ownCommandsPath)
-        if environment.source == nil {
+//        if environment.source == nil {
             var prompt = "? ".green.bold + "Add a remote repo)".lightBlack
             let repo = Current.readLine(prompt, false, [.custom("Not a valid repo, try again.", { (input) -> Bool in
                     do {
@@ -477,6 +477,6 @@ public class Lowmad {
             Shell.runSilentCommand("cd \(commandsFolder.path)/")
             Current.git.addAndCommit(message)
             Current.git.push(repo, branch)
-        }
+//        }
     }
 }

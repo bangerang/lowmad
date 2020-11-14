@@ -22,7 +22,7 @@ public struct Git {
     }
 
     public var addAndCommit: (String) -> Void = { message in
-        Shell.runSilentCommand("git commit -am \(message)")
+        Shell.runSilentCommand("git add . && git commit -m '\(message)'")
     }
 
     public var pull: (String, String?) -> Void = { gitURL, branch in
