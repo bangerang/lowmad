@@ -18,8 +18,7 @@ public class LowmadCLI {
             ListCommand(lowmad: lowmad),
             UninstallCommand(lowmad: lowmad),
             GenerateCommand(lowmad: lowmad),
-            DumpCommand(lowmad: lowmad),
-            PushCommand(lowmad: lowmad)
+            DumpCommand(lowmad: lowmad)
         ])
     }
 

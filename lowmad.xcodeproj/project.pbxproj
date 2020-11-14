@@ -32,7 +32,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		ABCF100C2555D3EC0087F4B3 /* PushCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCF100B2555D3EC0087F4B3 /* PushCommand.swift */; };
 		OBJ_103 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Package.swift */; };
 		OBJ_109 /* Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Git.swift */; };
 		OBJ_111 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
@@ -387,10 +386,23 @@
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
+		ABEBF28125602DCC00BFA671 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::LowmadTests";
+			remoteInfo = LowmadTests;
+		};
+		ABEBF28A25602DCC00BFA671 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Lowmad";
+			remoteInfo = Lowmad;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ABCF100B2555D3EC0087F4B3 /* PushCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCommand.swift; sourceTree = "<group>"; };
 		"Files::Files::Product" /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Files.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Lowmad::Git::Product" /* Git.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Git.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Lowmad::Lowmad::Product" /* Lowmad */ = {isa = PBXFileReference; lastKnownFileType = text; path = Lowmad; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -601,7 +613,6 @@
 				OBJ_18 /* ListCommand.swift */,
 				OBJ_19 /* LowmadCommand.swift */,
 				OBJ_20 /* UninstallCommand.swift */,
-				ABCF100B2555D3EC0087F4B3 /* PushCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -703,7 +714,7 @@
 			path = .build/checkouts/SwiftCLI/Sources/SwiftCLI;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -715,7 +726,6 @@
 				OBJ_89 /* LICENSE */,
 				OBJ_90 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_61 /* Files 4.2.0 */ = {
@@ -1059,7 +1069,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_77 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1113,7 +1123,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				ABCF100C2555D3EC0087F4B3 /* PushCommand.swift in Sources */,
 				OBJ_148 /* DumpCommand.swift in Sources */,
 				OBJ_149 /* GenerateCommand.swift in Sources */,
 				OBJ_150 /* InitCommand.swift in Sources */,
@@ -1361,7 +1370,7 @@
 		OBJ_202 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::LowmadTests" /* LowmadTests */;
-			targetProxy = "Lowmad::LowmadTests" /* LowmadTests */;
+			targetProxy = ABEBF28125602DCC00BFA671 /* PBXContainerItemProxy */;
 		};
 		OBJ_219 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1436,7 +1445,7 @@
 		OBJ_309 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::Lowmad" /* Lowmad */;
-			targetProxy = "Lowmad::Lowmad" /* Lowmad */;
+			targetProxy = ABEBF28A25602DCC00BFA671 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

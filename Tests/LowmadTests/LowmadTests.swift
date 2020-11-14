@@ -63,7 +63,7 @@ final class LowmadTests: XCTestCase {
                 return gitCommitMock
             }
 
-            try lowmad.runInstall(gitURL: gitRepoMock, subset: [], manifestURL: nil, commit: nil)
+            try lowmad.runInstall(gitURL: gitRepoMock, subset: [], manifestURL: nil, commit: nil, ownRepo: false)
             XCTAssert(lowmadFolder.containsFile(at: "/commands/fake.py"))
             XCTAssert(!lowmadFolder.containsFile(at: "/commands/README.md"))
         }
@@ -90,7 +90,7 @@ final class LowmadTests: XCTestCase {
                 }
             }
 
-            try lowmad.runInstall(gitURL: nil, subset: [], manifestURL: file.path, commit: nil)
+            try lowmad.runInstall(gitURL: nil, subset: [], manifestURL: file.path, commit: nil, ownRepo: false)
             XCTAssert(lowmadFolder.containsFile(at: "/commands/Foo.py"))
             XCTAssert(!lowmadFolder.containsFile(at: "/commands/README.md"))
         }
@@ -114,7 +114,7 @@ final class LowmadTests: XCTestCase {
                 return gitCommitMock
             }
 
-            try lowmad.runInstall(gitURL: gitRepoMock, subset: ["fake"], manifestURL: nil, commit: nil)
+            try lowmad.runInstall(gitURL: gitRepoMock, subset: ["fake"], manifestURL: nil, commit: nil, ownRepo: false)
             XCTAssert(lowmadFolder.containsFile(at: "/commands/fake.py"))
             XCTAssert(!lowmadFolder.containsFile(at: "/commands/fake2.py"))
             XCTAssert(!lowmadFolder.containsFile(at: "/commands/README.md"))

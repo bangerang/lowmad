@@ -268,8 +268,10 @@ public class Lowmad {
 
         func copyFile(_ file: File) throws {
             print("i  \(Lowmad.name): ".cyan.bold + "Copying \(file.name) into commands folder...")
-            #warning("Maybe not?")
-//            Shell.runSilentCommand("cd \(commandsFolder.path) && rm \(file.name)")
+            if commandsFolder.containsFile(named: file.name) {
+                print("⚠  \(Lowmad.name): ".yellow.bold + "Will not copy \(file.name) into \(commandsFolder.path), file already exists.")
+                return
+            }
             try file.copy(to: commandsFolder)
             try didCopyFileCompletion(file)
         }
@@ -435,49 +437,4 @@ public class Lowmad {
         print(try file.readAsString())
     }
 
-    public func runPush(message: String, branch: String?, pullBefore: Bool) throws {
-        var environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.ownCommandsPath)
-//        if environment.source == nil {
-            var prompt = "? ".green.bold + "Add a remote repo)".lightBlack
-            let repo = Current.readLine(prompt, false, [.custom("Not a valid repo, try again.", { (input) -> Bool in
-                    do {
-                        return try self.isGitURL(input)
-                    } catch {
-                        return false
-                    }
-                })],
-                { (input, reason) in
-                    Term.stderr <<< "'\(input)' is not a valid repo, try again."
-                }
-            )
-            prompt = "? ".green.bold + "Clone into commands folder \(commandsFolder.path)? (y/N)".lightBlack
-
-            _ = Current.readLine(prompt, false, [.allowing("y","n", "Y", "N"), .custom("Not a valid repo, try again.", { (input) -> Bool in
-                let answer = input.uppercased()
-                if answer == "Y" {
-                    return true
-                } else {
-                    exit(1)
-                }
-                })],
-                { (input, reason) in
-                    Term.stderr <<< "'\(input)' is not a valid repo, try again."
-                }
-            )
-
-            print(repo)
-            Current.git.clone(repo, "\(commandsFolder.path)temp")
-
-            try commandsFolder.subfolder(at: "temp").moveContents(to: commandsFolder, includeHidden: true)
-
-            Shell.runSilentCommand("cd \(commandsFolder.path)/")
-            environment.source = Source(url: repo, lastRevision: try Current.git.getCommit(commandsFolder.path))
-            try writeEnvironmentToFile(environment)
-
-
-            Current.git.addAndCommit(message)
-            Current.git.push(repo, branch)
-//        }
-    }
 }

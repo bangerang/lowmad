@@ -20,18 +20,4 @@ public struct Git {
         let result = try Shell.capture("cd \(location) && git rev-parse HEAD")
         return result.stdout.replacingOccurrences(of: "\n", with: "")
     }
-
-    public var addAndCommit: (String) -> Void = { message in
-        Shell.runSilentCommand("git add . && git commit -m '\(message)'")
-    }
-
-    public var pull: (String, String?) -> Void = { gitURL, branch in
-        var branchToPull = branch ?? "master"
-        Shell.runSilentCommand("git pull origin \(branchToPull)")
-    }
-
-    public var push: (String, String?) -> Void = { gitURL, branch in
-        var branchToPush = branch ?? "master"
-        Shell.runSilentCommand("git push origin \(branchToPush)")
-    }
 }
