@@ -471,10 +471,11 @@ public class Lowmad {
 
             try commandsFolder.subfolder(at: "temp").moveContents(to: commandsFolder, includeHidden: true)
 
+            Shell.runSilentCommand("cd \(commandsFolder.path)/")
             environment.source = Source(url: repo, lastRevision: try Current.git.getCommit(commandsFolder.path))
             try writeEnvironmentToFile(environment)
 
-            Shell.runSilentCommand("cd \(commandsFolder.path)/")
+
             Current.git.addAndCommit(message)
             Current.git.push(repo, branch)
 //        }
