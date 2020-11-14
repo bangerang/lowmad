@@ -10,6 +10,8 @@ class InstallCommand: LowmadCommand {
 
     @Key("-c", "--commit", description: "") var commit: String?
 
+    @Flag("-o", "--own") var ownRepo: Bool
+
     @CollectedParam(minCount: 0) var subset: [String]
 
     init(lowmad: Lowmad) {
@@ -20,7 +22,7 @@ class InstallCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.runInstall(gitURL: gitURL, subset: subset, manifestURL: manifestURL, commit: commit)
+        try lowmad.runInstall(gitURL: gitURL, subset: subset, manifestURL: manifestURL, commit: commit, ownRepo: ownRepo)
     }
 }
 

@@ -24,6 +24,11 @@ public class Lowmad {
         return try Current.localFolder().createSubfolderIfNeeded(at: "\(Lowmad.name)/temp")
     }
 
+    var getEnvironmentFile: () throws -> File = {
+        let localFolder = try Current.localFolder()
+        return try localFolder.file(at: "/\(Lowmad.name)/environment.json")
+    }
+
     var getEnvironment: () throws -> Environment = {
         let localFolder = try Current.localFolder()
         let environmentFile = try localFolder.file(at: "/\(Lowmad.name)/environment.json")
@@ -46,7 +51,7 @@ public class Lowmad {
             load_python_scripts_dir(dir_name)
             with open('/usr/local/lib/lowmad/environment.json') as json_file:
                 data = json.load(json_file)
-                commandsPath = os.path.realpath(data['commandsPath'])
+                commandsPath = os.path.realpath(data['ownCommandsPath'])
                 if not dir_name in commandsPath:
                     load_python_scripts_dir(commandsPath)
 
@@ -66,7 +71,7 @@ public class Lowmad {
 
         let localFolder = try Current.localFolder()
 
-        let prompt = "? ".green.bold + "Where do you want to store your commands? Leave empty for default directory.".bold + " (\(localFolder.path))".lightBlack
+        let prompt = "? ".green.bold + "Where do you want to store your generated commands? Leave empty for default directory.".bold + " (\(localFolder.path)/lowmad/own_commands)".lightBlack
 
         let installationPath = Current.readLine(prompt, false, [.custom("Not a valid directory, try again.", { (input) -> Bool in
                 do {
@@ -81,12 +86,17 @@ public class Lowmad {
             }
         )
 
-    
-        let rootFolder: Folder = installationPath.isEmpty ? localFolder : try Folder(path: installationPath)
+        let lowmadFolder = try localFolder.createSubfolder(at: "\(Lowmad.name)")
 
-        let lowmadFolder = try rootFolder.createSubfolder(at: "\(Lowmad.name)")
+        _ = try lowmadFolder.createSubfolder(at: "commands")
 
-        let commandsFolder = try lowmadFolder.createSubfolder(at: "commands")
+        let ownCommandsFolder: Folder
+
+        if installationPath.isEmpty {
+            ownCommandsFolder = try lowmadFolder.createSubfolder(at: "own_commands")
+        } else {
+            ownCommandsFolder = try Folder(path: installationPath).createSubfolder(at: "/\(Lowmad.name)")
+        }
 
         print("i  \(Lowmad.name): ".cyan.bold + "Creating \(Lowmad.name) import file...")
         let lowmadFile = try lowmadFolder.createFile(named: "\(Lowmad.name).py")
@@ -97,7 +107,7 @@ public class Lowmad {
         }
 
         let environmentFile = try localFolder.subfolder(named: Lowmad.name).createFile(named: "environment.json")
-        let environment = Environment(commandsPath: commandsFolder.path)
+        let environment = Environment(ownCommandsPath: ownCommandsFolder.path)
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
         let data = try encoder.encode(environment)
@@ -126,7 +136,7 @@ public class Lowmad {
 
     }
 
-    public func runInstall(gitURL: String?, subset: [String], manifestURL: String?, commit: String?) throws {
+    public func runInstall(gitURL: String?, subset: [String], manifestURL: String?, commit: String?, ownRepo: Bool) throws {
 
         func cleanup() {
             do {
@@ -148,6 +158,13 @@ public class Lowmad {
         cleanup()
 
         let tempFolder = try lowmadTempFolder()
+
+        let commandsFolder: Folder
+        if ownRepo {
+            commandsFolder = try getOwnCommandsFolder()
+        } else {
+            commandsFolder = try getLowmadCommandsFolder()
+        }
         
         if let gitURL = gitURL {
             print("i  \(Lowmad.name): ".cyan.bold + "Cloning \(gitURL)...".bold)
@@ -164,24 +181,21 @@ public class Lowmad {
                 commitToUse = try Current.git.getCommit(tempFolder.path)
             }
 
-            try copyFilesToScriptsFolder(from: tempFolder, subset: subset) { file in
+            try copyFilesToScriptsFolder(from: tempFolder, to: commandsFolder, subset: subset) { file in
                 try saveToManifestFile(file: file, source: gitURL, commit: commitToUse)
             }
         } else if let manifest = manifestURL {
-            let regexString = "((git|ssh|http(s)?)|(git@[\\w\\.]+))(:(//)?)([\\w\\.@\\:/\\-~]+)(\\.git)(/)?"
-            let regex = try NSRegularExpression(pattern: regexString)
-            let results = regex.matches(in: manifest, range: NSRange(manifest.startIndex..., in: manifest))
+            let isGit = try isGitURL(manifest)
             let file: File
-            if results.isEmpty {
+            if isGit {
+                Shell.runSilentCommand("cd \(tempFolder.path)")
+                Current.git.clone(manifest, "manifest")
+                file = try tempFolder.file(at: "/manifest/manifest.json")
+            } else {
                 file = try File(path: manifest)
                 guard file.extension == "json" else {
                     throw "✖  \(Lowmad.name): ".red.bold + "manifest file has wrong file extension"
                 }
-
-            } else {
-                Shell.runSilentCommand("cd \(tempFolder.path)")
-                Current.git.clone(manifest, "manifest")
-                file = try tempFolder.file(at: "/manifest/manifest.json")
             }
 
             let manifestStruct = try JSONDecoder().decode(Manifest.self, from: try file.read())
@@ -205,7 +219,7 @@ public class Lowmad {
                 Current.git.clone(key, path)
                 for (commit, subset) in value {
                     Shell.runSilentCommand("cd \(path) && git checkout \(commit)")
-                    try copyFilesToScriptsFolder(from: try Folder(path: path), subset: subset) { file in
+                    try copyFilesToScriptsFolder(from: try Folder(path: path), to: commandsFolder, subset: subset) { file in
                         try saveToManifestFile(file: file, source: key, commit: commit)
                     }
                 }
@@ -217,7 +231,23 @@ public class Lowmad {
         print("✔  \(Lowmad.name): ".green.bold + "Installation was successful! 🎉".bold)
     }
 
-    private func copyFilesToScriptsFolder(from rootFolder: Folder, subset: [String]? = nil, didCopyFileCompletion: (File) throws -> Void) throws {
+    private func getLowmadCommandsFolder() throws -> Folder {
+        let localFolder = try Current.localFolder()
+        return try localFolder.subfolder(at: "\(Lowmad.name)/commands")
+    }
+
+    private func getOwnCommandsFolder() throws -> Folder {
+        return try Folder(path: getEnvironment().ownCommandsPath)
+    }
+
+    private func isGitURL(_ string: String) throws -> Bool {
+        let regexString = "((git|ssh|http(s)?)|(git@[\\w\\.]+))(:(//)?)([\\w\\.@\\:/\\-~]+)(\\.git)(/)?"
+        let regex = try NSRegularExpression(pattern: regexString)
+        let results = regex.matches(in: string, range: NSRange(string.startIndex..., in: string))
+        return results.count > 0
+    }
+
+    private func copyFilesToScriptsFolder(from rootFolder: Folder, to commandsFolder: Folder, subset: [String]? = nil, didCopyFileCompletion: (File) throws -> Void) throws {
         var pythonFiles = [File]()
 
         func searchFolderForPythonFiles(_ folder: Folder) {
@@ -236,12 +266,10 @@ public class Lowmad {
             return content.contains("__lldb_init_module")
         }
 
-        let environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.commandsPath)
-
         func copyFile(_ file: File) throws {
             print("i  \(Lowmad.name): ".cyan.bold + "Copying \(file.name) into commands folder...")
-            Shell.runSilentCommand("cd \(commandsFolder.path) && rm \(file.name)")
+            #warning("Maybe not?")
+//            Shell.runSilentCommand("cd \(commandsFolder.path) && rm \(file.name)")
             try file.copy(to: commandsFolder)
             try didCopyFileCompletion(file)
         }
@@ -265,12 +293,20 @@ public class Lowmad {
         }
     }
 
+    private func writeEnvironmentToFile(_ environment: Environment) throws {
+        let environmentFile = try getEnvironmentFile()
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
+        let data = try encoder.encode(environment)
+        try environmentFile.write(data)
+    }
+
     private func saveToManifestFile(file: File, source: String, commit: String) throws {
         var manifest: Manifest
         var manifestFile: File
 
         let environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.commandsPath)
+        let commandsFolder = try Folder(path: environment.ownCommandsPath)
 
         if commandsFolder.containsFile(named: "manifest.json") {
             manifestFile = try commandsFolder.file(named: "manifest.json")
@@ -297,7 +333,7 @@ public class Lowmad {
 
     public func runList() throws {
         let environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.commandsPath)
+        let commandsFolder = try Folder(path: environment.ownCommandsPath)
         if commandsFolder.files.count() == 0 {
             print("i  \(Lowmad.name): ".cyan.bold + "No commands found".bold)
             return
@@ -312,7 +348,7 @@ public class Lowmad {
 
     public func runUninstall(subset: [String]) throws {
         let environment = try getEnvironment()
-        let allCommands = try Folder(path: environment.commandsPath).files
+        let allCommands = try Folder(path: environment.ownCommandsPath).files
         if !subset.isEmpty {
             let subsetCommands = allCommands.filter {
                 return subset.contains($0.nameExcludingExtension)
@@ -379,7 +415,7 @@ public class Lowmad {
             folder = try Folder(path: path)
         } else {
             let environment = try getEnvironment()
-            folder = try Folder(path: environment.commandsPath)
+            folder = try Folder(path: environment.ownCommandsPath)
         }
 
         if folder.containsFile(named: name) {
@@ -393,10 +429,54 @@ public class Lowmad {
 
     public func runDump() throws {
         let environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.commandsPath)
+        let commandsFolder = try Folder(path: environment.ownCommandsPath)
         let file = try commandsFolder.file(named: "manifest.json")
         print("\(file.path)".bold)
         print(try file.readAsString())
     }
 
+    public func runPush(message: String, branch: String?, pullBefore: Bool) throws {
+        var environment = try getEnvironment()
+        let commandsFolder = try Folder(path: environment.ownCommandsPath)
+        if environment.source == nil {
+            var prompt = "? ".green.bold + "Add a remote repo)".lightBlack
+            let repo = Current.readLine(prompt, false, [.custom("Not a valid repo, try again.", { (input) -> Bool in
+                    do {
+                        return try self.isGitURL(input)
+                    } catch {
+                        return false
+                    }
+                })],
+                { (input, reason) in
+                    Term.stderr <<< "'\(input)' is not a valid repo, try again."
+                }
+            )
+            prompt = "? ".green.bold + "Clone into commands folder \(commandsFolder.path)? (y/N)".lightBlack
+
+            _ = Current.readLine(prompt, false, [.allowing("y","n", "Y", "N"), .custom("Not a valid repo, try again.", { (input) -> Bool in
+                let answer = input.uppercased()
+                if answer == "Y" {
+                    return true
+                } else {
+                    exit(1)
+                }
+                })],
+                { (input, reason) in
+                    Term.stderr <<< "'\(input)' is not a valid repo, try again."
+                }
+            )
+
+            print(repo)
+            Current.git.clone(repo, "\(commandsFolder.path)temp")
+
+            try commandsFolder.subfolder(at: "temp").moveContents(to: commandsFolder, includeHidden: true)
+
+            environment.source = Source(url: repo, lastRevision: try Current.git.getCommit(commandsFolder.path))
+            try writeEnvironmentToFile(environment)
+
+            Shell.runSilentCommand("cd \(commandsFolder.path)/")
+            Current.git.addAndCommit(message)
+            Current.git.push(repo, branch)
+        }
+    }
 }

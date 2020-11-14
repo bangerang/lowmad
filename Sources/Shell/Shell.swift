@@ -4,7 +4,7 @@ import SwiftCLI
 public struct Shell {
 
     static public var runSilentCommand: (String) -> Void = { command in
-        let task = Task(executable: "/bin/bash", arguments: ["-c", command + " &>/dev/null"])
+        let task = Task(executable: "/bin/bash", arguments: ["-c", command])
         _ = task.runSync()
     }
 
