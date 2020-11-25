@@ -9,8 +9,8 @@ class UninstallCommand: LowmadCommand {
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
                    name: "uninstall",
-                   description: "",
-                   longDescription: "")
+                   description: "Uninstall scripts.",
+                   longDescription: "Uninstall scripts.")
     }
 
     override func execute() throws {

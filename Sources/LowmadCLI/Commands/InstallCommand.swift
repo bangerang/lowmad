@@ -6,19 +6,19 @@ class InstallCommand: LowmadCommand {
 
     @Param var gitURL: String?
     
-    @Key("-m", "--manifest", description: "") var manifestURL: String?
+    @Key("-m", "--manifest", description: "Install scripts from manifest file. URL to file.") var manifestURL: String?
 
-    @Key("-c", "--commit", description: "") var commit: String?
+    @Key("-c", "--commit", description: "Install from a specific commit.") var commit: String?
 
-    @Flag("-o", "--own") var ownRepo: Bool
+    @Flag("-o", "--own", description: "Install commands to your own commands folder.") var ownRepo: Bool
 
     @CollectedParam(minCount: 0) var subset: [String]
 
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
                    name: "install",
-                   description: "",
-                   longDescription: "")
+                   description: "Install scripts from a repo or manifest file.",
+                   longDescription: "Install scripts from a repo or manifest file.")
     }
 
     override func execute() throws {

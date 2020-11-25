@@ -7,8 +7,8 @@ class ListCommand: LowmadCommand {
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
                    name: "list",
-                   description: "",
-                   longDescription: "")
+                   description: "List all available LLDB commands.",
+                   longDescription: "List all available LLDB commands.")
     }
 
     override func execute() throws {

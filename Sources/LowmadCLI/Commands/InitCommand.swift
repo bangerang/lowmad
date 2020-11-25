@@ -7,8 +7,8 @@ class InitCommand: LowmadCommand {
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
                    name: "init",
-                   description: "",
-                   longDescription: "")
+                   description: "Initialize lowmad.",
+                   longDescription: "Initialize lowmad.")
     }
 
     override func execute() throws {

@@ -11,8 +11,8 @@ class GenerateCommand: LowmadCommand {
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
                    name: "generate",
-                   description: "",
-                   longDescription: "")
+                   description: "Generates a new LLDB script.",
+                   longDescription: "Generates a new LLDB script.")
     }
 
     override func execute() throws {

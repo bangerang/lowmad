@@ -269,7 +269,7 @@ public class Lowmad {
         func copyFile(_ file: File) throws {
             print("i  \(Lowmad.name): ".cyan.bold + "Copying \(file.name) into commands folder...")
             if commandsFolder.containsFile(named: file.name) {
-                print("⚠  \(Lowmad.name): ".yellow.bold + "Will not copy \(file.name) into \(commandsFolder.path), file already exists.")
+                print("⚠  \(Lowmad.name): ".yellow.bold + "Will not copy \(file.name.bold) into \(commandsFolder.path), file already exists.")
                 return
             }
             try file.copy(to: commandsFolder)
