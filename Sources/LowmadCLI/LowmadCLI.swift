@@ -20,6 +20,7 @@ public class LowmadCLI {
             GenerateCommand(lowmad: lowmad),
             DumpCommand(lowmad: lowmad)
         ])
+        cli.parser.parseOptionsAfterCollectedParameter = true
     }
 
     public func execute(arguments: [String]? = nil) {

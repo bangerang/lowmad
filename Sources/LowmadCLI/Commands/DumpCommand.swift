@@ -2,16 +2,6 @@ import Foundation
 import SwiftCLI
 import LowmadKit
 
-
-extension String {
-    var descriptionStyle: String {
-        return self.magenta
-    }
-    var nameStyle: String {
-        return self.bold
-    }
-}
-
 class DumpCommand: LowmadCommand {
 
     init(lowmad: Lowmad) {

@@ -4,7 +4,11 @@ import LowmadKit
 
 class UninstallCommand: LowmadCommand {
 
-    @CollectedParam(minCount: 0) var subset: [String]
+    @Flag("-o", "--own", description: "Only delete scripts from own commands folder.") var own: Bool
+
+    @Flag("-f", "--fetched", description: "Only delete fetched scripts.") var fetched: Bool
+
+    @CollectedParam var subset: [String]
 
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
@@ -14,6 +18,6 @@ class UninstallCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.runUninstall(subset: subset)
+        try lowmad.runUninstall(subset: subset, own: own, fetched: fetched)
     }
 }

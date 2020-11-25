@@ -12,8 +12,8 @@ class LowmadCommand: Command {
     init(lowmad: Lowmad, name: String, description: String, longDescription: String = "") {
         self.lowmad = lowmad
         self.name = name
-        shortDescription = description.descriptionStyle
-        self.longDescription = longDescription.descriptionStyle
+        self.shortDescription = description
+        self.longDescription = longDescription
     }
 
     func execute() throws {}

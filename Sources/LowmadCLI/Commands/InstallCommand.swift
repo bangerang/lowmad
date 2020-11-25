@@ -6,7 +6,7 @@ class InstallCommand: LowmadCommand {
 
     @Param var gitURL: String?
     
-    @Key("-m", "--manifest", description: "Install scripts from manifest file. URL to file.") var manifestURL: String?
+    @Key("-m", "--manifest", description: "Install scripts from manifest file. Path or URL to file.") var manifestURL: String?
 
     @Key("-c", "--commit", description: "Install from a specific commit.") var commit: String?
 

@@ -348,22 +348,43 @@ public class Lowmad {
         }
     }
 
-    public func runUninstall(subset: [String]) throws {
-        let environment = try getEnvironment()
-        let allCommands = try Folder(path: environment.ownCommandsPath).files
+    private func deleteFiles(_ files: Folder.ChildSequence<File>, subset: [String]) throws {
+        func deleteFile(_ file: File) throws {
+            let content = try file.readAsString()
+            if content.contains("__lldb_init_module") {
+                print("i  \(Lowmad.name): ".cyan.bold + "Deleting \(file.name)...")
+                try file.delete()
+            }
+        }
         if !subset.isEmpty {
-            let subsetCommands = allCommands.filter {
+            let subsetCommands = files.filter {
                 return subset.contains($0.nameExcludingExtension)
             }
             try subsetCommands.forEach{
-                print("i  \(Lowmad.name): ".cyan.bold + "Deleting \($0.name)...")
-                try $0.delete()
+                try deleteFile($0)
             }
         } else {
-            try allCommands.forEach{
-                print("i  \(Lowmad.name): ".cyan.bold + "Deleting \($0.name)...")
-                try $0.delete()
+            try files.forEach{
+                try deleteFile($0)
             }
+        }
+    }
+
+    public func runUninstall(subset: [String], own: Bool, fetched: Bool) throws {
+        let allCommands: Folder.ChildSequence<File>
+        if own {
+            let environment = try getEnvironment()
+            allCommands = try Folder(path: environment.ownCommandsPath).files
+            try deleteFiles(allCommands, subset: subset)
+        } else if fetched {
+            allCommands = try Current.lowmadFolder().subfolder(named: "commands").files
+            try deleteFiles(allCommands, subset: subset)
+        } else {
+            let environment = try getEnvironment()
+            let ownCommands = try Folder(path: environment.ownCommandsPath).files
+            let fetchedCommands = try Current.lowmadFolder().subfolder(named: "commands").files
+            try deleteFiles(ownCommands, subset: subset)
+            try deleteFiles(fetchedCommands, subset: subset)
         }
         print("✔  \(Lowmad.name): ".green.bold + "Commands were successfully deleted".bold)
     }

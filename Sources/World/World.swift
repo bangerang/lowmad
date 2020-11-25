@@ -16,6 +16,9 @@ public struct World {
     public var localFolder = {
         return try Folder(path: "/usr/local/lib")
     }
+    public var lowmadFolder = {
+        return try Folder(path: "/usr/local/lib").subfolder(named: "lowmad")
+    }
     public var homeFolder = {
         return Folder.home
     }
