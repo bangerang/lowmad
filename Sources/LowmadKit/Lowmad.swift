@@ -7,6 +7,24 @@ import Shell
 
 extension String: Error {}
 
+extension String {
+    func regexGroups(for regexPattern: String) throws -> [[String]] {
+        let text = self
+        let regex = try NSRegularExpression(pattern: regexPattern)
+        let matches = regex.matches(in: text,
+                                    range: NSRange(text.startIndex..., in: text))
+        return matches.map { match in
+            return (0..<match.numberOfRanges).map {
+                let rangeBounds = match.range(at: $0)
+                guard let range = Range(rangeBounds, in: text) else {
+                    return ""
+                }
+                return String(text[range])
+            }
+        }
+    }
+}
+
 public class Lowmad {
 
     static let name = "lowmad"
@@ -136,6 +154,21 @@ public class Lowmad {
 
     }
 
+    private func createSubfolderNameFromGitURL(_ gitURL: String) throws -> String {
+        let regexPattern = "^(https|git)(://|@)([^/:]+)[/:]([^/:]+)/(.+).git$"
+        let groups = try gitURL.regexGroups(for: regexPattern)
+        guard var strings = groups.first else {
+            throw "Could not parse Git URL"
+        }
+        guard let repoName = strings.popLast() else {
+            throw "Could not parse Git URL"
+        }
+        guard let author = strings.popLast() else {
+            throw "Could not parse Git URL"
+        }
+        return "\(author)-\(repoName)"
+    }
+
     public func runInstall(gitURL: String?, subset: [String], manifestURL: String?, commit: String?, ownRepo: Bool) throws {
 
         func cleanup() {
@@ -167,6 +200,9 @@ public class Lowmad {
         }
         
         if let gitURL = gitURL {
+            guard try isGitURL(gitURL) else {
+                throw "Not a valid Git URL"
+            }
             print("i  \(Lowmad.name): ".cyan.bold + "Cloning \(gitURL)...".bold)
 
             Current.git.clone(gitURL, tempFolder.path)
@@ -181,8 +217,17 @@ public class Lowmad {
                 commitToUse = try Current.git.getCommit(tempFolder.path)
             }
 
-            try copyFilesToScriptsFolder(from: tempFolder, to: commandsFolder, subset: subset) { file in
-                try saveToManifestFile(file: file, source: gitURL, commit: commitToUse)
+            let destinationFolder: Folder
+
+            if ownRepo {
+                destinationFolder = commandsFolder
+            } else {
+                destinationFolder = try commandsFolder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(gitURL))
+            }
+
+
+            try copyFilesToScriptsFolder(from: tempFolder, to: destinationFolder, subset: subset) { file in
+                try saveToManifestFile(inFolder: commandsFolder, fileToSave: file, source: gitURL, commit: commitToUse)
             }
         } else if let manifest = manifestURL {
             let isGit = try isGitURL(manifest)
@@ -217,10 +262,20 @@ public class Lowmad {
                 let path = try tempFolder.createSubfolderIfNeeded(at: uuid).path
                 print("i  \(Lowmad.name): ".cyan.bold + "Cloning \(key)...".bold)
                 Current.git.clone(key, path)
+
                 for (commit, subset) in value {
                     Shell.runSilentCommand("cd \(path) && git checkout \(commit)")
-                    try copyFilesToScriptsFolder(from: try Folder(path: path), to: commandsFolder, subset: subset) { file in
-                        try saveToManifestFile(file: file, source: key, commit: commit)
+
+                    let destinationFolder: Folder
+
+                    if ownRepo {
+                        destinationFolder = commandsFolder
+                    } else {
+                        destinationFolder = try commandsFolder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(key))
+                    }
+
+                    try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset) { file in
+                        try saveToManifestFile(inFolder: commandsFolder, fileToSave: file, source: key, commit: commit)
                     }
                 }
             }
@@ -247,7 +302,7 @@ public class Lowmad {
         return results.count > 0
     }
 
-    private func copyFilesToScriptsFolder(from rootFolder: Folder, to commandsFolder: Folder, subset: [String]? = nil, didCopyFileCompletion: (File) throws -> Void) throws {
+    private func copyFilesToScriptsFolder(from source: Folder, to destination: Folder, subset: [String]? = nil, didCopyFileCompletion: (File) throws -> Void) throws {
         var pythonFiles = [File]()
 
         func searchFolderForPythonFiles(_ folder: Folder) {
@@ -258,8 +313,8 @@ public class Lowmad {
             }
         }
 
-        searchFolderForPythonFiles(rootFolder)
-        rootFolder.subfolders.recursive.forEach(searchFolderForPythonFiles)
+        searchFolderForPythonFiles(source)
+        source.subfolders.recursive.forEach(searchFolderForPythonFiles)
 
         let validFiles = try pythonFiles.filter {
             let content = try $0.readAsString()
@@ -268,11 +323,11 @@ public class Lowmad {
 
         func copyFile(_ file: File) throws {
             print("i  \(Lowmad.name): ".cyan.bold + "Copying \(file.name) into commands folder...")
-            if commandsFolder.containsFile(named: file.name) {
-                print("⚠  \(Lowmad.name): ".yellow.bold + "Will not copy \(file.name.bold) into \(commandsFolder.path), file already exists.")
+            if destination.containsFile(named: file.name) {
+                print("⚠  \(Lowmad.name): ".yellow.bold + "Will not copy \(file.name.bold) into \(destination.path), file already exists.")
                 return
             }
-            try file.copy(to: commandsFolder)
+            try file.copy(to: destination)
             try didCopyFileCompletion(file)
         }
 
@@ -303,12 +358,9 @@ public class Lowmad {
         try environmentFile.write(data)
     }
 
-    private func saveToManifestFile(file: File, source: String, commit: String) throws {
+    private func saveToManifestFile(inFolder commandsFolder: Folder, fileToSave: File, source: String, commit: String) throws {
         var manifest: Manifest
         var manifestFile: File
-
-        let environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.ownCommandsPath)
 
         if commandsFolder.containsFile(named: "manifest.json") {
             manifestFile = try commandsFolder.file(named: "manifest.json")
@@ -319,7 +371,7 @@ public class Lowmad {
             manifestFile = try commandsFolder.createFile(named: "manifest.json")
         }
 
-        let newCommand = Command(name: file.nameExcludingExtension, source: source, commit: commit)
+        let newCommand = Command(name: fileToSave.nameExcludingExtension, source: source, commit: commit)
 
         if let index = manifest.commands.firstIndex(where: { $0.name == newCommand.name && $0.source == newCommand.source }) {
             manifest.commands[index] = newCommand

@@ -49,7 +49,7 @@ final class LowmadTests: XCTestCase {
 
     func testInstallFromURL() throws {
         try runInitWithCleanup {
-            let gitRepoMock = "foo"
+            let gitRepoMock = "git@github.com:Foo/LLDB.git"
             let gitCommitMock = "bar"
 
             Current.git.clone = { gitURL, _ in
@@ -64,14 +64,14 @@ final class LowmadTests: XCTestCase {
             }
 
             try lowmad.runInstall(gitURL: gitRepoMock, subset: [], manifestURL: nil, commit: nil, ownRepo: false)
-            XCTAssert(lowmadFolder.containsFile(at: "/commands/fake.py"))
-            XCTAssert(!lowmadFolder.containsFile(at: "/commands/README.md"))
+            XCTAssert(lowmadFolder.containsFile(at: "/commands/Foo-LLDB/fake.py"))
+            XCTAssert(!lowmadFolder.containsFile(at: "/commands/Foo-LLDB/README.md"))
         }
     }
 
     func testInstallFromManifest() throws {
         try runInitWithCleanup {
-            let gitRepoMock = "foo"
+            let gitRepoMock = "git@github.com:Foo/LLDB.git"
             let manifestMock = Manifest(version: "0.1", commands: [Command(name: "Foo", source: gitRepoMock, commit: "1234")])
             let commandsFolder = Folder.temporary
             let encoder = JSONEncoder()
@@ -91,14 +91,14 @@ final class LowmadTests: XCTestCase {
             }
 
             try lowmad.runInstall(gitURL: nil, subset: [], manifestURL: file.path, commit: nil, ownRepo: false)
-            XCTAssert(lowmadFolder.containsFile(at: "/commands/Foo.py"))
+            XCTAssert(lowmadFolder.containsFile(at: "/commands/Foo-LLDB/Foo.py"))
             XCTAssert(!lowmadFolder.containsFile(at: "/commands/README.md"))
         }
     }
 
     func testInstallFromURLWithSubset() throws {
         try runInitWithCleanup {
-            let gitRepoMock = "foo"
+            let gitRepoMock = "git@github.com:Foo/LLDB.git"
             let gitCommitMock = "bar"
 
             Current.git.clone = { gitURL, _ in
@@ -115,9 +115,9 @@ final class LowmadTests: XCTestCase {
             }
 
             try lowmad.runInstall(gitURL: gitRepoMock, subset: ["fake"], manifestURL: nil, commit: nil, ownRepo: false)
-            XCTAssert(lowmadFolder.containsFile(at: "/commands/fake.py"))
-            XCTAssert(!lowmadFolder.containsFile(at: "/commands/fake2.py"))
-            XCTAssert(!lowmadFolder.containsFile(at: "/commands/README.md"))
+            XCTAssert(lowmadFolder.containsFile(at: "/commands/Foo-LLDB/fake.py"))
+            XCTAssert(!lowmadFolder.containsFile(at: "/commands/Foo-LLDB/fake2.py"))
+            XCTAssert(!lowmadFolder.containsFile(at: "/commands/Foo-LLDB/README.md"))
         }
     }
 
