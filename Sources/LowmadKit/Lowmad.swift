@@ -387,15 +387,25 @@ public class Lowmad {
 
     public func runList() throws {
         let environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.ownCommandsPath)
-        if commandsFolder.files.count() == 0 {
+        let ownCommandsFolder = try Folder(path: environment.ownCommandsPath)
+//         source.subfolders.recursive.forEach(searchFolderForPythonFiles)
+        let commandsFolder = try Current.lowmadFolder().subfolder(named: "commands")
+        if ownCommandsFolder.files.count() == 0 {
             print("i  \(Lowmad.name): ".cyan.bold + "No commands found".bold)
             return
         }
-        print("Installed commands at \(commandsFolder.path)".bold)
-        for file in commandsFolder.files {
+        print("Installed commands at \(ownCommandsFolder.path)".bold)
+        for file in ownCommandsFolder.files {
             if file.extension == "py" {
                 print(file.nameExcludingExtension)
+            }
+        }
+        print("Installed commands at \(commandsFolder.path)".bold)
+        for folder in commandsFolder.subfolders.recursive {
+            for file in folder.files {
+                if file.extension == "py" {
+                    print(file.nameExcludingExtension)
+                }
             }
         }
     }
