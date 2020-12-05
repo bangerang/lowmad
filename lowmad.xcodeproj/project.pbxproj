@@ -386,6 +386,20 @@
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
+		AB4423B6257BA5440004B9C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::LowmadTests";
+			remoteInfo = LowmadTests;
+		};
+		AB4423BF257BA5440004B9C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Lowmad::Lowmad";
+			remoteInfo = Lowmad;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -452,7 +466,6 @@
 		OBJ_74 /* StringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringGenerator.swift; sourceTree = "<group>"; };
 		OBJ_75 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		OBJ_76 /* XcodeColorsSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeColorsSupport.swift; sourceTree = "<group>"; };
-		OBJ_88 /* temp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = temp; sourceTree = SOURCE_ROOT; };
 		OBJ_89 /* logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_transparent.png; sourceTree = "<group>"; };
 		OBJ_9 /* Git.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Git.swift; sourceTree = "<group>"; };
 		OBJ_90 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -701,7 +714,7 @@
 			path = .build/checkouts/SwiftCLI/Sources/SwiftCLI;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -709,12 +722,10 @@
 				OBJ_31 /* Tests */,
 				OBJ_35 /* Dependencies */,
 				OBJ_77 /* Products */,
-				OBJ_88 /* temp */,
 				OBJ_89 /* logo_transparent.png */,
 				OBJ_90 /* LICENSE */,
 				OBJ_91 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_61 /* Files 4.2.0 */ = {
@@ -1058,7 +1069,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_77 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1359,7 +1370,7 @@
 		OBJ_203 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::LowmadTests" /* LowmadTests */;
-			targetProxy = "Lowmad::LowmadTests" /* LowmadTests */;
+			targetProxy = AB4423B6257BA5440004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_220 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1434,7 +1445,7 @@
 		OBJ_310 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::Lowmad" /* Lowmad */;
-			targetProxy = "Lowmad::Lowmad" /* Lowmad */;
+			targetProxy = AB4423BF257BA5440004B9C2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
