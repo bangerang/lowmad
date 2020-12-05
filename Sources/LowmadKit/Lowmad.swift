@@ -161,6 +161,12 @@ public class Lowmad {
             throw "✖  \(Lowmad.name): ".red.bold + "Has not been initialized, did you forget to run the init command?"
         }
 
+        let localFolder = try Current.localFolder()
+
+        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
+            try createEnvironmentFile()
+        }
+
         cleanup()
 
         let tempFolder = try lowmadTempFolder()
