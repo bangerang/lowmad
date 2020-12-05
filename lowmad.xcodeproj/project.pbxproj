@@ -9,22 +9,22 @@
 /* Begin PBXAggregateTarget section */
 		"Lowmad::LowmadPackageTests::ProductTarget" /* LowmadPackageTests */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_199 /* Build configuration list for PBXAggregateTarget "LowmadPackageTests" */;
+			buildConfigurationList = OBJ_200 /* Build configuration list for PBXAggregateTarget "LowmadPackageTests" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_202 /* PBXTargetDependency */,
+				OBJ_203 /* PBXTargetDependency */,
 			);
 			name = LowmadPackageTests;
 			productName = LowmadPackageTests;
 		};
 		"Lowmad::lowmad::ProductTarget" /* lowmad */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_306 /* Build configuration list for PBXAggregateTarget "lowmad" */;
+			buildConfigurationList = OBJ_307 /* Build configuration list for PBXAggregateTarget "lowmad" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_309 /* PBXTargetDependency */,
+				OBJ_310 /* PBXTargetDependency */,
 			);
 			name = lowmad;
 			productName = lowmad;
@@ -32,373 +32,359 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_103 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Package.swift */; };
-		OBJ_109 /* Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Git.swift */; };
-		OBJ_111 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
-		OBJ_112 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
-		OBJ_122 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* main.swift */; };
-		OBJ_124 /* LowmadCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */; };
-		OBJ_125 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
-		OBJ_126 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
-		OBJ_127 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
-		OBJ_128 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
-		OBJ_129 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
-		OBJ_130 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
-		OBJ_131 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
-		OBJ_148 /* DumpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* DumpCommand.swift */; };
-		OBJ_149 /* GenerateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* GenerateCommand.swift */; };
-		OBJ_150 /* InitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* InitCommand.swift */; };
-		OBJ_151 /* InstallCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* InstallCommand.swift */; };
-		OBJ_152 /* ListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* ListCommand.swift */; };
-		OBJ_153 /* LowmadCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* LowmadCommand.swift */; };
-		OBJ_154 /* UninstallCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UninstallCommand.swift */; };
-		OBJ_155 /* LowmadCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* LowmadCLI.swift */; };
-		OBJ_157 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
-		OBJ_158 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
-		OBJ_159 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
-		OBJ_160 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
-		OBJ_161 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
-		OBJ_162 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
-		OBJ_163 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
-		OBJ_175 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Command.swift */; };
-		OBJ_176 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Environment.swift */; };
-		OBJ_177 /* Lowmad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Lowmad.swift */; };
-		OBJ_178 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Manifest.swift */; };
-		OBJ_180 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
-		OBJ_181 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
-		OBJ_182 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
-		OBJ_183 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
-		OBJ_184 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
-		OBJ_185 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
-		OBJ_197 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_208 /* LowmadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* LowmadTests.swift */; };
-		OBJ_209 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* XCTestManifests.swift */; };
-		OBJ_211 /* LowmadCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */; };
-		OBJ_212 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
-		OBJ_213 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
-		OBJ_214 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
-		OBJ_215 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
-		OBJ_216 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
-		OBJ_217 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
-		OBJ_218 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
-		OBJ_232 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* BackgroundColor.swift */; };
-		OBJ_233 /* CodesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* CodesParser.swift */; };
-		OBJ_234 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Color.swift */; };
-		OBJ_235 /* ControlCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* ControlCode.swift */; };
-		OBJ_236 /* ModesExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* ModesExtractor.swift */; };
-		OBJ_237 /* OutputTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* OutputTarget.swift */; };
-		OBJ_238 /* Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* Rainbow.swift */; };
-		OBJ_239 /* String+Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* String+Rainbow.swift */; };
-		OBJ_240 /* StringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* StringGenerator.swift */; };
-		OBJ_241 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* Style.swift */; };
-		OBJ_242 /* XcodeColorsSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* XcodeColorsSupport.swift */; };
-		OBJ_249 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_65 /* Package.swift */; };
-		OBJ_254 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Shell.swift */; };
-		OBJ_256 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
-		OBJ_262 /* ArgumentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* ArgumentList.swift */; };
-		OBJ_263 /* ArgumentListManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* ArgumentListManipulator.swift */; };
-		OBJ_264 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* CLI.swift */; };
-		OBJ_265 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Command.swift */; };
-		OBJ_266 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* Compatibility.swift */; };
-		OBJ_267 /* CompletionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* CompletionGenerator.swift */; };
-		OBJ_268 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Error.swift */; };
-		OBJ_269 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* HelpCommand.swift */; };
-		OBJ_270 /* HelpMessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* HelpMessageGenerator.swift */; };
-		OBJ_271 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* Input.swift */; };
-		OBJ_272 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* Option.swift */; };
-		OBJ_273 /* OptionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* OptionGroup.swift */; };
-		OBJ_274 /* OptionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* OptionRegistry.swift */; };
-		OBJ_275 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Parameter.swift */; };
-		OBJ_276 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* Parser.swift */; };
-		OBJ_277 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* Path.swift */; };
-		OBJ_278 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* Stream.swift */; };
-		OBJ_279 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* Task.swift */; };
-		OBJ_280 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* Term.swift */; };
-		OBJ_281 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* Validation.swift */; };
-		OBJ_282 /* ValueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* ValueBox.swift */; };
-		OBJ_283 /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* VersionCommand.swift */; };
-		OBJ_290 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* Package.swift */; };
-		OBJ_295 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* World.swift */; };
-		OBJ_297 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
-		OBJ_298 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
-		OBJ_299 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
-		OBJ_300 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
-		OBJ_96 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* Files.swift */; };
+		OBJ_104 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Package.swift */; };
+		OBJ_110 /* Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Git.swift */; };
+		OBJ_112 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_113 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_123 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* main.swift */; };
+		OBJ_125 /* LowmadCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */; };
+		OBJ_126 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
+		OBJ_127 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_128 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_129 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_130 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_131 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_132 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_149 /* DumpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* DumpCommand.swift */; };
+		OBJ_150 /* GenerateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* GenerateCommand.swift */; };
+		OBJ_151 /* InitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* InitCommand.swift */; };
+		OBJ_152 /* InstallCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* InstallCommand.swift */; };
+		OBJ_153 /* ListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* ListCommand.swift */; };
+		OBJ_154 /* LowmadCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* LowmadCommand.swift */; };
+		OBJ_155 /* UninstallCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UninstallCommand.swift */; };
+		OBJ_156 /* LowmadCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* LowmadCLI.swift */; };
+		OBJ_158 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
+		OBJ_159 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_160 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_161 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_162 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_163 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_164 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_176 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Command.swift */; };
+		OBJ_177 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Environment.swift */; };
+		OBJ_178 /* Lowmad.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Lowmad.swift */; };
+		OBJ_179 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Manifest.swift */; };
+		OBJ_181 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_182 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_183 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_184 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_185 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_186 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_198 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_209 /* LowmadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* LowmadTests.swift */; };
+		OBJ_210 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* XCTestManifests.swift */; };
+		OBJ_212 /* LowmadCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */; };
+		OBJ_213 /* LowmadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::LowmadKit::Product" /* LowmadKit.framework */; };
+		OBJ_214 /* Rainbow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Rainbow::Rainbow::Product" /* Rainbow.framework */; };
+		OBJ_215 /* World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::World::Product" /* World.framework */; };
+		OBJ_216 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_217 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_218 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_219 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_233 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* BackgroundColor.swift */; };
+		OBJ_234 /* CodesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* CodesParser.swift */; };
+		OBJ_235 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Color.swift */; };
+		OBJ_236 /* ControlCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* ControlCode.swift */; };
+		OBJ_237 /* ModesExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* ModesExtractor.swift */; };
+		OBJ_238 /* OutputTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* OutputTarget.swift */; };
+		OBJ_239 /* Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* Rainbow.swift */; };
+		OBJ_240 /* String+Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* String+Rainbow.swift */; };
+		OBJ_241 /* StringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* StringGenerator.swift */; };
+		OBJ_242 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* Style.swift */; };
+		OBJ_243 /* XcodeColorsSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* XcodeColorsSupport.swift */; };
+		OBJ_250 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_65 /* Package.swift */; };
+		OBJ_255 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Shell.swift */; };
+		OBJ_257 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_263 /* ArgumentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* ArgumentList.swift */; };
+		OBJ_264 /* ArgumentListManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* ArgumentListManipulator.swift */; };
+		OBJ_265 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* CLI.swift */; };
+		OBJ_266 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Command.swift */; };
+		OBJ_267 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* Compatibility.swift */; };
+		OBJ_268 /* CompletionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* CompletionGenerator.swift */; };
+		OBJ_269 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Error.swift */; };
+		OBJ_270 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* HelpCommand.swift */; };
+		OBJ_271 /* HelpMessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* HelpMessageGenerator.swift */; };
+		OBJ_272 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* Input.swift */; };
+		OBJ_273 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* Option.swift */; };
+		OBJ_274 /* OptionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* OptionGroup.swift */; };
+		OBJ_275 /* OptionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* OptionRegistry.swift */; };
+		OBJ_276 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Parameter.swift */; };
+		OBJ_277 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* Parser.swift */; };
+		OBJ_278 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* Path.swift */; };
+		OBJ_279 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* Stream.swift */; };
+		OBJ_280 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* Task.swift */; };
+		OBJ_281 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* Term.swift */; };
+		OBJ_282 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* Validation.swift */; };
+		OBJ_283 /* ValueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* ValueBox.swift */; };
+		OBJ_284 /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* VersionCommand.swift */; };
+		OBJ_291 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* Package.swift */; };
+		OBJ_296 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* World.swift */; };
+		OBJ_298 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
+		OBJ_299 /* Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Git::Product" /* Git.framework */; };
+		OBJ_300 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
+		OBJ_301 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_97 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* Files.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ABCF0FE62555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442378257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::LowmadCLI";
 			remoteInfo = LowmadCLI;
 		};
-		ABCF0FE72555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442379257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::LowmadKit";
 			remoteInfo = LowmadKit;
 		};
-		ABCF0FE82555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44237A257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Rainbow::Rainbow";
 			remoteInfo = Rainbow;
 		};
-		ABCF0FE92555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44237B257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::World";
 			remoteInfo = World;
 		};
-		ABCF0FEA2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44237C257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Files::Files";
 			remoteInfo = Files;
 		};
-		ABCF0FEB2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44237D257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Git";
 			remoteInfo = Git;
 		};
-		ABCF0FEC2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44237E257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Shell";
 			remoteInfo = Shell;
 		};
-		ABCF0FED2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44237F257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
-		ABCF0FEE2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442380257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
-		ABCF0FEF2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442381257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Shell";
 			remoteInfo = Shell;
 		};
-		ABCF0FF02555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442382257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
-		ABCF0FF12555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442383257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Files::Files";
 			remoteInfo = Files;
 		};
-		ABCF0FF22555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442384257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Git";
 			remoteInfo = Git;
 		};
-		ABCF0FF32555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442385257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Shell";
 			remoteInfo = Shell;
 		};
-		ABCF0FF42555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442386257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
-		ABCF0FF52555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442387257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Rainbow::Rainbow";
 			remoteInfo = Rainbow;
 		};
-		ABCF0FF62555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442388257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::World";
 			remoteInfo = World;
 		};
-		ABCF0FF72555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442389257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Files::Files";
 			remoteInfo = Files;
 		};
-		ABCF0FF82555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44238A257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Git";
 			remoteInfo = Git;
 		};
-		ABCF0FF92555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44238B257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Shell";
 			remoteInfo = Shell;
 		};
-		ABCF0FFA2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44238C257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
-		ABCF0FFB2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44238D257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::LowmadKit";
 			remoteInfo = LowmadKit;
 		};
-		ABCF0FFC2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44238E257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Rainbow::Rainbow";
 			remoteInfo = Rainbow;
 		};
-		ABCF0FFD2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44238F257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::World";
 			remoteInfo = World;
 		};
-		ABCF0FFE2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442390257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Files::Files";
 			remoteInfo = Files;
 		};
-		ABCF0FFF2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442391257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Git";
 			remoteInfo = Git;
 		};
-		ABCF10002555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442392257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Shell";
 			remoteInfo = Shell;
 		};
-		ABCF10012555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442393257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
 		};
-		ABCF10022555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442394257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Lowmad";
 			remoteInfo = Lowmad;
 		};
-		ABCF10032555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442395257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::LowmadCLI";
 			remoteInfo = LowmadCLI;
 		};
-		ABCF10042555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442396257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::LowmadKit";
 			remoteInfo = LowmadKit;
 		};
-		ABCF10052555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442397257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Rainbow::Rainbow";
 			remoteInfo = Rainbow;
 		};
-		ABCF10062555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442398257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::World";
 			remoteInfo = World;
 		};
-		ABCF10072555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB442399257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Files::Files";
 			remoteInfo = Files;
 		};
-		ABCF10082555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44239A257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Git";
 			remoteInfo = Git;
 		};
-		ABCF10092555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44239B257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Lowmad::Shell";
 			remoteInfo = Shell;
 		};
-		ABCF100A2555D2980087F4B3 /* PBXContainerItemProxy */ = {
+		AB44239C257BA3020004B9C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
 			remoteInfo = SwiftCLI;
-		};
-		ABEBF28125602DCC00BFA671 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Lowmad::LowmadTests";
-			remoteInfo = LowmadTests;
-		};
-		ABEBF28A25602DCC00BFA671 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Lowmad::Lowmad";
-			remoteInfo = Lowmad;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -466,115 +452,116 @@
 		OBJ_74 /* StringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringGenerator.swift; sourceTree = "<group>"; };
 		OBJ_75 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		OBJ_76 /* XcodeColorsSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeColorsSupport.swift; sourceTree = "<group>"; };
-		OBJ_88 /* logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_transparent.png; sourceTree = "<group>"; };
-		OBJ_89 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		OBJ_88 /* temp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = temp; sourceTree = SOURCE_ROOT; };
+		OBJ_89 /* logo_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_transparent.png; sourceTree = "<group>"; };
 		OBJ_9 /* Git.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Git.swift; sourceTree = "<group>"; };
-		OBJ_90 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_90 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		OBJ_91 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		"Rainbow::Rainbow::Product" /* Rainbow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rainbow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftCLI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_110 /* Frameworks */ = {
+		OBJ_111 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_111 /* Shell.framework in Frameworks */,
-				OBJ_112 /* SwiftCLI.framework in Frameworks */,
+				OBJ_112 /* Shell.framework in Frameworks */,
+				OBJ_113 /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_123 /* Frameworks */ = {
+		OBJ_124 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_124 /* LowmadCLI.framework in Frameworks */,
-				OBJ_125 /* LowmadKit.framework in Frameworks */,
-				OBJ_126 /* Rainbow.framework in Frameworks */,
-				OBJ_127 /* World.framework in Frameworks */,
-				OBJ_128 /* Files.framework in Frameworks */,
-				OBJ_129 /* Git.framework in Frameworks */,
-				OBJ_130 /* Shell.framework in Frameworks */,
-				OBJ_131 /* SwiftCLI.framework in Frameworks */,
+				OBJ_125 /* LowmadCLI.framework in Frameworks */,
+				OBJ_126 /* LowmadKit.framework in Frameworks */,
+				OBJ_127 /* Rainbow.framework in Frameworks */,
+				OBJ_128 /* World.framework in Frameworks */,
+				OBJ_129 /* Files.framework in Frameworks */,
+				OBJ_130 /* Git.framework in Frameworks */,
+				OBJ_131 /* Shell.framework in Frameworks */,
+				OBJ_132 /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_156 /* Frameworks */ = {
+		OBJ_157 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_157 /* LowmadKit.framework in Frameworks */,
-				OBJ_158 /* Rainbow.framework in Frameworks */,
-				OBJ_159 /* World.framework in Frameworks */,
-				OBJ_160 /* Files.framework in Frameworks */,
-				OBJ_161 /* Git.framework in Frameworks */,
-				OBJ_162 /* Shell.framework in Frameworks */,
-				OBJ_163 /* SwiftCLI.framework in Frameworks */,
+				OBJ_158 /* LowmadKit.framework in Frameworks */,
+				OBJ_159 /* Rainbow.framework in Frameworks */,
+				OBJ_160 /* World.framework in Frameworks */,
+				OBJ_161 /* Files.framework in Frameworks */,
+				OBJ_162 /* Git.framework in Frameworks */,
+				OBJ_163 /* Shell.framework in Frameworks */,
+				OBJ_164 /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_179 /* Frameworks */ = {
+		OBJ_180 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_180 /* Rainbow.framework in Frameworks */,
-				OBJ_181 /* World.framework in Frameworks */,
-				OBJ_182 /* Files.framework in Frameworks */,
-				OBJ_183 /* Git.framework in Frameworks */,
-				OBJ_184 /* Shell.framework in Frameworks */,
-				OBJ_185 /* SwiftCLI.framework in Frameworks */,
+				OBJ_181 /* Rainbow.framework in Frameworks */,
+				OBJ_182 /* World.framework in Frameworks */,
+				OBJ_183 /* Files.framework in Frameworks */,
+				OBJ_184 /* Git.framework in Frameworks */,
+				OBJ_185 /* Shell.framework in Frameworks */,
+				OBJ_186 /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_210 /* Frameworks */ = {
+		OBJ_211 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_211 /* LowmadCLI.framework in Frameworks */,
-				OBJ_212 /* LowmadKit.framework in Frameworks */,
-				OBJ_213 /* Rainbow.framework in Frameworks */,
-				OBJ_214 /* World.framework in Frameworks */,
-				OBJ_215 /* Files.framework in Frameworks */,
-				OBJ_216 /* Git.framework in Frameworks */,
-				OBJ_217 /* Shell.framework in Frameworks */,
-				OBJ_218 /* SwiftCLI.framework in Frameworks */,
+				OBJ_212 /* LowmadCLI.framework in Frameworks */,
+				OBJ_213 /* LowmadKit.framework in Frameworks */,
+				OBJ_214 /* Rainbow.framework in Frameworks */,
+				OBJ_215 /* World.framework in Frameworks */,
+				OBJ_216 /* Files.framework in Frameworks */,
+				OBJ_217 /* Git.framework in Frameworks */,
+				OBJ_218 /* Shell.framework in Frameworks */,
+				OBJ_219 /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_243 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_255 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_256 /* SwiftCLI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_284 /* Frameworks */ = {
+		OBJ_244 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_296 /* Frameworks */ = {
+		OBJ_256 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_297 /* Files.framework in Frameworks */,
-				OBJ_298 /* Git.framework in Frameworks */,
-				OBJ_299 /* Shell.framework in Frameworks */,
-				OBJ_300 /* SwiftCLI.framework in Frameworks */,
+				OBJ_257 /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_97 /* Frameworks */ = {
+		OBJ_285 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_297 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_298 /* Files.framework in Frameworks */,
+				OBJ_299 /* Git.framework in Frameworks */,
+				OBJ_300 /* Shell.framework in Frameworks */,
+				OBJ_301 /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_98 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
@@ -714,7 +701,7 @@
 			path = .build/checkouts/SwiftCLI/Sources/SwiftCLI;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 = {
+		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -722,10 +709,12 @@
 				OBJ_31 /* Tests */,
 				OBJ_35 /* Dependencies */,
 				OBJ_77 /* Products */,
-				OBJ_88 /* logo_transparent.png */,
-				OBJ_89 /* LICENSE */,
-				OBJ_90 /* README.md */,
+				OBJ_88 /* temp */,
+				OBJ_89 /* logo_transparent.png */,
+				OBJ_90 /* LICENSE */,
+				OBJ_91 /* README.md */,
 			);
+			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_61 /* Files 4.2.0 */ = {
@@ -774,16 +763,16 @@
 		OBJ_77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				"Files::Files::Product" /* Files.framework */,
 				"Lowmad::LowmadKit::Product" /* LowmadKit.framework */,
 				"Lowmad::LowmadCLI::Product" /* LowmadCLI.framework */,
-				"Lowmad::Git::Product" /* Git.framework */,
-				"Rainbow::Rainbow::Product" /* Rainbow.framework */,
-				"Files::Files::Product" /* Files.framework */,
-				"Lowmad::LowmadTests::Product" /* LowmadTests.xctest */,
-				"Lowmad::World::Product" /* World.framework */,
-				"SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */,
 				"Lowmad::Lowmad::Product" /* Lowmad */,
+				"Lowmad::LowmadTests::Product" /* LowmadTests.xctest */,
+				"Lowmad::Git::Product" /* Git.framework */,
 				"Lowmad::Shell::Product" /* Shell.framework */,
+				"Lowmad::World::Product" /* World.framework */,
+				"Rainbow::Rainbow::Product" /* Rainbow.framework */,
+				"SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -802,10 +791,10 @@
 /* Begin PBXNativeTarget section */
 		"Files::Files" /* Files */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_92 /* Build configuration list for PBXNativeTarget "Files" */;
+			buildConfigurationList = OBJ_93 /* Build configuration list for PBXNativeTarget "Files" */;
 			buildPhases = (
-				OBJ_95 /* Sources */,
-				OBJ_97 /* Frameworks */,
+				OBJ_96 /* Sources */,
+				OBJ_98 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -818,9 +807,9 @@
 		};
 		"Files::SwiftPMPackageDescription" /* FilesPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_99 /* Build configuration list for PBXNativeTarget "FilesPackageDescription" */;
+			buildConfigurationList = OBJ_100 /* Build configuration list for PBXNativeTarget "FilesPackageDescription" */;
 			buildPhases = (
-				OBJ_102 /* Sources */,
+				OBJ_103 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -832,16 +821,16 @@
 		};
 		"Lowmad::Git" /* Git */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_105 /* Build configuration list for PBXNativeTarget "Git" */;
+			buildConfigurationList = OBJ_106 /* Build configuration list for PBXNativeTarget "Git" */;
 			buildPhases = (
-				OBJ_108 /* Sources */,
-				OBJ_110 /* Frameworks */,
+				OBJ_109 /* Sources */,
+				OBJ_111 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_113 /* PBXTargetDependency */,
-				OBJ_115 /* PBXTargetDependency */,
+				OBJ_114 /* PBXTargetDependency */,
+				OBJ_116 /* PBXTargetDependency */,
 			);
 			name = Git;
 			productName = Git;
@@ -850,22 +839,22 @@
 		};
 		"Lowmad::Lowmad" /* Lowmad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_118 /* Build configuration list for PBXNativeTarget "Lowmad" */;
+			buildConfigurationList = OBJ_119 /* Build configuration list for PBXNativeTarget "Lowmad" */;
 			buildPhases = (
-				OBJ_121 /* Sources */,
-				OBJ_123 /* Frameworks */,
+				OBJ_122 /* Sources */,
+				OBJ_124 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_132 /* PBXTargetDependency */,
-				OBJ_134 /* PBXTargetDependency */,
-				OBJ_136 /* PBXTargetDependency */,
-				OBJ_138 /* PBXTargetDependency */,
-				OBJ_140 /* PBXTargetDependency */,
+				OBJ_133 /* PBXTargetDependency */,
+				OBJ_135 /* PBXTargetDependency */,
+				OBJ_137 /* PBXTargetDependency */,
+				OBJ_139 /* PBXTargetDependency */,
 				OBJ_141 /* PBXTargetDependency */,
 				OBJ_142 /* PBXTargetDependency */,
 				OBJ_143 /* PBXTargetDependency */,
+				OBJ_144 /* PBXTargetDependency */,
 			);
 			name = Lowmad;
 			productName = Lowmad;
@@ -874,21 +863,21 @@
 		};
 		"Lowmad::LowmadCLI" /* LowmadCLI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_144 /* Build configuration list for PBXNativeTarget "LowmadCLI" */;
+			buildConfigurationList = OBJ_145 /* Build configuration list for PBXNativeTarget "LowmadCLI" */;
 			buildPhases = (
-				OBJ_147 /* Sources */,
-				OBJ_156 /* Frameworks */,
+				OBJ_148 /* Sources */,
+				OBJ_157 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_164 /* PBXTargetDependency */,
 				OBJ_165 /* PBXTargetDependency */,
 				OBJ_166 /* PBXTargetDependency */,
 				OBJ_167 /* PBXTargetDependency */,
 				OBJ_168 /* PBXTargetDependency */,
 				OBJ_169 /* PBXTargetDependency */,
 				OBJ_170 /* PBXTargetDependency */,
+				OBJ_171 /* PBXTargetDependency */,
 			);
 			name = LowmadCLI;
 			productName = LowmadCLI;
@@ -897,20 +886,20 @@
 		};
 		"Lowmad::LowmadKit" /* LowmadKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_171 /* Build configuration list for PBXNativeTarget "LowmadKit" */;
+			buildConfigurationList = OBJ_172 /* Build configuration list for PBXNativeTarget "LowmadKit" */;
 			buildPhases = (
-				OBJ_174 /* Sources */,
-				OBJ_179 /* Frameworks */,
+				OBJ_175 /* Sources */,
+				OBJ_180 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_186 /* PBXTargetDependency */,
 				OBJ_187 /* PBXTargetDependency */,
 				OBJ_188 /* PBXTargetDependency */,
 				OBJ_189 /* PBXTargetDependency */,
 				OBJ_190 /* PBXTargetDependency */,
 				OBJ_191 /* PBXTargetDependency */,
+				OBJ_192 /* PBXTargetDependency */,
 			);
 			name = LowmadKit;
 			productName = LowmadKit;
@@ -919,15 +908,14 @@
 		};
 		"Lowmad::LowmadTests" /* LowmadTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_204 /* Build configuration list for PBXNativeTarget "LowmadTests" */;
+			buildConfigurationList = OBJ_205 /* Build configuration list for PBXNativeTarget "LowmadTests" */;
 			buildPhases = (
-				OBJ_207 /* Sources */,
-				OBJ_210 /* Frameworks */,
+				OBJ_208 /* Sources */,
+				OBJ_211 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_219 /* PBXTargetDependency */,
 				OBJ_220 /* PBXTargetDependency */,
 				OBJ_221 /* PBXTargetDependency */,
 				OBJ_222 /* PBXTargetDependency */,
@@ -936,6 +924,7 @@
 				OBJ_225 /* PBXTargetDependency */,
 				OBJ_226 /* PBXTargetDependency */,
 				OBJ_227 /* PBXTargetDependency */,
+				OBJ_228 /* PBXTargetDependency */,
 			);
 			name = LowmadTests;
 			productName = LowmadTests;
@@ -944,15 +933,15 @@
 		};
 		"Lowmad::Shell" /* Shell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_250 /* Build configuration list for PBXNativeTarget "Shell" */;
+			buildConfigurationList = OBJ_251 /* Build configuration list for PBXNativeTarget "Shell" */;
 			buildPhases = (
-				OBJ_253 /* Sources */,
-				OBJ_255 /* Frameworks */,
+				OBJ_254 /* Sources */,
+				OBJ_256 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_257 /* PBXTargetDependency */,
+				OBJ_258 /* PBXTargetDependency */,
 			);
 			name = Shell;
 			productName = Shell;
@@ -961,9 +950,9 @@
 		};
 		"Lowmad::SwiftPMPackageDescription" /* LowmadPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_193 /* Build configuration list for PBXNativeTarget "LowmadPackageDescription" */;
+			buildConfigurationList = OBJ_194 /* Build configuration list for PBXNativeTarget "LowmadPackageDescription" */;
 			buildPhases = (
-				OBJ_196 /* Sources */,
+				OBJ_197 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -975,18 +964,18 @@
 		};
 		"Lowmad::World" /* World */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_291 /* Build configuration list for PBXNativeTarget "World" */;
+			buildConfigurationList = OBJ_292 /* Build configuration list for PBXNativeTarget "World" */;
 			buildPhases = (
-				OBJ_294 /* Sources */,
-				OBJ_296 /* Frameworks */,
+				OBJ_295 /* Sources */,
+				OBJ_297 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_301 /* PBXTargetDependency */,
 				OBJ_302 /* PBXTargetDependency */,
 				OBJ_303 /* PBXTargetDependency */,
 				OBJ_304 /* PBXTargetDependency */,
+				OBJ_305 /* PBXTargetDependency */,
 			);
 			name = World;
 			productName = World;
@@ -995,10 +984,10 @@
 		};
 		"Rainbow::Rainbow" /* Rainbow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_228 /* Build configuration list for PBXNativeTarget "Rainbow" */;
+			buildConfigurationList = OBJ_229 /* Build configuration list for PBXNativeTarget "Rainbow" */;
 			buildPhases = (
-				OBJ_231 /* Sources */,
-				OBJ_243 /* Frameworks */,
+				OBJ_232 /* Sources */,
+				OBJ_244 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1011,9 +1000,9 @@
 		};
 		"Rainbow::SwiftPMPackageDescription" /* RainbowPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_245 /* Build configuration list for PBXNativeTarget "RainbowPackageDescription" */;
+			buildConfigurationList = OBJ_246 /* Build configuration list for PBXNativeTarget "RainbowPackageDescription" */;
 			buildPhases = (
-				OBJ_248 /* Sources */,
+				OBJ_249 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1025,10 +1014,10 @@
 		};
 		"SwiftCLI::SwiftCLI" /* SwiftCLI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_258 /* Build configuration list for PBXNativeTarget "SwiftCLI" */;
+			buildConfigurationList = OBJ_259 /* Build configuration list for PBXNativeTarget "SwiftCLI" */;
 			buildPhases = (
-				OBJ_261 /* Sources */,
-				OBJ_284 /* Frameworks */,
+				OBJ_262 /* Sources */,
+				OBJ_285 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1041,9 +1030,9 @@
 		};
 		"SwiftCLI::SwiftPMPackageDescription" /* SwiftCLIPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_286 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */;
+			buildConfigurationList = OBJ_287 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */;
 			buildPhases = (
-				OBJ_289 /* Sources */,
+				OBJ_290 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1069,7 +1058,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5;
+			mainGroup = OBJ_5 /*  */;
 			productRefGroup = OBJ_77 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1095,362 +1084,362 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_102 /* Sources */ = {
+		OBJ_103 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_103 /* Package.swift in Sources */,
+				OBJ_104 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_108 /* Sources */ = {
+		OBJ_109 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_109 /* Git.swift in Sources */,
+				OBJ_110 /* Git.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_121 /* Sources */ = {
+		OBJ_122 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_122 /* main.swift in Sources */,
+				OBJ_123 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_147 /* Sources */ = {
+		OBJ_148 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_148 /* DumpCommand.swift in Sources */,
-				OBJ_149 /* GenerateCommand.swift in Sources */,
-				OBJ_150 /* InitCommand.swift in Sources */,
-				OBJ_151 /* InstallCommand.swift in Sources */,
-				OBJ_152 /* ListCommand.swift in Sources */,
-				OBJ_153 /* LowmadCommand.swift in Sources */,
-				OBJ_154 /* UninstallCommand.swift in Sources */,
-				OBJ_155 /* LowmadCLI.swift in Sources */,
+				OBJ_149 /* DumpCommand.swift in Sources */,
+				OBJ_150 /* GenerateCommand.swift in Sources */,
+				OBJ_151 /* InitCommand.swift in Sources */,
+				OBJ_152 /* InstallCommand.swift in Sources */,
+				OBJ_153 /* ListCommand.swift in Sources */,
+				OBJ_154 /* LowmadCommand.swift in Sources */,
+				OBJ_155 /* UninstallCommand.swift in Sources */,
+				OBJ_156 /* LowmadCLI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_174 /* Sources */ = {
+		OBJ_175 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_175 /* Command.swift in Sources */,
-				OBJ_176 /* Environment.swift in Sources */,
-				OBJ_177 /* Lowmad.swift in Sources */,
-				OBJ_178 /* Manifest.swift in Sources */,
+				OBJ_176 /* Command.swift in Sources */,
+				OBJ_177 /* Environment.swift in Sources */,
+				OBJ_178 /* Lowmad.swift in Sources */,
+				OBJ_179 /* Manifest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_196 /* Sources */ = {
+		OBJ_197 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_197 /* Package.swift in Sources */,
+				OBJ_198 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_207 /* Sources */ = {
+		OBJ_208 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_208 /* LowmadTests.swift in Sources */,
-				OBJ_209 /* XCTestManifests.swift in Sources */,
+				OBJ_209 /* LowmadTests.swift in Sources */,
+				OBJ_210 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_231 /* Sources */ = {
+		OBJ_232 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_232 /* BackgroundColor.swift in Sources */,
-				OBJ_233 /* CodesParser.swift in Sources */,
-				OBJ_234 /* Color.swift in Sources */,
-				OBJ_235 /* ControlCode.swift in Sources */,
-				OBJ_236 /* ModesExtractor.swift in Sources */,
-				OBJ_237 /* OutputTarget.swift in Sources */,
-				OBJ_238 /* Rainbow.swift in Sources */,
-				OBJ_239 /* String+Rainbow.swift in Sources */,
-				OBJ_240 /* StringGenerator.swift in Sources */,
-				OBJ_241 /* Style.swift in Sources */,
-				OBJ_242 /* XcodeColorsSupport.swift in Sources */,
+				OBJ_233 /* BackgroundColor.swift in Sources */,
+				OBJ_234 /* CodesParser.swift in Sources */,
+				OBJ_235 /* Color.swift in Sources */,
+				OBJ_236 /* ControlCode.swift in Sources */,
+				OBJ_237 /* ModesExtractor.swift in Sources */,
+				OBJ_238 /* OutputTarget.swift in Sources */,
+				OBJ_239 /* Rainbow.swift in Sources */,
+				OBJ_240 /* String+Rainbow.swift in Sources */,
+				OBJ_241 /* StringGenerator.swift in Sources */,
+				OBJ_242 /* Style.swift in Sources */,
+				OBJ_243 /* XcodeColorsSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_248 /* Sources */ = {
+		OBJ_249 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_249 /* Package.swift in Sources */,
+				OBJ_250 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_253 /* Sources */ = {
+		OBJ_254 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_254 /* Shell.swift in Sources */,
+				OBJ_255 /* Shell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_261 /* Sources */ = {
+		OBJ_262 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_262 /* ArgumentList.swift in Sources */,
-				OBJ_263 /* ArgumentListManipulator.swift in Sources */,
-				OBJ_264 /* CLI.swift in Sources */,
-				OBJ_265 /* Command.swift in Sources */,
-				OBJ_266 /* Compatibility.swift in Sources */,
-				OBJ_267 /* CompletionGenerator.swift in Sources */,
-				OBJ_268 /* Error.swift in Sources */,
-				OBJ_269 /* HelpCommand.swift in Sources */,
-				OBJ_270 /* HelpMessageGenerator.swift in Sources */,
-				OBJ_271 /* Input.swift in Sources */,
-				OBJ_272 /* Option.swift in Sources */,
-				OBJ_273 /* OptionGroup.swift in Sources */,
-				OBJ_274 /* OptionRegistry.swift in Sources */,
-				OBJ_275 /* Parameter.swift in Sources */,
-				OBJ_276 /* Parser.swift in Sources */,
-				OBJ_277 /* Path.swift in Sources */,
-				OBJ_278 /* Stream.swift in Sources */,
-				OBJ_279 /* Task.swift in Sources */,
-				OBJ_280 /* Term.swift in Sources */,
-				OBJ_281 /* Validation.swift in Sources */,
-				OBJ_282 /* ValueBox.swift in Sources */,
-				OBJ_283 /* VersionCommand.swift in Sources */,
+				OBJ_263 /* ArgumentList.swift in Sources */,
+				OBJ_264 /* ArgumentListManipulator.swift in Sources */,
+				OBJ_265 /* CLI.swift in Sources */,
+				OBJ_266 /* Command.swift in Sources */,
+				OBJ_267 /* Compatibility.swift in Sources */,
+				OBJ_268 /* CompletionGenerator.swift in Sources */,
+				OBJ_269 /* Error.swift in Sources */,
+				OBJ_270 /* HelpCommand.swift in Sources */,
+				OBJ_271 /* HelpMessageGenerator.swift in Sources */,
+				OBJ_272 /* Input.swift in Sources */,
+				OBJ_273 /* Option.swift in Sources */,
+				OBJ_274 /* OptionGroup.swift in Sources */,
+				OBJ_275 /* OptionRegistry.swift in Sources */,
+				OBJ_276 /* Parameter.swift in Sources */,
+				OBJ_277 /* Parser.swift in Sources */,
+				OBJ_278 /* Path.swift in Sources */,
+				OBJ_279 /* Stream.swift in Sources */,
+				OBJ_280 /* Task.swift in Sources */,
+				OBJ_281 /* Term.swift in Sources */,
+				OBJ_282 /* Validation.swift in Sources */,
+				OBJ_283 /* ValueBox.swift in Sources */,
+				OBJ_284 /* VersionCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_289 /* Sources */ = {
+		OBJ_290 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_290 /* Package.swift in Sources */,
+				OBJ_291 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_294 /* Sources */ = {
+		OBJ_295 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_295 /* World.swift in Sources */,
+				OBJ_296 /* World.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_95 /* Sources */ = {
+		OBJ_96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_96 /* Files.swift in Sources */,
+				OBJ_97 /* Files.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_113 /* PBXTargetDependency */ = {
+		OBJ_114 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::Shell" /* Shell */;
-			targetProxy = ABCF0FEC2555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = AB44237E257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_115 /* PBXTargetDependency */ = {
+		OBJ_116 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
-			targetProxy = ABCF0FEE2555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = AB442380257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_132 /* PBXTargetDependency */ = {
+		OBJ_133 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::LowmadCLI" /* LowmadCLI */;
-			targetProxy = ABCF0FE62555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = AB442378257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_134 /* PBXTargetDependency */ = {
+		OBJ_135 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::LowmadKit" /* LowmadKit */;
-			targetProxy = ABCF0FFB2555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = AB44238D257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_136 /* PBXTargetDependency */ = {
+		OBJ_137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Rainbow::Rainbow" /* Rainbow */;
-			targetProxy = ABCF0FFC2555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = AB44238E257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_138 /* PBXTargetDependency */ = {
+		OBJ_139 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::World" /* World */;
-			targetProxy = ABCF0FFD2555D2980087F4B3 /* PBXContainerItemProxy */;
-		};
-		OBJ_140 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Files::Files" /* Files */;
-			targetProxy = ABCF0FFE2555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = AB44238F257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_141 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Git" /* Git */;
-			targetProxy = ABCF0FFF2555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Files::Files" /* Files */;
+			targetProxy = AB442390257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_142 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Shell" /* Shell */;
-			targetProxy = ABCF10002555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = AB442391257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_143 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
-			targetProxy = ABCF10012555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = AB442392257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_164 /* PBXTargetDependency */ = {
+		OBJ_144 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::LowmadKit" /* LowmadKit */;
-			targetProxy = ABCF0FE72555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = AB442393257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_165 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Rainbow::Rainbow" /* Rainbow */;
-			targetProxy = ABCF0FF52555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::LowmadKit" /* LowmadKit */;
+			targetProxy = AB442379257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_166 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::World" /* World */;
-			targetProxy = ABCF0FF62555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Rainbow::Rainbow" /* Rainbow */;
+			targetProxy = AB442387257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_167 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Files::Files" /* Files */;
-			targetProxy = ABCF0FF72555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::World" /* World */;
+			targetProxy = AB442388257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_168 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Git" /* Git */;
-			targetProxy = ABCF0FF82555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Files::Files" /* Files */;
+			targetProxy = AB442389257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_169 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Shell" /* Shell */;
-			targetProxy = ABCF0FF92555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = AB44238A257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_170 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
-			targetProxy = ABCF0FFA2555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = AB44238B257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_186 /* PBXTargetDependency */ = {
+		OBJ_171 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Rainbow::Rainbow" /* Rainbow */;
-			targetProxy = ABCF0FE82555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = AB44238C257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_187 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::World" /* World */;
-			targetProxy = ABCF0FE92555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Rainbow::Rainbow" /* Rainbow */;
+			targetProxy = AB44237A257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_188 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Files::Files" /* Files */;
-			targetProxy = ABCF0FF12555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::World" /* World */;
+			targetProxy = AB44237B257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_189 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Git" /* Git */;
-			targetProxy = ABCF0FF22555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Files::Files" /* Files */;
+			targetProxy = AB442383257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_190 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Shell" /* Shell */;
-			targetProxy = ABCF0FF32555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = AB442384257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_191 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
-			targetProxy = ABCF0FF42555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = AB442385257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_202 /* PBXTargetDependency */ = {
+		OBJ_192 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = AB442386257BA3020004B9C2 /* PBXContainerItemProxy */;
+		};
+		OBJ_203 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::LowmadTests" /* LowmadTests */;
-			targetProxy = ABEBF28125602DCC00BFA671 /* PBXContainerItemProxy */;
-		};
-		OBJ_219 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "Lowmad::Lowmad" /* Lowmad */;
-			targetProxy = ABCF10022555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = "Lowmad::LowmadTests" /* LowmadTests */;
 		};
 		OBJ_220 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::LowmadCLI" /* LowmadCLI */;
-			targetProxy = ABCF10032555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Lowmad" /* Lowmad */;
+			targetProxy = AB442394257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_221 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::LowmadKit" /* LowmadKit */;
-			targetProxy = ABCF10042555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::LowmadCLI" /* LowmadCLI */;
+			targetProxy = AB442395257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_222 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Rainbow::Rainbow" /* Rainbow */;
-			targetProxy = ABCF10052555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::LowmadKit" /* LowmadKit */;
+			targetProxy = AB442396257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_223 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::World" /* World */;
-			targetProxy = ABCF10062555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Rainbow::Rainbow" /* Rainbow */;
+			targetProxy = AB442397257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_224 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Files::Files" /* Files */;
-			targetProxy = ABCF10072555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::World" /* World */;
+			targetProxy = AB442398257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_225 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Git" /* Git */;
-			targetProxy = ABCF10082555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Files::Files" /* Files */;
+			targetProxy = AB442399257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_226 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Shell" /* Shell */;
-			targetProxy = ABCF10092555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = AB44239A257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_227 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
-			targetProxy = ABCF100A2555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = AB44239B257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_257 /* PBXTargetDependency */ = {
+		OBJ_228 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
-			targetProxy = ABCF0FED2555D2980087F4B3 /* PBXContainerItemProxy */;
+			targetProxy = AB44239C257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_301 /* PBXTargetDependency */ = {
+		OBJ_258 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Files::Files" /* Files */;
-			targetProxy = ABCF0FEA2555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = AB44237F257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_302 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Git" /* Git */;
-			targetProxy = ABCF0FEB2555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Files::Files" /* Files */;
+			targetProxy = AB44237C257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_303 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Lowmad::Shell" /* Shell */;
-			targetProxy = ABCF0FEF2555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Git" /* Git */;
+			targetProxy = AB44237D257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_304 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
-			targetProxy = ABCF0FF02555D2980087F4B3 /* PBXContainerItemProxy */;
+			target = "Lowmad::Shell" /* Shell */;
+			targetProxy = AB442381257BA3020004B9C2 /* PBXContainerItemProxy */;
 		};
-		OBJ_309 /* PBXTargetDependency */ = {
+		OBJ_305 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = AB442382257BA3020004B9C2 /* PBXContainerItemProxy */;
+		};
+		OBJ_310 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Lowmad::Lowmad" /* Lowmad */;
-			targetProxy = ABEBF28A25602DCC00BFA671 /* PBXContainerItemProxy */;
+			targetProxy = "Lowmad::Lowmad" /* Lowmad */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_100 /* Debug */ = {
+		OBJ_101 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1459,7 +1448,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_101 /* Release */ = {
+		OBJ_102 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1468,7 +1457,7 @@
 			};
 			name = Release;
 		};
-		OBJ_106 /* Debug */ = {
+		OBJ_107 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1496,7 +1485,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_107 /* Release */ = {
+		OBJ_108 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1524,7 +1513,7 @@
 			};
 			name = Release;
 		};
-		OBJ_119 /* Debug */ = {
+		OBJ_120 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1549,7 +1538,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_120 /* Release */ = {
+		OBJ_121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1574,7 +1563,7 @@
 			};
 			name = Release;
 		};
-		OBJ_145 /* Debug */ = {
+		OBJ_146 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1602,7 +1591,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_146 /* Release */ = {
+		OBJ_147 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1630,7 +1619,7 @@
 			};
 			name = Release;
 		};
-		OBJ_172 /* Debug */ = {
+		OBJ_173 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1658,7 +1647,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_173 /* Release */ = {
+		OBJ_174 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1686,7 +1675,7 @@
 			};
 			name = Release;
 		};
-		OBJ_194 /* Debug */ = {
+		OBJ_195 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1695,7 +1684,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_195 /* Release */ = {
+		OBJ_196 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1704,19 +1693,19 @@
 			};
 			name = Release;
 		};
-		OBJ_200 /* Debug */ = {
+		OBJ_201 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_201 /* Release */ = {
+		OBJ_202 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		OBJ_205 /* Debug */ = {
+		OBJ_206 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1741,7 +1730,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_206 /* Release */ = {
+		OBJ_207 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -1766,7 +1755,7 @@
 			};
 			name = Release;
 		};
-		OBJ_229 /* Debug */ = {
+		OBJ_230 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1790,7 +1779,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_230 /* Release */ = {
+		OBJ_231 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1814,7 +1803,7 @@
 			};
 			name = Release;
 		};
-		OBJ_246 /* Debug */ = {
+		OBJ_247 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1823,7 +1812,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_247 /* Release */ = {
+		OBJ_248 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1832,7 +1821,7 @@
 			};
 			name = Release;
 		};
-		OBJ_251 /* Debug */ = {
+		OBJ_252 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1860,7 +1849,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_252 /* Release */ = {
+		OBJ_253 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1888,7 +1877,7 @@
 			};
 			name = Release;
 		};
-		OBJ_259 /* Debug */ = {
+		OBJ_260 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1916,7 +1905,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_260 /* Release */ = {
+		OBJ_261 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1944,7 +1933,7 @@
 			};
 			name = Release;
 		};
-		OBJ_287 /* Debug */ = {
+		OBJ_288 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1953,7 +1942,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_288 /* Release */ = {
+		OBJ_289 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -1962,7 +1951,7 @@
 			};
 			name = Release;
 		};
-		OBJ_292 /* Debug */ = {
+		OBJ_293 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -1990,7 +1979,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_293 /* Release */ = {
+		OBJ_294 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -2038,20 +2027,20 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
-		OBJ_307 /* Debug */ = {
+		OBJ_308 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_308 /* Release */ = {
+		OBJ_309 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
@@ -2074,14 +2063,14 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
-		OBJ_93 /* Debug */ = {
+		OBJ_94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -2109,7 +2098,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_94 /* Release */ = {
+		OBJ_95 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -2140,56 +2129,56 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		OBJ_105 /* Build configuration list for PBXNativeTarget "Git" */ = {
+		OBJ_100 /* Build configuration list for PBXNativeTarget "FilesPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_106 /* Debug */,
-				OBJ_107 /* Release */,
+				OBJ_101 /* Debug */,
+				OBJ_102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_118 /* Build configuration list for PBXNativeTarget "Lowmad" */ = {
+		OBJ_106 /* Build configuration list for PBXNativeTarget "Git" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_119 /* Debug */,
-				OBJ_120 /* Release */,
+				OBJ_107 /* Debug */,
+				OBJ_108 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_144 /* Build configuration list for PBXNativeTarget "LowmadCLI" */ = {
+		OBJ_119 /* Build configuration list for PBXNativeTarget "Lowmad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_145 /* Debug */,
-				OBJ_146 /* Release */,
+				OBJ_120 /* Debug */,
+				OBJ_121 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_171 /* Build configuration list for PBXNativeTarget "LowmadKit" */ = {
+		OBJ_145 /* Build configuration list for PBXNativeTarget "LowmadCLI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_172 /* Debug */,
-				OBJ_173 /* Release */,
+				OBJ_146 /* Debug */,
+				OBJ_147 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_193 /* Build configuration list for PBXNativeTarget "LowmadPackageDescription" */ = {
+		OBJ_172 /* Build configuration list for PBXNativeTarget "LowmadKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_194 /* Debug */,
-				OBJ_195 /* Release */,
+				OBJ_173 /* Debug */,
+				OBJ_174 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_199 /* Build configuration list for PBXAggregateTarget "LowmadPackageTests" */ = {
+		OBJ_194 /* Build configuration list for PBXNativeTarget "LowmadPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_200 /* Debug */,
-				OBJ_201 /* Release */,
+				OBJ_195 /* Debug */,
+				OBJ_196 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2203,92 +2192,92 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_204 /* Build configuration list for PBXNativeTarget "LowmadTests" */ = {
+		OBJ_200 /* Build configuration list for PBXAggregateTarget "LowmadPackageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_205 /* Debug */,
-				OBJ_206 /* Release */,
+				OBJ_201 /* Debug */,
+				OBJ_202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_228 /* Build configuration list for PBXNativeTarget "Rainbow" */ = {
+		OBJ_205 /* Build configuration list for PBXNativeTarget "LowmadTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_229 /* Debug */,
-				OBJ_230 /* Release */,
+				OBJ_206 /* Debug */,
+				OBJ_207 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_245 /* Build configuration list for PBXNativeTarget "RainbowPackageDescription" */ = {
+		OBJ_229 /* Build configuration list for PBXNativeTarget "Rainbow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_246 /* Debug */,
-				OBJ_247 /* Release */,
+				OBJ_230 /* Debug */,
+				OBJ_231 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_250 /* Build configuration list for PBXNativeTarget "Shell" */ = {
+		OBJ_246 /* Build configuration list for PBXNativeTarget "RainbowPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_251 /* Debug */,
-				OBJ_252 /* Release */,
+				OBJ_247 /* Debug */,
+				OBJ_248 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_258 /* Build configuration list for PBXNativeTarget "SwiftCLI" */ = {
+		OBJ_251 /* Build configuration list for PBXNativeTarget "Shell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_259 /* Debug */,
-				OBJ_260 /* Release */,
+				OBJ_252 /* Debug */,
+				OBJ_253 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_286 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */ = {
+		OBJ_259 /* Build configuration list for PBXNativeTarget "SwiftCLI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_287 /* Debug */,
-				OBJ_288 /* Release */,
+				OBJ_260 /* Debug */,
+				OBJ_261 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_291 /* Build configuration list for PBXNativeTarget "World" */ = {
+		OBJ_287 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_292 /* Debug */,
-				OBJ_293 /* Release */,
+				OBJ_288 /* Debug */,
+				OBJ_289 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_306 /* Build configuration list for PBXAggregateTarget "lowmad" */ = {
+		OBJ_292 /* Build configuration list for PBXNativeTarget "World" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_307 /* Debug */,
-				OBJ_308 /* Release */,
+				OBJ_293 /* Debug */,
+				OBJ_294 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_92 /* Build configuration list for PBXNativeTarget "Files" */ = {
+		OBJ_307 /* Build configuration list for PBXAggregateTarget "lowmad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_93 /* Debug */,
-				OBJ_94 /* Release */,
+				OBJ_308 /* Debug */,
+				OBJ_309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_99 /* Build configuration list for PBXNativeTarget "FilesPackageDescription" */ = {
+		OBJ_93 /* Build configuration list for PBXNativeTarget "Files" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_100 /* Debug */,
-				OBJ_101 /* Release */,
+				OBJ_94 /* Debug */,
+				OBJ_95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

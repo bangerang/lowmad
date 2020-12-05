@@ -67,11 +67,14 @@ public class Lowmad {
             file_path = os.path.realpath(__file__)
             dir_name = os.path.dirname(file_path)
             load_python_scripts_dir(dir_name)
-            with open('/usr/local/lib/lowmad/environment.json') as json_file:
-                data = json.load(json_file)
-                commandsPath = os.path.realpath(data['ownCommandsPath'])
-                if not dir_name in commandsPath:
-                    load_python_scripts_dir(commandsPath)
+            try:
+                with open('/usr/local/lib/lowmad/environment.json') as json_file:
+                    data = json.load(json_file)
+                    commandsPath = os.path.realpath(data['ownCommandsPath'])
+                    if not dir_name in commandsPath:
+                        load_python_scripts_dir(commandsPath)
+            except IOError:
+                print("environment.json not accessible")
 
         def load_python_scripts_dir(dir_name):
             this_files_basename = os.path.basename(__file__)
@@ -447,7 +450,7 @@ public class Lowmad {
         if installationPath.isEmpty {
             ownCommandsFolder = try lowmadFolder.createSubfolder(at: "own_commands")
         } else {
-            ownCommandsFolder = try Folder(path: installationPath).createSubfolder(at: "/\(Lowmad.name)")
+            ownCommandsFolder = try Folder(path: installationPath)
         }
 
         let environmentFile = try localFolder.subfolder(named: Lowmad.name).createFile(named: "environment.json")
@@ -527,11 +530,15 @@ public class Lowmad {
     }
 
     public func runDump() throws {
-        let environment = try getEnvironment()
-        let commandsFolder = try Folder(path: environment.ownCommandsPath)
-        let file = try commandsFolder.file(named: "manifest.json")
-        print("\(file.path)".bold)
-        print(try file.readAsString())
+        let commandsFolder = try getLowmadCommandsFolder()
+        if commandsFolder.containsFile(at: "manifest.json") {
+            let file = try commandsFolder.file(named: "manifest.json")
+            print("\(file.path)".bold)
+            print(try file.readAsString())
+        } else {
+            print("i  \(Lowmad.name): ".cyan.bold + "manifest file doesnt exist, install some scripts!")
+        }
+
     }
 
 }
