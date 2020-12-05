@@ -40,8 +40,6 @@ final class LowmadTests: XCTestCase {
             XCTAssertTrue(Folder.temporary.containsFile(named: ".lldbinit"))
             let globalLLDBinit = try Folder.temporary.file(named: ".lldbinit")
             XCTAssertTrue(try !globalLLDBinit.readAsString().isEmpty)
-            let environmentFile = try Folder.temporary.file(at: Lowmad.name + "/environment.json")
-            XCTAssertTrue(try !environmentFile.readAsString().isEmpty)
             let lowmadFile = try Folder.temporary.file(at: Lowmad.name + "/\(Lowmad.name).py")
             XCTAssertTrue(try !lowmadFile.readAsString().isEmpty)
         }

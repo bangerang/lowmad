@@ -32,7 +32,7 @@ public class Lowmad {
     var hasBeenInitialized: Bool {
         do {
             let folder = try Current.localFolder().subfolder(at: Lowmad.name)
-            return folder.containsFile(named: "environment.json")
+            return folder.containsFile(named: "lowmad.py")
         } catch {
             return false
         }
