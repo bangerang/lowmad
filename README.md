@@ -7,7 +7,7 @@ A command line tool for managing and generating LLDB scripts.
 <pre><code>$ lowmad install git@github.com:bangerang/lldb_commands.git</code></pre>
 <br>
 <p>Or just a subset of scripts</p>
-<pre><code>$ lowmad install git@github.com:bangerang/lldb_commands.git label instruction</code></pre>
+<pre><code>$ lowmad install git@github.com:bangerang/lldb_commands.git find_label instruction</code></pre>
 <br>
 <p>Generate a new script</p>
 <pre><code>$ lowmad generate my_script</code></pre>
