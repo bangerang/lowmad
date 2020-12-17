@@ -367,7 +367,6 @@ public class Lowmad {
     public func runList() throws {
         let environment = try getEnvironment()
         let ownCommandsFolder = try Folder(path: environment.ownCommandsPath)
-//         source.subfolders.recursive.forEach(searchFolderForPythonFiles)
         let commandsFolder = try Current.lowmadFolder().subfolder(named: "commands")
         if ownCommandsFolder.files.count() == 0 {
             print("i  \(Lowmad.name): ".cyan.bold + "No commands found".bold)

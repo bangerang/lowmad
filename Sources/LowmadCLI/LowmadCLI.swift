@@ -33,15 +33,4 @@ public class LowmadCLI {
         exit(status)
     }
 }
-//
-//extension MintError: ProcessError {
-//
-//    public var message: String? {
-//        return "\(description.red)"
-//    }
-//
-//    public var exitStatus: Int32 {
-//        return 1
-//    }
-//}
 
