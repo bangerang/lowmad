@@ -388,7 +388,7 @@ public class Lowmad {
         }
     }
 
-    private func deleteFiles(_ files: Folder.ChildSequence<File>, subset: [String]) throws {
+    private func deleteFiles(in folder: Folder, subset: [String]) throws -> Bool {
         func deleteFile(_ file: File) throws {
             let content = try file.readAsString()
             if content.contains("__lldb_init_module") {
@@ -396,37 +396,58 @@ public class Lowmad {
                 try file.delete()
             }
         }
-        if !subset.isEmpty {
-            let subsetCommands = files.filter {
-                return subset.contains($0.nameExcludingExtension)
+
+        var didDelete = false
+
+        for folder in folder.subfolders.recursive {
+            let files = folder.files
+            if !subset.isEmpty {
+                let subsetCommands = files.filter {
+                    return subset.contains($0.nameExcludingExtension)
+                }
+                try subsetCommands.forEach{
+                    try deleteFile($0)
+                    didDelete = true
+                }
+            } else {
+                try files.forEach{
+                    try deleteFile($0)
+                    didDelete = true
+                }
             }
-            try subsetCommands.forEach{
-                try deleteFile($0)
-            }
-        } else {
-            try files.forEach{
-                try deleteFile($0)
+            if folder.isEmpty() {
+                try folder.delete()
+                didDelete = true
             }
         }
+
+        return didDelete
+
     }
 
     public func runUninstall(subset: [String], own: Bool, fetched: Bool) throws {
-        let allCommands: Folder.ChildSequence<File>
+        let folder: Folder
+        let didDelete: Bool
         if own {
             let environment = try getEnvironment()
-            allCommands = try Folder(path: environment.ownCommandsPath).files
-            try deleteFiles(allCommands, subset: subset)
+            folder = try Folder(path: environment.ownCommandsPath)
+            didDelete = try deleteFiles(in: folder, subset: subset)
         } else if fetched {
-            allCommands = try Current.lowmadFolder().subfolder(named: "commands").files
-            try deleteFiles(allCommands, subset: subset)
+            folder = try Current.lowmadFolder().subfolder(named: "commands")
+            didDelete = try deleteFiles(in: folder, subset: subset)
         } else {
             let environment = try getEnvironment()
-            let ownCommands = try Folder(path: environment.ownCommandsPath).files
-            let fetchedCommands = try Current.lowmadFolder().subfolder(named: "commands").files
-            try deleteFiles(ownCommands, subset: subset)
-            try deleteFiles(fetchedCommands, subset: subset)
+            let ownCommands = try Folder(path: environment.ownCommandsPath)
+            let fetchedCommands = try Current.lowmadFolder().subfolder(named: "commands")
+            let didDeleteOwn = try deleteFiles(in: ownCommands, subset: subset)
+            let didDeleteFetched = try deleteFiles(in: fetchedCommands, subset: subset)
+            didDelete = [didDeleteOwn, didDeleteFetched].contains{ $0 == true }
         }
-        print("✔  \(Lowmad.name): ".green.bold + "Commands were successfully deleted".bold)
+        if didDelete {
+            print("✔  \(Lowmad.name): ".green.bold + "Commands were successfully deleted".bold)
+        } else {
+            print("⚠  \(Lowmad.name): ".yellow.bold + "No files were deleted.".bold)
+        }
     }
 
     private func createEnvironmentFile() throws {
