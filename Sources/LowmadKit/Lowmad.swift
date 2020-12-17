@@ -191,7 +191,7 @@ public class Lowmad {
             if let commit = commit {
                 commitToUse = commit
                 print("i  \(Lowmad.name): ".cyan.bold + "Checking out commit \(commitToUse)")
-                Shell.runSilentCommand("git checkout \(commitToUse)")
+                Shell.runSilentCommand("cd \(tempFolder.path) && git checkout \(commitToUse)")
             } else {
                 commitToUse = try Current.git.getCommit(tempFolder.path)
             }
