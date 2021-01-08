@@ -388,8 +388,8 @@ public class Lowmad {
         }
     }
 
-    private func deleteFiles(in folder: Folder, subset: [String]) throws -> Bool {
-        
+    private func deleteFiles(in folder: Folder, subset: [String], own: Bool) throws -> Bool {
+
         func deleteFile(_ file: File) throws {
             let content = try file.readAsString()
             if content.contains("__lldb_init_module") {
@@ -416,7 +416,7 @@ public class Lowmad {
                     didDelete = true
                 }
             }
-            if folder.isEmpty() {
+            if folder.isEmpty() && !own {
                 try folder.delete()
                 didDelete = true
             }
@@ -438,16 +438,16 @@ public class Lowmad {
         if own {
             let environment = try getEnvironment()
             folder = try Folder(path: environment.ownCommandsPath)
-            didDelete = try deleteFiles(in: folder, subset: subset)
+            didDelete = try deleteFiles(in: folder, subset: subset, own: true)
         } else if fetched {
             folder = try Current.lowmadFolder().subfolder(named: "commands")
-            didDelete = try deleteFiles(in: folder, subset: subset)
+            didDelete = try deleteFiles(in: folder, subset: subset, own: false)
         } else {
             let environment = try getEnvironment()
             let ownCommands = try Folder(path: environment.ownCommandsPath)
             let fetchedCommands = try Current.lowmadFolder().subfolder(named: "commands")
-            let didDeleteOwn = try deleteFiles(in: ownCommands, subset: subset)
-            let didDeleteFetched = try deleteFiles(in: fetchedCommands, subset: subset)
+            let didDeleteOwn = try deleteFiles(in: ownCommands, subset: subset, own: true)
+            let didDeleteFetched = try deleteFiles(in: fetchedCommands, subset: subset, own: false)
             didDelete = [didDeleteOwn, didDeleteFetched].contains{ $0 == true }
         }
         if didDelete {
