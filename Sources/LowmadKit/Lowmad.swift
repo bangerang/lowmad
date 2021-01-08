@@ -5,8 +5,6 @@ import Files
 import World
 import Shell
 
-extension String: Error {}
-
 extension String {
     func regexGroups(for regexPattern: String) throws -> [[String]] {
         let text = self
@@ -165,13 +163,13 @@ public class Lowmad {
         let regexPattern = "^(https|git)(://|@)([^/:]+)[/:]([^/:]+)/(.+).git$"
         let groups = try gitURL.regexGroups(for: regexPattern)
         guard var strings = groups.first else {
-            throw "Could not parse Git URL"
+            throw CLI.Error(message: String.error("Could not parse Git URL"))
         }
         guard let repoName = strings.popLast() else {
-            throw "Could not parse Git URL"
+            throw CLI.Error(message: String.error("Could not parse Git URL"))
         }
         guard let author = strings.popLast() else {
-            throw "Could not parse Git URL"
+            throw CLI.Error(message: String.error("Could not parse Git URL"))
         }
         return "\(author)-\(repoName)"
     }
@@ -192,7 +190,7 @@ public class Lowmad {
         }
 
         if !hasBeenInitialized {
-            throw "✖  \(Lowmad.name): ".red.bold + "Has not been initialized, did you forget to run the init command?"
+            throw CLI.Error(message: String.error("Has not been initialized, did you forget to run the init command?"))
         }
 
         let localFolder = try Current.localFolder()
@@ -214,7 +212,7 @@ public class Lowmad {
 
         if let gitURL = gitURL {
             guard try isGitURL(gitURL) else {
-                throw "Not a valid Git URL"
+                throw CLI.Error(message: String.error("Not a valid Git URL"))
             }
             Print.info("Cloning \(gitURL)...".bold)
 
@@ -252,7 +250,7 @@ public class Lowmad {
             } else {
                 file = try File(path: manifest)
                 guard file.extension == "json" else {
-                    throw "✖  \(Lowmad.name): ".red.bold + "manifest file has wrong file extension"
+                    throw CLI.Error(message: String.error("Manifest file has wrong file extension"))
                 }
             }
 
@@ -293,7 +291,7 @@ public class Lowmad {
                 }
             }
         } else {
-            throw "✖  \(Lowmad.name): ".red.bold + "Please supply a git URL or a manifest file."
+            throw CLI.Error(message: String.error("Please supply a git URL or a manifest file."))
         }
 
         Print.done("Installation was successful! 🎉")
@@ -350,7 +348,7 @@ public class Lowmad {
             }
 
             if filteredFiles.isEmpty {
-                throw "✖  \(Lowmad.name): ".red.bold + "Could not find \(subset) in given repo"
+                throw CLI.Error(message: String.error("Could not find \(subset) in given repo"))
             }
 
             try filteredFiles.forEach {
@@ -588,7 +586,7 @@ public class Lowmad {
         }
 
         if folder.containsFile(named: name) {
-            throw "✖  \(Lowmad.name): ".red.bold + "There already exists a file named \(name), please remove the file at \(folder.path) first"
+            throw CLI.Error(message: String.error("There already exists a file named \(name), please remove the file at \(folder.path) first"))
         }
         let file = try folder.createFile(named: "\(name).py")
         try file.write(createScript(name: name))
