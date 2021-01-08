@@ -389,6 +389,7 @@ public class Lowmad {
     }
 
     private func deleteFiles(in folder: Folder, subset: [String]) throws -> Bool {
+        
         func deleteFile(_ file: File) throws {
             let content = try file.readAsString()
             if content.contains("__lldb_init_module") {
@@ -399,7 +400,7 @@ public class Lowmad {
 
         var didDelete = false
 
-        for folder in folder.subfolders.recursive {
+        func searchAndDeleteInFolder(_ folder: Folder) throws {
             let files = folder.files
             if !subset.isEmpty {
                 let subsetCommands = files.filter {
@@ -419,6 +420,12 @@ public class Lowmad {
                 try folder.delete()
                 didDelete = true
             }
+        }
+
+        try searchAndDeleteInFolder(folder)
+
+        for folder in folder.subfolders.recursive {
+            try searchAndDeleteInFolder(folder)
         }
 
         return didDelete
