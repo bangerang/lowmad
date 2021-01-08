@@ -23,6 +23,40 @@ extension String {
             }
         }
     }
+
+    static func error(_ text: String) -> String {
+        return "✖  \(Lowmad.name): ".red.bold + text
+    }
+
+    static func info(_ text: String) -> String {
+        return "i  \(Lowmad.name): ".cyan.bold + text
+    }
+
+    static func warning(_ text: String) -> String {
+        return "⚠  \(Lowmad.name): ".yellow.bold + text
+    }
+
+    static func done(_ text: String) -> String {
+        return "✔  \(Lowmad.name): ".green.bold + text.bold
+    }
+}
+
+public struct Print {
+    static func error(_ text: String) -> Void {
+        print(String.error(text))
+    }
+
+    static func info(_ text: String) -> Void {
+        print(String.info(text))
+    }
+
+    static func warning(_ text: String) -> Void {
+        print(String.warning(text))
+    }
+
+    static func done(_ text: String) -> Void {
+        print(String.done(text))
+    }
 }
 
 public class Lowmad {
@@ -96,7 +130,8 @@ public class Lowmad {
 
         _ = try lowmadFolder.createSubfolder(at: "commands")
 
-        print("i  \(Lowmad.name): ".cyan.bold + "Creating \(Lowmad.name) import file...")
+        Print.info("Creating \(Lowmad.name) import file...")
+
         let lowmadFile = try lowmadFolder.createFile(named: "\(Lowmad.name).py")
         try lowmadFile.write(lldbInitScript)
 
@@ -111,20 +146,19 @@ public class Lowmad {
         let editLLDBFile: (File) throws -> Void = { file in
             let content = try file.readAsString()
             if !content.contains(importCommand) {
-                print("i  \(Lowmad.name): ".cyan.bold + "Updating global lldbinit file...")
+                Print.info("Updating global lldbinit file...")
                 try file.append(importCommand)
             }
         }
 
         if !homeFolder.containsFile(named: ".lldbinit") {
-            print("i  \(Lowmad.name): ".cyan.bold + "global lldbinit file does not exist, creating...")
+            Print.info("Global lldbinit file does not exist, creating...")
             try homeFolder.createFile(named: ".lldbinit")
         }
 
         let lldbInitFile = try homeFolder.file(at: ".lldbinit")
         try editLLDBFile(lldbInitFile)
-        print("✔  \(Lowmad.name): ".green.bold + "You're all set up! 👍".bold)
-
+        Print.done("You're all set up! 👍")
     }
 
     private func createSubfolderNameFromGitURL(_ gitURL: String) throws -> String {
@@ -177,12 +211,12 @@ public class Lowmad {
         } else {
             commandsFolder = try getLowmadCommandsFolder()
         }
-        
+
         if let gitURL = gitURL {
             guard try isGitURL(gitURL) else {
                 throw "Not a valid Git URL"
             }
-            print("i  \(Lowmad.name): ".cyan.bold + "Cloning \(gitURL)...".bold)
+            Print.info("Cloning \(gitURL)...".bold)
 
             Current.git.clone(gitURL, tempFolder.path)
 
@@ -190,7 +224,7 @@ public class Lowmad {
 
             if let commit = commit {
                 commitToUse = commit
-                print("i  \(Lowmad.name): ".cyan.bold + "Checking out commit \(commitToUse)")
+                Print.info("Checking out commit \(commitToUse)")
                 Shell.runSilentCommand("cd \(tempFolder.path) && git checkout \(commitToUse)")
             } else {
                 commitToUse = try Current.git.getCommit(tempFolder.path)
@@ -239,7 +273,7 @@ public class Lowmad {
                 let uuid = UUID().uuidString
 
                 let path = try tempFolder.createSubfolderIfNeeded(at: uuid).path
-                print("i  \(Lowmad.name): ".cyan.bold + "Cloning \(key)...".bold)
+                Print.info("Cloning \(key)...".bold)
                 Current.git.clone(key, path)
 
                 for (commit, subset) in value {
@@ -262,7 +296,7 @@ public class Lowmad {
             throw "✖  \(Lowmad.name): ".red.bold + "Please supply a git URL or a manifest file."
         }
 
-        print("✔  \(Lowmad.name): ".green.bold + "Installation was successful! 🎉".bold)
+        Print.done("Installation was successful! 🎉")
     }
 
     private func getLowmadCommandsFolder() throws -> Folder {
@@ -301,9 +335,9 @@ public class Lowmad {
         }
 
         func copyFile(_ file: File) throws {
-            print("i  \(Lowmad.name): ".cyan.bold + "Copying \(file.name) into commands folder...")
+            Print.info("Copying \(file.name) into commands folder...")
             if destination.containsFile(named: file.name) {
-                print("⚠  \(Lowmad.name): ".yellow.bold + "Will not copy \(file.name.bold) into \(destination.path), file already exists.")
+                Print.warning("Will not copy \(file.name.bold) into \(destination.path), file already exists.")
                 return
             }
             try file.copy(to: destination)
@@ -369,7 +403,7 @@ public class Lowmad {
         let ownCommandsFolder = try Folder(path: environment.ownCommandsPath)
         let commandsFolder = try Current.lowmadFolder().subfolder(named: "commands")
         if ownCommandsFolder.files.count() == 0 {
-            print("i  \(Lowmad.name): ".cyan.bold + "No commands found".bold)
+            Print.info("No commands found".bold)
             return
         }
         print("Installed commands at \(ownCommandsFolder.path)".bold)
@@ -393,7 +427,7 @@ public class Lowmad {
         func deleteFile(_ file: File) throws {
             let content = try file.readAsString()
             if content.contains("__lldb_init_module") {
-                print("i  \(Lowmad.name): ".cyan.bold + "Deleting \(file.name)...")
+                Print.info("Deleting \(file.name)...")
                 try file.delete()
             }
         }
@@ -451,9 +485,9 @@ public class Lowmad {
             didDelete = [didDeleteOwn, didDeleteFetched].contains{ $0 == true }
         }
         if didDelete {
-            print("✔  \(Lowmad.name): ".green.bold + "Commands were successfully deleted".bold)
+            Print.done("Commands were successfully deleted")
         } else {
-            print("⚠  \(Lowmad.name): ".yellow.bold + "No files were deleted.".bold)
+            Print.warning("No files were deleted.".bold)
         }
     }
 
@@ -558,7 +592,7 @@ public class Lowmad {
         }
         let file = try folder.createFile(named: "\(name).py")
         try file.write(createScript(name: name))
-        print("✔  \(Lowmad.name): ".green.bold + "Script for command \(name) was successfully created".bold)
+        Print.done("Script for command \(name) was successfully created")
         Shell.runSilentCommand("open -R \(file.path)")
     }
 
@@ -569,7 +603,7 @@ public class Lowmad {
             print("\(file.path)".bold)
             print(try file.readAsString())
         } else {
-            print("i  \(Lowmad.name): ".cyan.bold + "manifest file doesnt exist, install some scripts!")
+            Print.info("Manifest file doesnt exist, install some scripts!")
         }
 
     }
