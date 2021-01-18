@@ -5,7 +5,7 @@ public struct Git {
     public init() {}
 
     public var clone: (String, String?) -> Void = { gitURL, location in
-        var command = "git clone \(gitURL)"
+        var command = "git clone --depth 1 \(gitURL)"
         if let location = location {
             command += " \(location)"
         }
