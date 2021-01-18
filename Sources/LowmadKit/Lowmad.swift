@@ -210,6 +210,8 @@ public class Lowmad {
             commandsFolder = try getLowmadCommandsFolder()
         }
 
+        var atLeastOneScriptWasInstalled = false
+
         if let gitURL = gitURL {
             guard try isGitURL(gitURL) else {
                 throw CLI.Error(message: String.error("Not a valid Git URL"))
@@ -238,6 +240,7 @@ public class Lowmad {
 
 
             try copyFilesToScriptsFolder(from: tempFolder, to: destinationFolder, subset: subset) { file in
+                atLeastOneScriptWasInstalled = true
                 try saveToManifestFile(inFolder: commandsFolder, fileToSave: file, source: gitURL, commit: commitToUse)
             }
         } else if let manifest = manifestURL {
@@ -286,6 +289,7 @@ public class Lowmad {
                     }
 
                     try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset) { file in
+                        atLeastOneScriptWasInstalled = true
                         try saveToManifestFile(inFolder: commandsFolder, fileToSave: file, source: key, commit: commit)
                     }
                 }
@@ -294,7 +298,11 @@ public class Lowmad {
             throw CLI.Error(message: String.error("Please supply a git URL or a manifest file."))
         }
 
-        Print.done("Installation was successful! 🎉")
+        if atLeastOneScriptWasInstalled {
+            Print.done("Installation was successful! 🎉")
+        } else {
+            Print.warning("No scripts were installed.".bold)
+        }
     }
 
     private func getLowmadCommandsFolder() throws -> Folder {
@@ -332,15 +340,99 @@ public class Lowmad {
             return content.contains("__lldb_init_module")
         }
 
-        func copyFile(_ file: File) throws {
-            Print.info("Copying \(file.name) into commands folder...")
-            if destination.containsFile(named: file.name) {
-                Print.warning("Will not copy \(file.name.bold) into \(destination.path), file already exists.")
+        enum ReplaceOption: CaseIterable {
+
+            static let description = """
+
+            1. Yes
+            2. Yes to all
+            3. No
+            4. Quit
+
+            """
+
+            case yes
+            case no
+            case replaceAll
+            case replaceNone
+
+            init?(_ input: String) {
+                if let option = ReplaceOption.allCases.first(where: { $0.inputIsValid(input) }) {
+                    self = option
+                } else {
+                    return nil
+                }
+            }
+
+            func inputIsValid(_ input: String) -> Bool {
+                switch self {
+                case .yes:
+                    return ["yes", "y", "1"].contains(input.lowercased())
+                case .no:
+                    return ["no", "n", "3"].contains(input.lowercased())
+                case .replaceAll:
+                    return ["2"].contains(input.lowercased())
+                case .replaceNone:
+                    return ["q", "quit", "4"].contains(input.lowercased())
+                }
+            }
+        }
+
+        struct ReplaceOptionState {
+            var replaceAll: Bool
+            var replaceNone: Bool
+        }
+
+        func copyFile(_ file: File, replaceOptionState: inout ReplaceOptionState) throws {
+            if replaceOptionState.replaceAll == true && replaceOptionState.replaceNone == true {
+                assert(false)
+            }
+
+            if replaceOptionState.replaceNone {
                 return
             }
-            try file.copy(to: destination)
-            try didCopyFileCompletion(file)
+
+            var shouldCopy = true
+
+            if destination.containsFile(named: file.name) && replaceOptionState.replaceAll == false {
+                let prompt = String.warning("File \(file.name.bold) already exists at \(destination.path)" + "\nDo you want to replace it with the one you just installed?".bold) + "\(ReplaceOption.description)"
+
+                let optionString = Current.readLine(prompt, false, [.custom("Not a valid option, available options are: \(ReplaceOption.description)", { (input) -> Bool in
+                        return ReplaceOption.allCases.first(where: { $0.inputIsValid(input) }) != nil
+                    })],
+                    { (input, reason) in
+                        Print.error("Not a valid option, available options are: \(ReplaceOption.description)".bold)
+                    }
+                )
+
+                let option = ReplaceOption(optionString)!
+
+                switch option {
+                case .yes:
+                    shouldCopy = true
+                case .no:
+                    shouldCopy = false
+                case .replaceAll:
+                    replaceOptionState.replaceAll = true
+                    shouldCopy = true
+                case .replaceNone:
+                    replaceOptionState.replaceNone = true
+                    shouldCopy = false
+                }
+            }
+
+            if replaceOptionState.replaceAll || shouldCopy {
+                Print.info("Copying \(file.name) into commands folder...")
+                if destination.containsFile(named: file.name) {
+                    try destination.file(named: file.name).delete()
+                }
+                try file.copy(to: destination)
+                try didCopyFileCompletion(file)
+            }
+
         }
+
+        var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
 
         if let subset = subset, !subset.isEmpty {
             let filteredFiles = validFiles.filter {
@@ -352,11 +444,11 @@ public class Lowmad {
             }
 
             try filteredFiles.forEach {
-                try copyFile($0)
+                try copyFile($0, replaceOptionState: &replaceOptionState)
             }
         } else {
             try validFiles.forEach {
-                try copyFile($0)
+                try copyFile($0, replaceOptionState: &replaceOptionState)
             }
         }
     }
