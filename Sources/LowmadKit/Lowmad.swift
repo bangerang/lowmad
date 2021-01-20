@@ -5,58 +5,6 @@ import Files
 import World
 import Shell
 
-extension String {
-    func regexGroups(for regexPattern: String) throws -> [[String]] {
-        let text = self
-        let regex = try NSRegularExpression(pattern: regexPattern)
-        let matches = regex.matches(in: text,
-                                    range: NSRange(text.startIndex..., in: text))
-        return matches.map { match in
-            return (0..<match.numberOfRanges).map {
-                let rangeBounds = match.range(at: $0)
-                guard let range = Range(rangeBounds, in: text) else {
-                    return ""
-                }
-                return String(text[range])
-            }
-        }
-    }
-
-    static func error(_ text: String) -> String {
-        return "✖  \(Lowmad.name): ".red.bold + text
-    }
-
-    static func info(_ text: String) -> String {
-        return "i  \(Lowmad.name): ".cyan.bold + text
-    }
-
-    static func warning(_ text: String) -> String {
-        return "⚠  \(Lowmad.name): ".yellow.bold + text
-    }
-
-    static func done(_ text: String) -> String {
-        return "✔  \(Lowmad.name): ".green.bold + text.bold
-    }
-}
-
-public struct Print {
-    static func error(_ text: String) -> Void {
-        print(String.error(text))
-    }
-
-    static func info(_ text: String) -> Void {
-        print(String.info(text))
-    }
-
-    static func warning(_ text: String) -> Void {
-        print(String.warning(text))
-    }
-
-    static func done(_ text: String) -> Void {
-        print(String.done(text))
-    }
-}
-
 public class Lowmad {
 
     static let name = "lowmad"
@@ -335,10 +283,7 @@ public class Lowmad {
         searchFolderForPythonFiles(source)
         source.subfolders.recursive.forEach(searchFolderForPythonFiles)
 
-        let validFiles = try pythonFiles.filter {
-            let content = try $0.readAsString()
-            return content.contains("__lldb_init_module")
-        }
+        let validFiles = try pythonFiles.filter { try $0.isLLDBScript() }
 
         enum ReplaceOption: CaseIterable {
 
@@ -515,8 +460,7 @@ public class Lowmad {
     private func deleteFiles(in folder: Folder, subset: [String], own: Bool) throws -> Bool {
 
         func deleteFile(_ file: File) throws {
-            let content = try file.readAsString()
-            if content.contains("__lldb_init_module") {
+            if try file.isLLDBScript() {
                 Print.info("Deleting \(file.name)...")
                 try file.delete()
             }
@@ -698,4 +642,63 @@ public class Lowmad {
 
     }
 
+}
+
+extension String {
+    func regexGroups(for regexPattern: String) throws -> [[String]] {
+        let text = self
+        let regex = try NSRegularExpression(pattern: regexPattern)
+        let matches = regex.matches(in: text,
+                                    range: NSRange(text.startIndex..., in: text))
+        return matches.map { match in
+            return (0..<match.numberOfRanges).map {
+                let rangeBounds = match.range(at: $0)
+                guard let range = Range(rangeBounds, in: text) else {
+                    return ""
+                }
+                return String(text[range])
+            }
+        }
+    }
+
+    static func error(_ text: String) -> String {
+        return "✖  \(Lowmad.name): ".red.bold + text
+    }
+
+    static func info(_ text: String) -> String {
+        return "i  \(Lowmad.name): ".cyan.bold + text
+    }
+
+    static func warning(_ text: String) -> String {
+        return "⚠  \(Lowmad.name): ".yellow.bold + text
+    }
+
+    static func done(_ text: String) -> String {
+        return "✔  \(Lowmad.name): ".green.bold + text.bold
+    }
+}
+
+public struct Print {
+    static func error(_ text: String) -> Void {
+        print(String.error(text))
+    }
+
+    static func info(_ text: String) -> Void {
+        print(String.info(text))
+    }
+
+    static func warning(_ text: String) -> Void {
+        print(String.warning(text))
+    }
+
+    static func done(_ text: String) -> Void {
+        print(String.done(text))
+    }
+}
+
+extension File {
+    func isLLDBScript() throws -> Bool {
+        let content = try readAsString()
+        return content.contains("__lldb_init_module") || content.contains("@lldb.command")
+    }
 }
