@@ -151,11 +151,18 @@ public class Lowmad {
 
         let tempFolder = try lowmadTempFolder()
 
+
+
+        let ownFolder = try getOwnCommandsFolder()
+        let lowmadCommandsFolder = try getLowmadCommandsFolder()
+
+        let commandFolders = [ownFolder, lowmadCommandsFolder]
+
         let commandsFolder: Folder
         if ownRepo {
-            commandsFolder = try getOwnCommandsFolder()
+            commandsFolder = ownFolder
         } else {
-            commandsFolder = try getLowmadCommandsFolder()
+            commandsFolder = lowmadCommandsFolder
         }
 
         var atLeastOneScriptWasInstalled = false
@@ -189,7 +196,9 @@ public class Lowmad {
 
             try copyFilesToScriptsFolder(from: tempFolder, to: destinationFolder, subset: subset) { file in
                 atLeastOneScriptWasInstalled = true
-                try saveToManifestFile(inFolder: commandsFolder, fileToSave: file, source: gitURL, commit: commitToUse)
+                try commandFolders.forEach {
+                    try saveToManifestFile(inFolder: $0, fileToSave: file, source: gitURL, commit: commitToUse)
+                }
             }
         } else if let manifest = manifestURL {
             let isGit = try isGitURL(manifest)
@@ -238,7 +247,10 @@ public class Lowmad {
 
                     try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset) { file in
                         atLeastOneScriptWasInstalled = true
-                        try saveToManifestFile(inFolder: commandsFolder, fileToSave: file, source: key, commit: commit)
+                        try commandFolders.forEach {
+                            try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
+                        }
+
                     }
                 }
             }
