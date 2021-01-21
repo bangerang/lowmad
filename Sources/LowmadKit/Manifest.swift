@@ -1,6 +1,9 @@
 import Foundation
 
-struct Manifest: Codable {
-    let version: String
+struct ManifestV1: Codable {
     var commands: [Command]
+}
+struct ManifestV2: Codable {
+    var commands: [Command]
+    var lldbInit: [String]
 }

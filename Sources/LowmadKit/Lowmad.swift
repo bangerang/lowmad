@@ -214,7 +214,8 @@ public class Lowmad {
                 }
             }
 
-            let manifestStruct = try JSONDecoder().decode(Manifest.self, from: try file.read())
+            let manifestStruct = try getManifest(from: file)
+
             var dict: [String: [String: [String]]] = [:]
 
             for command in manifestStruct.commands {
@@ -418,18 +419,37 @@ public class Lowmad {
         try environmentFile.write(data)
     }
 
-    private func saveToManifestFile(inFolder commandsFolder: Folder, fileToSave: File, source: String, commit: String) throws {
-        var manifest: Manifest
-        var manifestFile: File
-
-        if commandsFolder.containsFile(named: "manifest.json") {
-            manifestFile = try commandsFolder.file(named: "manifest.json")
-            manifest = try JSONDecoder().decode(Manifest.self, from: try manifestFile.read())
+    private func createManifestFileIfNeeded(in folder: Folder) throws -> File {
+        if folder.containsFile(named: "manifest.json") {
+            return try folder.file(named: "manifest.json")
         } else {
-
-            manifest = Manifest(version: "0.1", commands: [])
-            manifestFile = try commandsFolder.createFile(named: "manifest.json")
+            return try folder.createFile(named: "manifest.json")
         }
+    }
+
+    private func getManifest(from file: File) throws -> ManifestV2 {
+
+        let newManifest: ManifestV2
+
+        do {
+            newManifest = try JSONDecoder().decode(ManifestV2.self, from: try file.read())
+        } catch {
+            do {
+                let oldManifest = try JSONDecoder().decode(ManifestV1.self, from: try file.read())
+                newManifest = ManifestV2(commands: oldManifest.commands, lldbInit: [])
+            } catch {
+                newManifest = ManifestV2(commands: [], lldbInit: [])
+            }
+        }
+
+        return newManifest
+    }
+
+    private func saveToManifestFile(inFolder commandsFolder: Folder, fileToSave: File, source: String, commit: String) throws {
+
+        let manifestFile = try createManifestFileIfNeeded(in: commandsFolder)
+
+        var manifest = try getManifest(from: manifestFile)
 
         let newCommand = Command(name: fileToSave.nameExcludingExtension, source: source, commit: commit)
 
