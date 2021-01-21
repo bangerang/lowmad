@@ -571,12 +571,10 @@ public class Lowmad {
                      import shlex
                      import optparse
 
-                     def __lldb_init_module(debugger, internal_dict):
-                         debugger.HandleCommand('command script add -f \(name).handle_command \(name) -h "Short documentation here"')
+                     @lldb.command("\(name)")
+                     def handle_\(name)_command(debugger, expression, ctx, result, internal_dict):
 
-                     def handle_command(debugger, command, exe_ctx, result, internal_dict):
-
-                         command_args = shlex.split(command, posix=False)
+                         command_args = shlex.split(expression, posix=False)
                          parser = generate_option_parser()
                          try:
                              (options, args) = parser.parse_args(command_args)
