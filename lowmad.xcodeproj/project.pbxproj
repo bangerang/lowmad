@@ -32,6 +32,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AB20C13425BA12AC00965D3C /* SyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20C13325BA12AC00965D3C /* SyncCommand.swift */; };
 		OBJ_104 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Package.swift */; };
 		OBJ_110 /* Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Git.swift */; };
 		OBJ_112 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
@@ -403,6 +404,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB20C13325BA12AC00965D3C /* SyncCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCommand.swift; sourceTree = "<group>"; };
 		"Files::Files::Product" /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Files.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Lowmad::Git::Product" /* Git.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Git.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Lowmad::Lowmad::Product" /* Lowmad */ = {isa = PBXFileReference; lastKnownFileType = text; path = Lowmad; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -613,6 +615,7 @@
 				OBJ_18 /* ListCommand.swift */,
 				OBJ_19 /* LowmadCommand.swift */,
 				OBJ_20 /* UninstallCommand.swift */,
+				AB20C13325BA12AC00965D3C /* SyncCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1126,6 +1129,7 @@
 				OBJ_149 /* DumpCommand.swift in Sources */,
 				OBJ_150 /* GenerateCommand.swift in Sources */,
 				OBJ_151 /* InitCommand.swift in Sources */,
+				AB20C13425BA12AC00965D3C /* SyncCommand.swift in Sources */,
 				OBJ_152 /* InstallCommand.swift in Sources */,
 				OBJ_153 /* ListCommand.swift in Sources */,
 				OBJ_154 /* LowmadCommand.swift in Sources */,

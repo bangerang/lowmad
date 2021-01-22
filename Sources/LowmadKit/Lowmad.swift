@@ -151,8 +151,6 @@ public class Lowmad {
 
         let tempFolder = try lowmadTempFolder()
 
-
-
         let ownFolder = try getOwnCommandsFolder()
         let lowmadCommandsFolder = try getLowmadCommandsFolder()
 
@@ -263,6 +261,23 @@ public class Lowmad {
             Print.done("Installation was successful! 🎉")
         } else {
             Print.warning("No scripts were installed.".bold)
+        }
+    }
+
+    public func runSync() throws {
+        let lldbInitFile = try Current.homeFolder().file(at: ".lldbinit")
+
+        let ownFolder = try getOwnCommandsFolder()
+        let lowmadCommandsFolder = try getLowmadCommandsFolder()
+        let commandFolders = [ownFolder, lowmadCommandsFolder]
+
+        let lines = try lldbInitFile.readAsString().components(separatedBy: "\n").filter { !$0.isEmpty }
+        
+        try commandFolders.forEach {
+            let file = try createManifestFileIfNeeded(in: $0)
+            var manifest = try getManifest(from: file)
+            manifest.lldbInit = lines
+            try writeToManifestFile(manifest: manifest, file: file)
         }
     }
 
@@ -445,6 +460,13 @@ public class Lowmad {
         return newManifest
     }
 
+    private func writeToManifestFile(manifest: ManifestV2, file: File) throws {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted]
+        let data = try encoder.encode(manifest)
+        try file.write(data)
+    }
+
     private func saveToManifestFile(inFolder commandsFolder: Folder, fileToSave: File, source: String, commit: String) throws {
 
         let manifestFile = try createManifestFileIfNeeded(in: commandsFolder)
@@ -459,10 +481,8 @@ public class Lowmad {
             manifest.commands.append(newCommand)
         }
 
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
-        let data = try encoder.encode(manifest)
-        try manifestFile.write(data)
+        try writeToManifestFile(manifest: manifest, file: manifestFile)
+
     }
 
     public func runList() throws {

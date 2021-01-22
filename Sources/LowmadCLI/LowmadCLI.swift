@@ -18,7 +18,8 @@ public class LowmadCLI {
             ListCommand(lowmad: lowmad),
             UninstallCommand(lowmad: lowmad),
             GenerateCommand(lowmad: lowmad),
-            DumpCommand(lowmad: lowmad)
+            DumpCommand(lowmad: lowmad),
+            SyncCommand(lowmad: lowmad)
         ])
         cli.parser.parseOptionsAfterCollectedParameter = true
     }
