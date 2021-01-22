@@ -107,21 +107,6 @@ public class Lowmad {
         Print.done("You're all set up! 👍")
     }
 
-    private func createSubfolderNameFromGitURL(_ gitURL: String) throws -> String {
-        let regexPattern = "^(https|git)(://|@)([^/:]+)[/:]([^/:]+)/(.+).git$"
-        let groups = try gitURL.regexGroups(for: regexPattern)
-        guard var strings = groups.first else {
-            throw CLI.Error(message: String.error("Could not parse Git URL"))
-        }
-        guard let repoName = strings.popLast() else {
-            throw CLI.Error(message: String.error("Could not parse Git URL"))
-        }
-        guard let author = strings.popLast() else {
-            throw CLI.Error(message: String.error("Could not parse Git URL"))
-        }
-        return "\(author)-\(repoName)"
-    }
-
     public func runInstall(gitURL: String?, subset: [String], manifestURL: String?, commit: String?, ownRepo: Bool) throws {
 
         func cleanup() {
@@ -264,6 +249,132 @@ public class Lowmad {
         }
     }
 
+    public func runList() throws {
+        let environment = try getEnvironment()
+        let ownCommandsFolder = try Folder(path: environment.ownCommandsPath)
+        let commandsFolder = try Current.lowmadFolder().subfolder(named: "commands")
+        if ownCommandsFolder.files.count() == 0 {
+            Print.info("No commands found".bold)
+            return
+        }
+        print("Installed commands at \(ownCommandsFolder.path)".bold)
+        for file in ownCommandsFolder.files {
+            if file.extension == "py" {
+                print(file.nameExcludingExtension)
+            }
+        }
+        print("Installed commands at \(commandsFolder.path)".bold)
+        for folder in commandsFolder.subfolders.recursive {
+            for file in folder.files {
+                if file.extension == "py" {
+                    print(file.nameExcludingExtension)
+                }
+            }
+        }
+    }
+
+    public func runGenerate(name: String, path: String?) throws {
+        func createScript(name: String) -> String {
+            return """
+                     import lldb
+                     import os
+                     import shlex
+                     import optparse
+
+                     @lldb.command("\(name)")
+                     def handle_\(name)_command(debugger, expression, ctx, result, internal_dict):
+
+                         command_args = shlex.split(expression, posix=False)
+                         parser = generate_option_parser()
+                         try:
+                             (options, args) = parser.parse_args(command_args)
+                         except:
+                             result.SetError(parser.usage)
+                             return
+
+                         # Uncomment if you are expecting at least one argument
+                         # clean_command = shlex.split(args[0])[0]
+
+                         result.AppendMessage('Hello! the \(name) command is working!')
+
+
+                     def generate_option_parser():
+                         usage = "usage: %prog [options] TODO Description Here :]"
+                         parser = optparse.OptionParser(usage=usage, prog="\(name)")
+                         parser.add_option("-m", "--module",
+                                           action="store",
+                                           default=None,
+                                           dest="module",
+                                           help="This is a placeholder option to show you how to use options with strings")
+                         parser.add_option("-c", "--check_if_true",
+                                           action="store_true",
+                                           default=False,
+                                           dest="store_true",
+                                           help="This is a placeholder option to show you how to use options with bools")
+                         return parser
+                     """
+        }
+
+        let localFolder = try Current.localFolder()
+
+        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
+            try createEnvironmentFile()
+        }
+
+        let folder: Folder
+        if let path = path {
+            folder = try Folder(path: path)
+        } else {
+            let environment = try getEnvironment()
+            folder = try Folder(path: environment.ownCommandsPath)
+        }
+
+        if folder.containsFile(named: name) {
+            throw CLI.Error(message: String.error("There already exists a file named \(name), please remove the file at \(folder.path) first"))
+        }
+        let file = try folder.createFile(named: "\(name).py")
+        try file.write(createScript(name: name))
+        Print.done("Script for command \(name) was successfully created")
+        Shell.runSilentCommand("open -R \(file.path)")
+    }
+
+    public func runDump() throws {
+        let commandsFolder = try getLowmadCommandsFolder()
+        if commandsFolder.containsFile(at: "manifest.json") {
+            let file = try commandsFolder.file(named: "manifest.json")
+            print("\(file.path)".bold)
+            print(try file.readAsString())
+        } else {
+            Print.info("Manifest file doesnt exist, install some scripts!")
+        }
+
+    }
+
+    public func runUninstall(subset: [String], own: Bool, fetched: Bool) throws {
+        let folder: Folder
+        let didDelete: Bool
+        if own {
+            let environment = try getEnvironment()
+            folder = try Folder(path: environment.ownCommandsPath)
+            didDelete = try deleteFiles(in: folder, subset: subset, own: true)
+        } else if fetched {
+            folder = try Current.lowmadFolder().subfolder(named: "commands")
+            didDelete = try deleteFiles(in: folder, subset: subset, own: false)
+        } else {
+            let environment = try getEnvironment()
+            let ownCommands = try Folder(path: environment.ownCommandsPath)
+            let fetchedCommands = try Current.lowmadFolder().subfolder(named: "commands")
+            let didDeleteOwn = try deleteFiles(in: ownCommands, subset: subset, own: true)
+            let didDeleteFetched = try deleteFiles(in: fetchedCommands, subset: subset, own: false)
+            didDelete = [didDeleteOwn, didDeleteFetched].contains{ $0 == true }
+        }
+        if didDelete {
+            Print.done("Commands were successfully deleted")
+        } else {
+            Print.warning("No files were deleted.".bold)
+        }
+    }
+
     public func runSync() throws {
         let lldbInitFile = try Current.homeFolder().file(at: ".lldbinit")
 
@@ -272,7 +383,7 @@ public class Lowmad {
         let commandFolders = [ownFolder, lowmadCommandsFolder]
 
         let lines = try lldbInitFile.readAsString().components(separatedBy: "\n").filter { !$0.isEmpty }
-        
+
         try commandFolders.forEach {
             let file = try createManifestFileIfNeeded(in: $0)
             var manifest = try getManifest(from: file)
@@ -295,6 +406,21 @@ public class Lowmad {
         let regex = try NSRegularExpression(pattern: regexString)
         let results = regex.matches(in: string, range: NSRange(string.startIndex..., in: string))
         return results.count > 0
+    }
+
+    private func createSubfolderNameFromGitURL(_ gitURL: String) throws -> String {
+        let regexPattern = "^(https|git)(://|@)([^/:]+)[/:]([^/:]+)/(.+).git$"
+        let groups = try gitURL.regexGroups(for: regexPattern)
+        guard var strings = groups.first else {
+            throw CLI.Error(message: String.error("Could not parse Git URL"))
+        }
+        guard let repoName = strings.popLast() else {
+            throw CLI.Error(message: String.error("Could not parse Git URL"))
+        }
+        guard let author = strings.popLast() else {
+            throw CLI.Error(message: String.error("Could not parse Git URL"))
+        }
+        return "\(author)-\(repoName)"
     }
 
     private func copyFilesToScriptsFolder(from source: Folder, to destination: Folder, subset: [String]? = nil, didCopyFileCompletion: (File) throws -> Void) throws {
@@ -485,30 +611,6 @@ public class Lowmad {
 
     }
 
-    public func runList() throws {
-        let environment = try getEnvironment()
-        let ownCommandsFolder = try Folder(path: environment.ownCommandsPath)
-        let commandsFolder = try Current.lowmadFolder().subfolder(named: "commands")
-        if ownCommandsFolder.files.count() == 0 {
-            Print.info("No commands found".bold)
-            return
-        }
-        print("Installed commands at \(ownCommandsFolder.path)".bold)
-        for file in ownCommandsFolder.files {
-            if file.extension == "py" {
-                print(file.nameExcludingExtension)
-            }
-        }
-        print("Installed commands at \(commandsFolder.path)".bold)
-        for folder in commandsFolder.subfolders.recursive {
-            for file in folder.files {
-                if file.extension == "py" {
-                    print(file.nameExcludingExtension)
-                }
-            }
-        }
-    }
-
     private func deleteFiles(in folder: Folder, subset: [String], own: Bool) throws -> Bool {
 
         func deleteFile(_ file: File) throws {
@@ -552,31 +654,6 @@ public class Lowmad {
 
     }
 
-    public func runUninstall(subset: [String], own: Bool, fetched: Bool) throws {
-        let folder: Folder
-        let didDelete: Bool
-        if own {
-            let environment = try getEnvironment()
-            folder = try Folder(path: environment.ownCommandsPath)
-            didDelete = try deleteFiles(in: folder, subset: subset, own: true)
-        } else if fetched {
-            folder = try Current.lowmadFolder().subfolder(named: "commands")
-            didDelete = try deleteFiles(in: folder, subset: subset, own: false)
-        } else {
-            let environment = try getEnvironment()
-            let ownCommands = try Folder(path: environment.ownCommandsPath)
-            let fetchedCommands = try Current.lowmadFolder().subfolder(named: "commands")
-            let didDeleteOwn = try deleteFiles(in: ownCommands, subset: subset, own: true)
-            let didDeleteFetched = try deleteFiles(in: fetchedCommands, subset: subset, own: false)
-            didDelete = [didDeleteOwn, didDeleteFetched].contains{ $0 == true }
-        }
-        if didDelete {
-            Print.done("Commands were successfully deleted")
-        } else {
-            Print.warning("No files were deleted.".bold)
-        }
-    }
-
     private func createEnvironmentFile() throws {
 
         let localFolder = try Current.localFolder()
@@ -612,83 +689,6 @@ public class Lowmad {
         encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
         let data = try encoder.encode(environment)
         try environmentFile.write(data)
-
-    }
-
-    public func runGenerate(name: String, path: String?) throws {
-        func createScript(name: String) -> String {
-            return """
-                     import lldb
-                     import os
-                     import shlex
-                     import optparse
-
-                     @lldb.command("\(name)")
-                     def handle_\(name)_command(debugger, expression, ctx, result, internal_dict):
-
-                         command_args = shlex.split(expression, posix=False)
-                         parser = generate_option_parser()
-                         try:
-                             (options, args) = parser.parse_args(command_args)
-                         except:
-                             result.SetError(parser.usage)
-                             return
-
-                         # Uncomment if you are expecting at least one argument
-                         # clean_command = shlex.split(args[0])[0]
-
-                         result.AppendMessage('Hello! the \(name) command is working!')
-
-
-                     def generate_option_parser():
-                         usage = "usage: %prog [options] TODO Description Here :]"
-                         parser = optparse.OptionParser(usage=usage, prog="\(name)")
-                         parser.add_option("-m", "--module",
-                                           action="store",
-                                           default=None,
-                                           dest="module",
-                                           help="This is a placeholder option to show you how to use options with strings")
-                         parser.add_option("-c", "--check_if_true",
-                                           action="store_true",
-                                           default=False,
-                                           dest="store_true",
-                                           help="This is a placeholder option to show you how to use options with bools")
-                         return parser
-                     """
-        }
-
-        let localFolder = try Current.localFolder()
-
-        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
-            try createEnvironmentFile()
-        }
-        
-        let folder: Folder
-        if let path = path {
-            folder = try Folder(path: path)
-        } else {
-            let environment = try getEnvironment()
-            folder = try Folder(path: environment.ownCommandsPath)
-        }
-
-        if folder.containsFile(named: name) {
-            throw CLI.Error(message: String.error("There already exists a file named \(name), please remove the file at \(folder.path) first"))
-        }
-        let file = try folder.createFile(named: "\(name).py")
-        try file.write(createScript(name: name))
-        Print.done("Script for command \(name) was successfully created")
-        Shell.runSilentCommand("open -R \(file.path)")
-    }
-
-    public func runDump() throws {
-        let commandsFolder = try getLowmadCommandsFolder()
-        if commandsFolder.containsFile(at: "manifest.json") {
-            let file = try commandsFolder.file(named: "manifest.json")
-            print("\(file.path)".bold)
-            print(try file.readAsString())
-        } else {
-            Print.info("Manifest file doesnt exist, install some scripts!")
-        }
 
     }
 
