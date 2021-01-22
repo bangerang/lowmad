@@ -357,6 +357,22 @@ public class Lowmad {
         return [ownFolder, lowmadCommandsFolder]
     }
 
+    private func findManifestFile(in folder: Folder) throws -> File {
+        for file in folder.files {
+            if file.name == "manifest.json" {
+                let fileAsString = try file.readAsString()
+                if fileAsString.contains("\"identifier\" : \"lowmad\"") {
+                    return file
+                }
+            }
+        }
+        for folder in folder.subfolders.recursive {
+            return try findManifestFile(in: folder)
+        }
+
+        return nil
+    }
+
     private func installFromManifest(file: File, into folder: Folder, own: Bool) throws -> Bool {
 
         let manifestStruct = try getManifest(from: file)
