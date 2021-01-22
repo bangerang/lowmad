@@ -197,47 +197,8 @@ public class Lowmad {
                 }
             }
 
-            let manifestStruct = try getManifest(from: file)
+            atLeastOneScriptWasInstalled = try installFromManifest(file: file, into: commandsFolder, own: ownRepo)
 
-            var dict: [String: [String: [String]]] = [:]
-
-            for command in manifestStruct.commands {
-                if dict[command.source] == nil {
-                    dict[command.source] = [:]
-                }
-                if dict[command.source]?[command.commit] == nil {
-                    dict[command.source]?[command.commit] = []
-                }
-                dict[command.source]?[command.commit]?.append(command.name)
-            }
-
-            for (key, value) in dict {
-                let uuid = UUID().uuidString
-
-                let path = try tempFolder.createSubfolderIfNeeded(at: uuid).path
-                Print.info("Cloning \(key)...".bold)
-                Current.git.clone(key, path)
-
-                for (commit, subset) in value {
-                    Shell.runSilentCommand("cd \(path) && git checkout \(commit)")
-
-                    let destinationFolder: Folder
-
-                    if ownRepo {
-                        destinationFolder = commandsFolder
-                    } else {
-                        destinationFolder = try commandsFolder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(key))
-                    }
-
-                    try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset) { file in
-                        atLeastOneScriptWasInstalled = true
-                        try commandFolders.forEach {
-                            try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
-                        }
-
-                    }
-                }
-            }
         } else {
             throw CLI.Error(message: String.error("Please supply a git URL or a manifest file."))
         }
@@ -378,9 +339,7 @@ public class Lowmad {
     public func runSync() throws {
         let lldbInitFile = try Current.homeFolder().file(at: ".lldbinit")
 
-        let ownFolder = try getOwnCommandsFolder()
-        let lowmadCommandsFolder = try getLowmadCommandsFolder()
-        let commandFolders = [ownFolder, lowmadCommandsFolder]
+        let commandFolders = try getCommandFolders()
 
         let lines = try lldbInitFile.readAsString().components(separatedBy: "\n").filter { !$0.isEmpty }
 
@@ -390,6 +349,65 @@ public class Lowmad {
             manifest.lldbInit = lines
             try writeToManifestFile(manifest: manifest, file: file)
         }
+    }
+
+    private func getCommandFolders() throws -> [Folder] {
+        let ownFolder = try getOwnCommandsFolder()
+        let lowmadCommandsFolder = try getLowmadCommandsFolder()
+        return [ownFolder, lowmadCommandsFolder]
+    }
+
+    private func installFromManifest(file: File, into folder: Folder, own: Bool) throws -> Bool {
+
+        let manifestStruct = try getManifest(from: file)
+
+        var dict: [String: [String: [String]]] = [:]
+
+        let tempFolder = try lowmadTempFolder()
+
+        for command in manifestStruct.commands {
+            if dict[command.source] == nil {
+                dict[command.source] = [:]
+            }
+            if dict[command.source]?[command.commit] == nil {
+                dict[command.source]?[command.commit] = []
+            }
+            dict[command.source]?[command.commit]?.append(command.name)
+        }
+
+        var didInstall = false
+
+        let commandFolders = try getCommandFolders()
+
+        for (key, value) in dict {
+            let uuid = UUID().uuidString
+
+            let path = try tempFolder.createSubfolderIfNeeded(at: uuid).path
+            Print.info("Cloning \(key)...".bold)
+            Current.git.clone(key, path)
+
+            for (commit, subset) in value {
+                Shell.runSilentCommand("cd \(path) && git checkout \(commit)")
+
+                let destinationFolder: Folder = try {
+                    if own {
+                        return folder
+                    } else {
+                        return try folder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(key))
+                    }
+                }()
+
+                try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset) { file in
+                    didInstall = true
+                    try commandFolders.forEach {
+                        try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
+                    }
+
+                }
+            }
+        }
+
+        return didInstall
     }
 
     private func getLowmadCommandsFolder() throws -> Folder {

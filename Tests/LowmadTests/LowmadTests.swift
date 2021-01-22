@@ -70,7 +70,7 @@ final class LowmadTests: XCTestCase {
     func testInstallFromManifest() throws {
         try runInitWithCleanup {
             let gitRepoMock = "git@github.com:Foo/LLDB.git"
-            let manifestMock = Manifest(version: "0.1", commands: [Command(name: "Foo", source: gitRepoMock, commit: "1234")])
+            let manifestMock = ManifestV1(commands: [Command(name: "Foo", source: gitRepoMock, commit: "1234")])
             let commandsFolder = Folder.temporary
             let encoder = JSONEncoder()
             encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
