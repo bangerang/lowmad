@@ -4,9 +4,7 @@ import LowmadKit
 
 class InstallCommand: LowmadCommand {
 
-    @Param var gitURL: String?
-    
-    @Key("-m", "--manifest", description: "Install scripts from manifest file, path or URL to file.") var manifestURL: String?
+    @Param var gitURL: String
 
     @Key("-c", "--commit", description: "Install from a specific commit.") var commit: String?
 
@@ -22,7 +20,7 @@ class InstallCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.runInstall(gitURL: gitURL, subset: subset, manifestURL: manifestURL, commit: commit, ownRepo: ownRepo)
+        try lowmad.runInstall(gitURL: gitURL, subset: subset, commit: commit, ownRepo: ownRepo)
     }
 }
 
