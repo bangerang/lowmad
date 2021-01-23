@@ -360,9 +360,11 @@ public class Lowmad {
     }
 
     private func getCommandFolders() throws -> [Folder] {
-        let ownFolder = try getOwnCommandsFolder()
-        let lowmadCommandsFolder = try getLowmadCommandsFolder()
-        return [ownFolder, lowmadCommandsFolder]
+        var folders = [try getLowmadCommandsFolder()]
+        if let ownFolder = try? getOwnCommandsFolder() {
+            folders.append(ownFolder)
+        }
+        return folders
     }
 
     private func findManifestFile(in folder: Folder) throws -> File? {
