@@ -314,6 +314,9 @@ public class Lowmad {
             let didDeleteFetched = try deleteFiles(in: fetchedCommands, subset: subset, own: false)
             didDelete = [didDeleteOwn, didDeleteFetched].contains{ $0 == true }
         }
+
+        try deleteCommandsFromManifest(subset: subset)
+
         if didDelete {
             Print.done("Commands were successfully deleted")
         } else {
@@ -334,6 +337,26 @@ public class Lowmad {
             manifest.lldbInit = lines
             try writeToManifestFile(manifest: manifest, file: file)
         }
+    }
+
+    private func deleteCommandsFromManifest(subset: [String]) throws {
+        let folders = try getCommandFolders()
+
+        for folder in folders {
+            if let manifestFile = try findManifestFile(in: folder) {
+                var manifest = try getManifest(from: manifestFile)
+                if subset.isEmpty {
+                    manifest.commands = []
+                    try writeToManifestFile(manifest: manifest, file: manifestFile)
+                } else {
+                    let commands = Set(manifest.commands.map{ $0.name })
+                    let result = commands.subtracting(subset)
+                    manifest.commands = manifest.commands.filter { result.contains($0.name) }
+                    try writeToManifestFile(manifest: manifest, file: manifestFile)
+                }
+            }
+        }
+
     }
 
     private func getCommandFolders() throws -> [Folder] {
