@@ -107,7 +107,7 @@ public class Lowmad {
         Print.done("You're all set up! 👍")
     }
 
-    public func runInstall(gitURL: String?, subset: [String], manifestURL: String?, commit: String?, ownRepo: Bool) throws {
+    public func runInstall(gitURL: String, subset: [String], commit: String?, ownRepo: Bool) throws {
 
         func cleanup() {
             do {
@@ -150,57 +150,42 @@ public class Lowmad {
 
         var atLeastOneScriptWasInstalled = false
 
-        if let gitURL = gitURL {
-            guard try isGitURL(gitURL) else {
-                throw CLI.Error(message: String.error("Not a valid Git URL"))
-            }
-            Print.info("Cloning \(gitURL)...".bold)
+        guard try isGitURL(gitURL) else {
+            throw CLI.Error(message: String.error("Not a valid Git URL"))
+        }
+        Print.info("Cloning \(gitURL)...".bold)
 
-            Current.git.clone(gitURL, tempFolder.path)
+        Current.git.clone(gitURL, tempFolder.path)
 
-            let commitToUse: String
+        let commitToUse: String
 
-            if let commit = commit {
-                commitToUse = commit
-                Print.info("Checking out commit \(commitToUse)")
-                Shell.runSilentCommand("cd \(tempFolder.path) && git checkout \(commitToUse)")
-            } else {
-                commitToUse = try Current.git.getCommit(tempFolder.path)
-            }
-
-            let destinationFolder: Folder
-
-            if ownRepo {
-                destinationFolder = commandsFolder
-            } else {
-                destinationFolder = try commandsFolder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(gitURL))
-            }
-
-
-            try copyFilesToScriptsFolder(from: tempFolder, to: destinationFolder, subset: subset) { file in
-                atLeastOneScriptWasInstalled = true
-                try commandFolders.forEach {
-                    try saveToManifestFile(inFolder: $0, fileToSave: file, source: gitURL, commit: commitToUse)
-                }
-            }
-        } else if let manifest = manifestURL {
-            let isGit = try isGitURL(manifest)
-            let file: File
-            if isGit {
-                Shell.runSilentCommand("cd \(tempFolder.path)")
-                Current.git.clone(manifest, "manifest")
-                file = try tempFolder.file(at: "/manifest/manifest.json")
-            } else {
-                file = try File(path: manifest)
-                guard file.extension == "json" else {
-                    throw CLI.Error(message: String.error("Manifest file has wrong file extension"))
-                }
-            }
-
-            atLeastOneScriptWasInstalled = try installFromManifest(file: file, into: commandsFolder, own: ownRepo)
-
+        if let commit = commit {
+            commitToUse = commit
+            Print.info("Checking out commit \(commitToUse)")
+            Shell.runSilentCommand("cd \(tempFolder.path) && git checkout \(commitToUse)")
         } else {
-            throw CLI.Error(message: String.error("Please supply a git URL or a manifest file."))
+            commitToUse = try Current.git.getCommit(tempFolder.path)
+        }
+
+        var destinationFolder: Folder
+
+        if ownRepo {
+            destinationFolder = commandsFolder
+        } else {
+            destinationFolder = try commandsFolder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(gitURL))
+        }
+
+        if let manifestFile = try findManifestFile(in: tempFolder) {
+            (atLeastOneScriptWasInstalled, destinationFolder) = try installFromManifest(file: manifestFile, into: destinationFolder, own: ownRepo, gitURL: gitURL)
+        }
+
+        var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
+
+        try copyFilesToScriptsFolder(from: tempFolder, to: destinationFolder, subset: subset, replaceOptionState: &replaceOptionState) { file in
+            atLeastOneScriptWasInstalled = true
+            try commandFolders.forEach {
+                try saveToManifestFile(inFolder: $0, fileToSave: file, source: gitURL, commit: commitToUse)
+            }
         }
 
         if atLeastOneScriptWasInstalled {
@@ -357,7 +342,7 @@ public class Lowmad {
         return [ownFolder, lowmadCommandsFolder]
     }
 
-    private func findManifestFile(in folder: Folder) throws -> File {
+    private func findManifestFile(in folder: Folder) throws -> File? {
         for file in folder.files {
             if file.name == "manifest.json" {
                 let fileAsString = try file.readAsString()
@@ -373,13 +358,32 @@ public class Lowmad {
         return nil
     }
 
-    private func installFromManifest(file: File, into folder: Folder, own: Bool) throws -> Bool {
+    private func folderContainsPythonFiles(_ folder: Folder) -> Bool {
+        for file in folder.files {
+            if file.extension == "py" {
+                return true
+            }
+        }
+        for subfolder in folder.subfolders.recursive {
+            return folderContainsPythonFiles(subfolder)
+        }
+
+        return false
+    }
+
+    private func installScriptsFromManifest(file: File, into folder: Folder, own: Bool) throws -> Bool {
+
+        let uuid = UUID().uuidString
+
+        defer {
+            try? lowmadTempFolder().subfolder(named: uuid).delete()
+        }
 
         let manifestStruct = try getManifest(from: file)
 
         var dict: [String: [String: [String]]] = [:]
 
-        let tempFolder = try lowmadTempFolder()
+        let tempFolder = try lowmadTempFolder().createSubfolder(named: uuid)
 
         for command in manifestStruct.commands {
             if dict[command.source] == nil {
@@ -394,6 +398,8 @@ public class Lowmad {
         var didInstall = false
 
         let commandFolders = try getCommandFolders()
+
+        var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
 
         for (key, value) in dict {
             let uuid = UUID().uuidString
@@ -413,7 +419,7 @@ public class Lowmad {
                     }
                 }()
 
-                try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset) { file in
+                try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset, replaceOptionState: &replaceOptionState) { file in
                     didInstall = true
                     try commandFolders.forEach {
                         try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
@@ -424,6 +430,63 @@ public class Lowmad {
         }
 
         return didInstall
+    }
+
+    private func installFromManifest(file: File, into folder: Folder, own: Bool, gitURL: String) throws -> (didInstall: Bool, destinationFolder: Folder) {
+
+        let manifest = try getManifest(from: file)
+
+        if manifest.lldbInit.count > 0 {
+            let prompt = "? ".green.bold + "Found lldb init in the repo, install?".bold + BinaryOption.description
+
+            let installInit = Reader<BinaryOption>.readLine(prompt: prompt)
+
+            if installInit == .yes {
+                let decodoer = JSONDecoder()
+                let test = try decodoer.decode(ManifestV2.self, from: try file.read())
+                let initString = test.lldbInit.joined(separator: "\n")
+                let lldbInitFile = try Current.homeFolder().file(at: ".lldbinit")
+                try lldbInitFile.write(initString)
+            }
+        }
+
+        let prompt = "? ".green.bold + "Found a manifest file in the repo, install scripts?".bold  + BinaryOption.description
+
+        let installManifest = Reader<BinaryOption>.readLine(prompt: prompt)
+
+        var didInstall = false
+
+        if installManifest == .yes {
+            didInstall = try installScriptsFromManifest(file: file, into: folder, own: own)
+        }
+
+        let tempFolder = try lowmadTempFolder()
+
+        let containsPythonFiles = folderContainsPythonFiles(tempFolder)
+
+        if containsPythonFiles {
+            let prompt = "? ".green.bold + "Folder contains additional scripts, do you want to install them?".bold + BinaryOption.description
+
+            let installScripts = Reader<BinaryOption>.readLine(prompt: prompt)
+
+            if installScripts == .yes {
+                let prompt = "? ".green.bold + "Do you want to store the commands in your own specified folder?".bold + BinaryOption.description
+
+                let own = Reader<BinaryOption>.readLine(prompt: prompt)
+
+                let destinationFolder: Folder = try {
+                    if own == .yes {
+                        return folder
+                    } else {
+                        return try folder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(gitURL))
+                    }
+                }()
+
+                return (didInstall, destinationFolder)
+            }
+        }
+
+        return (didInstall, folder)
     }
 
     private func getLowmadCommandsFolder() throws -> Folder {
@@ -457,7 +520,7 @@ public class Lowmad {
         return "\(author)-\(repoName)"
     }
 
-    private func copyFilesToScriptsFolder(from source: Folder, to destination: Folder, subset: [String]? = nil, didCopyFileCompletion: (File) throws -> Void) throws {
+    private func copyFilesToScriptsFolder(from source: Folder, to destination: Folder, subset: [String]? = nil, replaceOptionState: inout ReplaceOptionState, didCopyFileCompletion: (File) throws -> Void) throws {
         var pythonFiles = [File]()
 
         func searchFolderForPythonFiles(_ folder: Folder) {
@@ -473,49 +536,6 @@ public class Lowmad {
 
         let validFiles = try pythonFiles.filter { try $0.isLLDBScript() }
 
-        enum ReplaceOption: CaseIterable {
-
-            static let description = """
-
-            1. Yes
-            2. Yes to all
-            3. No
-            4. Quit
-
-            """
-
-            case yes
-            case no
-            case replaceAll
-            case replaceNone
-
-            init?(_ input: String) {
-                if let option = ReplaceOption.allCases.first(where: { $0.inputIsValid(input) }) {
-                    self = option
-                } else {
-                    return nil
-                }
-            }
-
-            func inputIsValid(_ input: String) -> Bool {
-                switch self {
-                case .yes:
-                    return ["yes", "y", "1"].contains(input.lowercased())
-                case .no:
-                    return ["no", "n", "3"].contains(input.lowercased())
-                case .replaceAll:
-                    return ["2"].contains(input.lowercased())
-                case .replaceNone:
-                    return ["q", "quit", "4"].contains(input.lowercased())
-                }
-            }
-        }
-
-        struct ReplaceOptionState {
-            var replaceAll: Bool
-            var replaceNone: Bool
-        }
-
         func copyFile(_ file: File, replaceOptionState: inout ReplaceOptionState) throws {
             if replaceOptionState.replaceAll == true && replaceOptionState.replaceNone == true {
                 assert(false)
@@ -528,17 +548,9 @@ public class Lowmad {
             var shouldCopy = true
 
             if destination.containsFile(named: file.name) && replaceOptionState.replaceAll == false {
-                let prompt = String.warning("File \(file.name.bold) already exists at \(destination.path)" + "\nDo you want to replace it with the one you just installed?".bold) + "\(ReplaceOption.description)"
+                let prompt = String.warning("File \(file.name.bold) already exists at \(destination.path)" + "\nDo you want to replace it with the one you just installed?".bold) + ReplaceOption.description
 
-                let optionString = Current.readLine(prompt, false, [.custom("Not a valid option, available options are: \(ReplaceOption.description)", { (input) -> Bool in
-                        return ReplaceOption.allCases.first(where: { $0.inputIsValid(input) }) != nil
-                    })],
-                    { (input, reason) in
-                        Print.error("Not a valid option, available options are: \(ReplaceOption.description)".bold)
-                    }
-                )
-
-                let option = ReplaceOption(optionString)!
+                let option = Reader<ReplaceOption>.readLine(prompt: prompt)
 
                 switch option {
                 case .yes:
@@ -564,8 +576,6 @@ public class Lowmad {
             }
 
         }
-
-        var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
 
         if let subset = subset, !subset.isEmpty {
             let filteredFiles = validFiles.filter {
@@ -726,63 +736,4 @@ public class Lowmad {
 
     }
 
-}
-
-extension String {
-    func regexGroups(for regexPattern: String) throws -> [[String]] {
-        let text = self
-        let regex = try NSRegularExpression(pattern: regexPattern)
-        let matches = regex.matches(in: text,
-                                    range: NSRange(text.startIndex..., in: text))
-        return matches.map { match in
-            return (0..<match.numberOfRanges).map {
-                let rangeBounds = match.range(at: $0)
-                guard let range = Range(rangeBounds, in: text) else {
-                    return ""
-                }
-                return String(text[range])
-            }
-        }
-    }
-
-    static func error(_ text: String) -> String {
-        return "✖  \(Lowmad.name): ".red.bold + text
-    }
-
-    static func info(_ text: String) -> String {
-        return "i  \(Lowmad.name): ".cyan.bold + text
-    }
-
-    static func warning(_ text: String) -> String {
-        return "⚠  \(Lowmad.name): ".yellow.bold + text
-    }
-
-    static func done(_ text: String) -> String {
-        return "✔  \(Lowmad.name): ".green.bold + text.bold
-    }
-}
-
-public struct Print {
-    static func error(_ text: String) -> Void {
-        print(String.error(text))
-    }
-
-    static func info(_ text: String) -> Void {
-        print(String.info(text))
-    }
-
-    static func warning(_ text: String) -> Void {
-        print(String.warning(text))
-    }
-
-    static func done(_ text: String) -> Void {
-        print(String.done(text))
-    }
-}
-
-extension File {
-    func isLLDBScript() throws -> Bool {
-        let content = try readAsString()
-        return content.contains("__lldb_init_module") || content.contains("@lldb.command")
-    }
 }

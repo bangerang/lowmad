@@ -33,6 +33,8 @@
 
 /* Begin PBXBuildFile section */
 		AB20C13425BA12AC00965D3C /* SyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20C13325BA12AC00965D3C /* SyncCommand.swift */; };
+		AB20C17C25BC888D00965D3C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20C16A25BC888500965D3C /* Extensions.swift */; };
+		AB20C19F25BC892A00965D3C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20C19E25BC892A00965D3C /* Helpers.swift */; };
 		OBJ_104 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Package.swift */; };
 		OBJ_110 /* Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Git.swift */; };
 		OBJ_112 /* Shell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Lowmad::Shell::Product" /* Shell.framework */; };
@@ -405,6 +407,8 @@
 
 /* Begin PBXFileReference section */
 		AB20C13325BA12AC00965D3C /* SyncCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCommand.swift; sourceTree = "<group>"; };
+		AB20C16A25BC888500965D3C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AB20C19E25BC892A00965D3C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		"Files::Files::Product" /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Files.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Lowmad::Git::Product" /* Git.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Git.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Lowmad::Lowmad::Product" /* Lowmad */ = {isa = PBXFileReference; lastKnownFileType = text; path = Lowmad; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -627,6 +631,8 @@
 				OBJ_24 /* Environment.swift */,
 				OBJ_25 /* Lowmad.swift */,
 				OBJ_26 /* Manifest.swift */,
+				AB20C16A25BC888500965D3C /* Extensions.swift */,
+				AB20C19E25BC892A00965D3C /* Helpers.swift */,
 			);
 			name = LowmadKit;
 			path = Sources/LowmadKit;
@@ -1142,6 +1148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				AB20C17C25BC888D00965D3C /* Extensions.swift in Sources */,
+				AB20C19F25BC892A00965D3C /* Helpers.swift in Sources */,
 				OBJ_176 /* Command.swift in Sources */,
 				OBJ_177 /* Environment.swift in Sources */,
 				OBJ_178 /* Lowmad.swift in Sources */,
