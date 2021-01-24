@@ -8,7 +8,7 @@ class InstallCommand: LowmadCommand {
 
     @Key("-c", "--commit", description: "Install from a specific commit.") var commit: String?
 
-    @Flag("-o", "--own", description: "Install commands to your own commands folder.") var ownRepo: Bool
+    @Flag("-o", "--own", description: "Install commands to your own specified commands folder.") var ownRepo: Bool
 
     @CollectedParam(minCount: 0) var subset: [String]
 

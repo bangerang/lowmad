@@ -462,7 +462,7 @@ public class Lowmad {
         let manifest = try getManifest(from: file)
 
         if manifest.lldbInit.count > 0 {
-            let prompt = "? ".green.bold + "Found lldb init in the repo, install?".bold + BinaryOption.description
+            let prompt = "? ".green.bold + "Overwrite lldbinit with contents found in manifest?".bold + BinaryOption.description
 
             let installInit = Reader<BinaryOption>.readLine(prompt: prompt)
 
@@ -475,7 +475,7 @@ public class Lowmad {
             }
         }
 
-        let prompt = "? ".green.bold + "Found a manifest file in the repo, install scripts?".bold  + BinaryOption.description
+        let prompt = "? ".green.bold + "Install scripts found in manifest?".bold  + BinaryOption.description
 
         let installManifest = Reader<BinaryOption>.readLine(prompt: prompt)
 
@@ -490,12 +490,12 @@ public class Lowmad {
         let containsPythonFiles = folderContainsPythonFiles(tempFolder)
 
         if containsPythonFiles {
-            let prompt = "? ".green.bold + "Folder contains additional scripts, do you want to install them?".bold + BinaryOption.description
+            let prompt = "? ".green.bold + "Repo contains additional scripts, do you want to install them?".bold + BinaryOption.description
 
             let installScripts = Reader<BinaryOption>.readLine(prompt: prompt)
 
             if installScripts == .yes {
-                let prompt = "? ".green.bold + "Do you want to store the commands in your own specified folder?".bold + BinaryOption.description
+                let prompt = "? ".green.bold + "Do you want to store the commands in your own specified commands folder?".bold + BinaryOption.description
 
                 let own = Reader<BinaryOption>.readLine(prompt: prompt)
 
