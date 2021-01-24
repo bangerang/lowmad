@@ -337,6 +337,9 @@ public class Lowmad {
             manifest.lldbInit = lines
             try writeToManifestFile(manifest: manifest, file: file)
         }
+
+        Print.done("Content has been synced 💯")
+
     }
 
     private func deleteCommandsFromManifest(subset: [String]) throws {

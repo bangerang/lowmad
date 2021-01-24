@@ -5,7 +5,7 @@ import LowmadKit
 
 public class LowmadCLI {
 
-    public let version = "0.15.0"
+    public let version = "0.4.0"
 
     let cli: CLI
 
