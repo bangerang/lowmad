@@ -20,7 +20,10 @@ class InstallCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.runInstall(gitURL: gitURL, subset: subset, commit: commit, ownRepo: ownRepo)
+        try lowmad.hasBeenInitialized {
+            try lowmad.runInstall(gitURL: gitURL, subset: subset, commit: commit, ownRepo: ownRepo)
+        }
+
     }
 }
 

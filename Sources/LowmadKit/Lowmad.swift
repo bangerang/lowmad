@@ -9,15 +9,6 @@ public class Lowmad {
 
     static let name = "lowmad"
 
-    var hasBeenInitialized: Bool {
-        do {
-            let folder = try Current.localFolder().subfolder(at: Lowmad.name)
-            return folder.containsFile(named: "lowmad.py")
-        } catch {
-            return false
-        }
-    }
-
     var lowmadTempFolder = {
         return try Current.localFolder().createSubfolderIfNeeded(at: "\(Lowmad.name)/temp")
     }
@@ -35,6 +26,19 @@ public class Lowmad {
 
     public init() {
 
+    }
+
+    public func hasBeenInitialized(completion: () throws -> Void) throws {
+        do {
+            let folder = try Current.localFolder().subfolder(at: Lowmad.name)
+            if folder.containsFile(named: "lowmad.py") {
+                try completion()
+            } else {
+                throw CLI.Error(message: String.error("Has not been initialized, did you forget to run the init command?"))
+            }
+        } catch {
+            throw CLI.Error(message: String.error("Has not been initialized, did you forget to run the init command?"))
+        }
     }
     
     public func runInit() throws {
@@ -120,10 +124,6 @@ public class Lowmad {
 
         defer {
             cleanup()
-        }
-
-        if !hasBeenInitialized {
-            throw CLI.Error(message: String.error("Has not been initialized, did you forget to run the init command?"))
         }
 
         let localFolder = try Current.localFolder()

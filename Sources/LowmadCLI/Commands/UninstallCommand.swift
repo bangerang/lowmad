@@ -18,6 +18,8 @@ class UninstallCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.runUninstall(subset: subset, own: own, fetched: fetched)
+        try lowmad.hasBeenInitialized {
+            try lowmad.runUninstall(subset: subset, own: own, fetched: fetched)
+        }
     }
 }
