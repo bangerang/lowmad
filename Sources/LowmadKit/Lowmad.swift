@@ -425,31 +425,36 @@ public class Lowmad {
         var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
 
         for (key, value) in dict {
-            let uuid = UUID().uuidString
 
-            let path = try tempFolder.createSubfolderIfNeeded(at: uuid).path
-            Print.info("Cloning \(key)...".bold)
-            Current.git.clone(key, path)
+            if !replaceOptionState.replaceNone {
+                
+                let uuid = UUID().uuidString
 
-            for (commit, subset) in value {
-                Shell.runSilentCommand("cd \(path) && git checkout \(commit)")
+                let path = try tempFolder.createSubfolderIfNeeded(at: uuid).path
+                Print.info("Cloning \(key)...".bold)
+                Current.git.clone(key, path)
 
-                let destinationFolder: Folder = try {
-                    if own {
-                        return folder
-                    } else {
-                        return try folder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(key))
+                for (commit, subset) in value {
+                    Shell.runSilentCommand("cd \(path) && git checkout \(commit)")
+
+                    let destinationFolder: Folder = try {
+                        if own {
+                            return folder
+                        } else {
+                            return try folder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(key))
+                        }
+                    }()
+
+                    try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset, replaceOptionState: &replaceOptionState) { file in
+                        didInstall = true
+                        try commandFolders.forEach {
+                            try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
+                        }
+
                     }
-                }()
-
-                try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset, replaceOptionState: &replaceOptionState) { file in
-                    didInstall = true
-                    try commandFolders.forEach {
-                        try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
-                    }
-
                 }
             }
+
         }
 
         return didInstall
