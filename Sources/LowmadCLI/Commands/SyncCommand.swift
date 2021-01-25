@@ -14,8 +14,8 @@ class SyncCommand: LowmadCommand {
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
                    name: "sync",
-                   description: "Sync contents of lldb init to manifest",
-                   longDescription: "Sync contents of lldb init to manifest")
+                   description: "Sync contents of LLDB init to manifest",
+                   longDescription: "Sync contents of LLDB init to manifest")
     }
 
     override func execute() throws {

@@ -451,8 +451,11 @@ public class Lowmad {
 
         let manifest = try getManifest(from: file)
 
+        var ranLLDBInit = false
+
         if manifest.lldbInit.count > 0 {
-            let prompt = "? ".green.bold + "Overwrite lldbinit with contents found in manifest?".bold + BinaryOption.description
+            ranLLDBInit = true
+            let prompt = "? ".green.bold + "Found a manifest file in repo! Overwrite lldbinit with contents found in manifest?".bold + BinaryOption.description
 
             let installInit = Reader<BinaryOption>.readLine(prompt: prompt)
 
@@ -465,7 +468,13 @@ public class Lowmad {
             }
         }
 
-        let prompt = "? ".green.bold + "Install scripts found in manifest?".bold  + BinaryOption.description
+        let prompt: String = {
+            if ranLLDBInit {
+                return "? ".green.bold + "Install scripts found in manifest?".bold  + BinaryOption.description
+            } else {
+                return "? ".green.bold + "Found a manifest file in repo! Install scripts found in manifest?".bold  + BinaryOption.description
+            }
+        }()
 
         let installManifest = Reader<BinaryOption>.readLine(prompt: prompt)
 
