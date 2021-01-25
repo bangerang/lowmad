@@ -153,7 +153,6 @@ public class Lowmad {
             commitToUse = try Current.git.getCommit(tempFolder.path)
         }
 
-        let commandFolders = try getCommandFolders()
 
         let commandsFolder: Folder
         if ownRepo {
@@ -162,29 +161,12 @@ public class Lowmad {
             commandsFolder = try getLowmadCommandsFolder()
         }
 
-        var destinationFolder: Folder
-
-        if ownRepo {
-            destinationFolder = commandsFolder
-        } else {
-            destinationFolder = try commandsFolder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(gitURL))
-        }
-
-        var proceed = true
 
         if let manifestFile = try findManifestFile(in: tempFolder) {
-            (atLeastOneScriptWasInstalled, destinationFolder, proceed) = try installFromManifest(file: manifestFile, into: commandsFolder, ownRepo: ownRepo, gitURL: gitURL)
-        }
-
-        var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
-
-        if proceed {
-            try copyFilesToScriptsFolder(from: tempFolder, to: destinationFolder, subset: subset, replaceOptionState: &replaceOptionState) { file in
-                atLeastOneScriptWasInstalled = true
-                try commandFolders.forEach {
-                    try saveToManifestFile(inFolder: $0, fileToSave: file, source: gitURL, commit: commitToUse)
-                }
-            }
+            atLeastOneScriptWasInstalled = try installFromManifest(file: manifestFile, into: commandsFolder, ownRepo: ownRepo, gitURL: gitURL, subset: subset, commit: commitToUse)
+            return
+        } else {
+            atLeastOneScriptWasInstalled = try installScriptsToFolder(from: tempFolder, to: commandsFolder, subset: subset, gitURL: gitURL, commit: commitToUse, isOwn: ownRepo)
         }
 
         if atLeastOneScriptWasInstalled {
@@ -451,10 +433,11 @@ public class Lowmad {
 
                     try copyFilesToScriptsFolder(from: try Folder(path: path), to: destinationFolder, subset: subset, replaceOptionState: &replaceOptionState) { file in
                         didInstall = true
-                        try commandFolders.forEach {
-                            try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
+                        if !own {
+                            try commandFolders.forEach {
+                                try saveToManifestFile(inFolder: $0, fileToSave: file, source: key, commit: commit)
+                            }
                         }
-
                     }
                 }
             }
@@ -464,7 +447,7 @@ public class Lowmad {
         return didInstall
     }
 
-    private func installFromManifest(file: File, into folder: Folder, ownRepo: Bool, gitURL: String) throws -> (didInstall: Bool, destinationFolder: Folder, proceed: Bool) {
+    private func installFromManifest(file: File, into folder: Folder, ownRepo: Bool, gitURL: String, subset: [String], commit: String) throws -> Bool {
 
         let manifest = try getManifest(from: file)
 
@@ -496,8 +479,6 @@ public class Lowmad {
 
         let containsPythonFiles = folderContainsPythonFiles(tempFolder)
 
-        var proceed = true
-
         if containsPythonFiles {
             let prompt = "? ".green.bold + "Repo contains additional scripts, do you want to install them?".bold + BinaryOption.description
 
@@ -506,7 +487,7 @@ public class Lowmad {
 
             if installScripts == .yes {
                 if ownRepo {
-                    return (didInstall, try getOwnCommandsFolder(), true)
+                    return try installScriptsToFolder(from: tempFolder, to: folder, subset: subset, gitURL: gitURL, commit: commit, isOwn: ownRepo)
                 }
 
                 let prompt = "? ".green.bold + "Do you want to store the commands in your own specified commands folder?".bold + BinaryOption.description
@@ -525,13 +506,11 @@ public class Lowmad {
                     }
                 }()
 
-                return (didInstall, destinationFolder, true)
-            } else {
-                proceed = false
+                return try installScriptsToFolder(from: tempFolder, to: destinationFolder, subset: subset, gitURL: gitURL, commit: commit, isOwn: own == .yes)
             }
         }
 
-        return (didInstall, folder, proceed)
+        return didInstall
     }
 
     private func getLowmadCommandsFolder() throws -> Folder {
@@ -563,6 +542,23 @@ public class Lowmad {
             throw CLI.Error(message: String.error("Could not parse Git URL"))
         }
         return "\(author)-\(repoName)"
+    }
+
+    private func installScriptsToFolder(from source: Folder, to destination: Folder, subset: [String]? = nil, gitURL: String, commit: String, isOwn: Bool) throws -> Bool {
+
+        var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
+        var atLeastOneScriptWasInstalled = false
+        let commandFolders = try getCommandFolders()
+
+        try copyFilesToScriptsFolder(from: source, to: destination, subset: subset, replaceOptionState: &replaceOptionState) { file in
+            atLeastOneScriptWasInstalled = true
+            if !isOwn {
+                try commandFolders.forEach {
+                    try saveToManifestFile(inFolder: $0, fileToSave: file, source: gitURL, commit: commit)
+                }
+            }
+        }
+        return atLeastOneScriptWasInstalled
     }
 
     private func copyFilesToScriptsFolder(from source: Folder, to destination: Folder, subset: [String]? = nil, replaceOptionState: inout ReplaceOptionState, didCopyFileCompletion: (File) throws -> Void) throws {
