@@ -28,12 +28,10 @@ public class Lowmad {
 
     }
 
-    public func hasBeenInitialized(completion: () throws -> Void) throws {
+    public func hasBeenInitialized() throws {
         do {
             let folder = try Current.localFolder().subfolder(at: Lowmad.name)
-            if folder.containsFile(named: "lowmad.py") {
-                try completion()
-            } else {
+            if !folder.containsFile(named: "lowmad.py") {
                 throw CLI.Error(message: String.error("Has not been initialized, did you forget to run the init command?"))
             }
         } catch {

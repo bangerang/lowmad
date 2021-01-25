@@ -12,8 +12,7 @@ class DumpCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.hasBeenInitialized {
-            try lowmad.runDump()
-        }
+        try lowmad.hasBeenInitialized()
+        try lowmad.runDump()
     }
 }

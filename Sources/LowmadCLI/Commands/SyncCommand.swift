@@ -19,8 +19,7 @@ class SyncCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.hasBeenInitialized {
-            try lowmad.runSync()
-        }
+        try lowmad.hasBeenInitialized()
+        try lowmad.runSync()
     }
 }

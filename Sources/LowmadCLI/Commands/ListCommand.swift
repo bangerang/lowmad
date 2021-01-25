@@ -12,8 +12,7 @@ class ListCommand: LowmadCommand {
     }
 
     override func execute() throws {
-        try lowmad.hasBeenInitialized {
-            try lowmad.runList()
-        }
+        try lowmad.hasBeenInitialized()
+        try lowmad.runList()
     }
 }
