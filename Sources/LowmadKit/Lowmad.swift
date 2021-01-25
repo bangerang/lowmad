@@ -126,25 +126,13 @@ public class Lowmad {
 
         let localFolder = try Current.localFolder()
 
-        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
-            try createEnvironmentFile()
+        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") && ownRepo {
+            try createEnvironmentFile(description: "Where do you want to store your own specified commands?")
         }
 
         cleanup()
 
         let tempFolder = try lowmadTempFolder()
-
-        let ownFolder = try getOwnCommandsFolder()
-        let lowmadCommandsFolder = try getLowmadCommandsFolder()
-
-        let commandFolders = [ownFolder, lowmadCommandsFolder]
-
-        let commandsFolder: Folder
-        if ownRepo {
-            commandsFolder = ownFolder
-        } else {
-            commandsFolder = lowmadCommandsFolder
-        }
 
         var atLeastOneScriptWasInstalled = false
 
@@ -165,6 +153,15 @@ public class Lowmad {
             commitToUse = try Current.git.getCommit(tempFolder.path)
         }
 
+        let commandFolders = try getCommandFolders()
+
+        let commandsFolder: Folder
+        if ownRepo {
+            commandsFolder = try getOwnCommandsFolder()
+        } else {
+            commandsFolder = try getLowmadCommandsFolder()
+        }
+
         var destinationFolder: Folder
 
         if ownRepo {
@@ -174,7 +171,7 @@ public class Lowmad {
         }
 
         if let manifestFile = try findManifestFile(in: tempFolder) {
-            (atLeastOneScriptWasInstalled, destinationFolder) = try installFromManifest(file: manifestFile, into: destinationFolder, own: ownRepo, gitURL: gitURL)
+            (atLeastOneScriptWasInstalled, destinationFolder) = try installFromManifest(file: manifestFile, into: commandsFolder, ownRepo: ownRepo, gitURL: gitURL)
         }
 
         var replaceOptionState = ReplaceOptionState(replaceAll: false, replaceNone: false)
@@ -262,7 +259,7 @@ public class Lowmad {
         let localFolder = try Current.localFolder()
 
         if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
-            try createEnvironmentFile()
+            try createEnvironmentFile(description: "Where do you want to store your generated commands?")
         }
 
         let folder: Folder
@@ -458,7 +455,7 @@ public class Lowmad {
         return didInstall
     }
 
-    private func installFromManifest(file: File, into folder: Folder, own: Bool, gitURL: String) throws -> (didInstall: Bool, destinationFolder: Folder) {
+    private func installFromManifest(file: File, into folder: Folder, ownRepo: Bool, gitURL: String) throws -> (didInstall: Bool, destinationFolder: Folder) {
 
         let manifest = try getManifest(from: file)
 
@@ -483,7 +480,7 @@ public class Lowmad {
         var didInstall = false
 
         if installManifest == .yes {
-            didInstall = try installScriptsFromManifest(file: file, into: folder, own: own)
+            didInstall = try installScriptsFromManifest(file: file, into: folder, own: ownRepo)
         }
 
         let tempFolder = try lowmadTempFolder()
@@ -493,16 +490,25 @@ public class Lowmad {
         if containsPythonFiles {
             let prompt = "? ".green.bold + "Repo contains additional scripts, do you want to install them?".bold + BinaryOption.description
 
+
             let installScripts = Reader<BinaryOption>.readLine(prompt: prompt)
 
             if installScripts == .yes {
+                if ownRepo {
+                    return (didInstall, try getOwnCommandsFolder())
+                }
+
                 let prompt = "? ".green.bold + "Do you want to store the commands in your own specified commands folder?".bold + BinaryOption.description
 
                 let own = Reader<BinaryOption>.readLine(prompt: prompt)
 
                 let destinationFolder: Folder = try {
                     if own == .yes {
-                        return folder
+                        let localFolder = try Current.localFolder()
+                        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
+                            try createEnvironmentFile(description: "Where do you want to store your own specified commands?")
+                        }
+                        return try getOwnCommandsFolder()
                     } else {
                         return try folder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(gitURL))
                     }
@@ -663,6 +669,24 @@ public class Lowmad {
         try file.write(data)
     }
 
+    private func stripProtocolFromGitURL(_ gitURL: String) throws -> String {
+        let stripped = gitURL.replacingOccurrences(of: "git@", with: "").replacingOccurrences(of: "https://", with: "")
+        let slash = try stripped.regexGroups(for: "(?<=/).*")
+        let colon = try stripped.regexGroups(for: "(?<=:).*")
+        if let strings = colon.first {
+            guard let result = strings.first else {
+                throw CLI.Error(message: "Could not parse git URL")
+            }
+            return result
+        } else if let strings = slash.first {
+            guard let result = strings.first else {
+                throw CLI.Error(message: "Could not parse git URL")
+            }
+            return result
+        }
+        throw CLI.Error(message: "Could not parse git URL")
+    }
+
     private func saveToManifestFile(inFolder commandsFolder: Folder, fileToSave: File, source: String, commit: String) throws {
 
         let manifestFile = try createManifestFileIfNeeded(in: commandsFolder)
@@ -671,7 +695,12 @@ public class Lowmad {
 
         let newCommand = Command(name: fileToSave.nameExcludingExtension, source: source, commit: commit)
 
-        if let index = manifest.commands.firstIndex(where: { $0.name == newCommand.name && $0.source == newCommand.source }) {
+        let index = try manifest.commands.firstIndex(where: { oldCommand in
+            let strippedNew = try stripProtocolFromGitURL(newCommand.source)
+            let strippedOld = try stripProtocolFromGitURL(oldCommand.source)
+            return oldCommand.name == newCommand.name && strippedOld == strippedNew
+        })
+        if let index = index {
             manifest.commands[index] = newCommand
         } else {
             manifest.commands.append(newCommand)
@@ -724,13 +753,13 @@ public class Lowmad {
 
     }
 
-    private func createEnvironmentFile() throws {
+    private func createEnvironmentFile(description: String) throws {
 
         let localFolder = try Current.localFolder()
 
         let lowmadFolder = try localFolder.subfolder(at: "\(Lowmad.name)")
 
-        let prompt = "? ".green.bold + "Where do you want to store your generated commands? Leave empty for default directory.".bold + " (\(localFolder.path)/lowmad/own_commands)".lightBlack
+        let prompt = "? ".green.bold + "\(description) Leave empty for default directory.".bold + " (\(localFolder.path)/lowmad/own_commands)".lightBlack
 
         let installationPath = Current.readLine(prompt, false, [.custom("Not a valid directory, try again.", { (input) -> Bool in
                 do {

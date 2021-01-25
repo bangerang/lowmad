@@ -83,7 +83,7 @@ enum ReplaceOption: CaseIterable, Option {
     1. Yes
     2. Yes to all
     3. No
-    4. Quit
+    4. No to all
 
     """
 
@@ -109,7 +109,7 @@ enum ReplaceOption: CaseIterable, Option {
         case .replaceAll:
             return ["2"].contains(input.lowercased())
         case .replaceNone:
-            return ["q", "quit", "4"].contains(input.lowercased())
+            return ["4"].contains(input.lowercased())
         }
     }
 }
