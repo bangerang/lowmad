@@ -166,7 +166,8 @@ public class Lowmad {
             atLeastOneScriptWasInstalled = try installFromManifest(file: manifestFile, into: commandsFolder, ownRepo: ownRepo, gitURL: gitURL, subset: subset, commit: commitToUse)
             return
         } else {
-            atLeastOneScriptWasInstalled = try installScriptsToFolder(from: tempFolder, to: commandsFolder, subset: subset, gitURL: gitURL, commit: commitToUse, isOwn: ownRepo)
+            let folder = try commandsFolder.createSubfolderIfNeeded(withName: createSubfolderNameFromGitURL(gitURL))
+            atLeastOneScriptWasInstalled = try installScriptsToFolder(from: tempFolder, to: folder, subset: subset, gitURL: gitURL, commit: commitToUse, isOwn: ownRepo)
         }
 
         if atLeastOneScriptWasInstalled {
