@@ -15,8 +15,8 @@ class InstallCommand: LowmadCommand {
     init(lowmad: Lowmad) {
         super.init(lowmad: lowmad,
                    name: "install",
-                   description: "Install scripts from a repo or manifest file.",
-                   longDescription: "Install scripts from a repo or manifest file.")
+                   description: "Install scripts and configuration from a repo.",
+                   longDescription: "Install scripts and configuration from a repo.")
     }
 
     override func execute() throws {
