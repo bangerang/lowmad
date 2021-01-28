@@ -1,7 +1,7 @@
 <p align="center">
   <img width="30%" src="logo_transparent.png">
 </p>
-A command line tool for managing and generating LLDB scripts.
+A command line tool for managing scripts and configurations in LLDB.
 <h2>Features</h2>
 <p>Recursively fetch all LLDB scripts from a repo</p>
 <pre><code>$ lowmad install git@github.com:bangerang/lldb_commands.git</code></pre>
@@ -18,8 +18,8 @@ A command line tool for managing and generating LLDB scripts.
 <code>(lldb) my_script</code>
 </pre>
 <br>
-<p><b>lowmad</b> creates and maintains a manifest file for you containing all your installed scripts. This is very convenient if you want to share your scripts with others or setting up a new machine. <b>lowmad</b> also supports installation from a manifest file</p>
-<pre><code>$ lowmad install --manifest my/path/to/manifest.json</code></pre>
+<p><b>lowmad</b> maintains a manifest file for you containing all your installed scripts. This file can also store your LLDB init configuration. This is very convenient if you want to share your scripts with others or setting up a new machine. <b>lowmad</b> will scan the given repo after a <b>lowmad</b> manifest for easy installation. See <a href="https://github.com/bangerang/lldb_commands">lldb_commands</a> for an example how this can be structured.</p>
+<pre><code>$ lowmad install repo/that/contains/manifest</code></pre>
 <h2>Installation</h2>
 <h3><a href="https://github.com/yonaskolb/mint">Mint</a></h3>
 <pre>
@@ -47,6 +47,7 @@ Commands:
   uninstall       Uninstall scripts.
   generate        Generates a new LLDB script.
   dump            Dumps path and content of manifest file.
+  sync            Sync contents of LLDB init to manifest
   help            Prints help information
   version         Prints the current version of this app
   </code></pre>
@@ -60,7 +61,6 @@ Install scripts from a repo or manifest file.
 Options:
   -c, --commit              Install from a specific commit.
   -h, --help                Show help information
-  -m, --manifest            Install scripts from manifest file, path or URL to file.
   -o, --own                 Install commands to your own commands folder.
 
 </code></pre>
