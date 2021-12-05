@@ -18,6 +18,7 @@ class UninstallCommand: LowmadCommand {
     }
 
     override func execute() throws {
+        try lowmad.runMigration()
         try lowmad.hasBeenInitialized()
         try lowmad.runUninstall(subset: subset, own: own, fetched: fetched)
     }

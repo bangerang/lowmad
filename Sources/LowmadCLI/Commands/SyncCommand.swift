@@ -19,6 +19,7 @@ class SyncCommand: LowmadCommand {
     }
 
     override func execute() throws {
+        try lowmad.runMigration()
         try lowmad.hasBeenInitialized()
         try lowmad.runSync()
     }

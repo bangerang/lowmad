@@ -17,9 +17,6 @@ final class LowmadTests: XCTestCase {
         Current.readLine = { prompt, secure, validation, errorResponse in
             return ""
         }
-        Current.localFolder = {
-            return Folder.temporary
-        }
     }
 
     var lowmadFolder: Folder {

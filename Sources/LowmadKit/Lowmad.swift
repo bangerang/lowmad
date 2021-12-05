@@ -10,17 +10,17 @@ public class Lowmad {
     static let name = "lowmad"
 
     var lowmadTempFolder = {
-        return try Current.localFolder().createSubfolderIfNeeded(at: "\(Lowmad.name)/temp")
+        return try Current.homeFolder().createSubfolderIfNeeded(at: "\(Lowmad.name)/temp")
     }
 
     var getEnvironmentFile: () throws -> File = {
-        let localFolder = try Current.localFolder()
-        return try localFolder.file(at: "/\(Lowmad.name)/environment.json")
+        let homeFolder = Current.homeFolder()
+        return try homeFolder.file(at: "/\(Lowmad.name)/environment.json")
     }
 
     var getEnvironment: () throws -> Environment = {
-        let localFolder = try Current.localFolder()
-        let environmentFile = try localFolder.file(at: "/\(Lowmad.name)/environment.json")
+        let homeFolder = Current.homeFolder()
+        let environmentFile = try homeFolder.file(at: "/\(Lowmad.name)/environment.json")
         return try JSONDecoder().decode(Environment.self, from: try environmentFile.read())
     }
 
@@ -30,12 +30,22 @@ public class Lowmad {
 
     public func hasBeenInitialized() throws {
         do {
-            let folder = try Current.localFolder().subfolder(at: Lowmad.name)
+            let folder = try Current.homeFolder().subfolder(at: Lowmad.name)
             if !folder.containsFile(named: "lowmad.py") {
                 throw CLI.Error(message: String.error("Has not been initialized, did you forget to run the init command?"))
             }
         } catch {
             throw CLI.Error(message: String.error("Has not been initialized, did you forget to run the init command?"))
+        }
+    }
+    
+    public func runMigration() throws {
+        if let oldLowmadFolder = try? Current.oldLowmadFolder() {
+            Print.info("Default folder has changed to $HOME, migrating now...")
+            let homeFolder = Current.homeFolder()
+            try oldLowmadFolder.copy(to: homeFolder)
+            try oldLowmadFolder.delete()
+            Print.done("Done migrating 👍")
         }
     }
     
@@ -72,9 +82,9 @@ public class Lowmad {
                         lldb.debugger.HandleCommand(cmd + fullpath)
         """
 
-        let localFolder = try Current.localFolder()
+        let homeFolder = Current.homeFolder()
 
-        let lowmadFolder = try localFolder.createSubfolder(at: "\(Lowmad.name)")
+        let lowmadFolder = try homeFolder.createSubfolder(at: "\(Lowmad.name)")
 
         _ = try lowmadFolder.createSubfolder(at: "commands")
 
@@ -83,11 +93,9 @@ public class Lowmad {
         let lowmadFile = try lowmadFolder.createFile(named: "\(Lowmad.name).py")
         try lowmadFile.write(lldbInitScript)
 
-        if !localFolder.containsSubfolder(at: Lowmad.name) {
-            try localFolder.createSubfolder(named: Lowmad.name)
+        if !homeFolder.containsSubfolder(at: Lowmad.name) {
+            try homeFolder.createSubfolder(named: Lowmad.name)
         }
-
-        let homeFolder = Current.homeFolder()
 
         let importCommand = "command script import \(lowmadFolder.path)\(Lowmad.name).py\n"
 
@@ -113,7 +121,7 @@ public class Lowmad {
 
         func cleanup() {
             do {
-                let tempFolder = try Current.localFolder().subfolder(at: "\(Lowmad.name)/temp")
+                let tempFolder = try Current.homeFolder().subfolder(at: "\(Lowmad.name)/temp")
                 Shell.runSilentCommand("rm -rf \(tempFolder.path)")
             } catch {
 
@@ -124,9 +132,9 @@ public class Lowmad {
             cleanup()
         }
 
-        let localFolder = try Current.localFolder()
+        let homeFolder = Current.homeFolder()
 
-        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") && ownRepo {
+        if try !homeFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") && ownRepo {
             try createEnvironmentFile(description: "Where do you want to store your own specified commands?")
         }
 
@@ -243,9 +251,9 @@ public class Lowmad {
                      """
         }
 
-        let localFolder = try Current.localFolder()
+        let homeFolder = Current.homeFolder()
 
-        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
+        if try !homeFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
             try createEnvironmentFile(description: "Where do you want to store your generated commands?")
         }
 
@@ -506,8 +514,8 @@ public class Lowmad {
 
                 let destinationFolder: Folder = try {
                     if own == .yes {
-                        let localFolder = try Current.localFolder()
-                        if try !localFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
+                        let homeFolder = Current.homeFolder()
+                        if try !homeFolder.subfolder(named: Lowmad.name).containsFile(named: "environment.json") {
                             try createEnvironmentFile(description: "Where do you want to store your own specified commands?")
                         }
                         return try getOwnCommandsFolder()
@@ -524,8 +532,8 @@ public class Lowmad {
     }
 
     private func getLowmadCommandsFolder() throws -> Folder {
-        let localFolder = try Current.localFolder()
-        return try localFolder.subfolder(at: "\(Lowmad.name)/commands")
+        let homeFolder = Current.homeFolder()
+        return try homeFolder.subfolder(at: "\(Lowmad.name)/commands")
     }
 
     private func getOwnCommandsFolder() throws -> Folder {
@@ -774,11 +782,11 @@ public class Lowmad {
 
     private func createEnvironmentFile(description: String) throws {
 
-        let localFolder = try Current.localFolder()
+        let homeFolder = Current.homeFolder()
 
-        let lowmadFolder = try localFolder.subfolder(at: "\(Lowmad.name)")
+        let lowmadFolder = try homeFolder.subfolder(at: "\(Lowmad.name)")
 
-        let prompt = "? ".green.bold + "\(description) Leave empty for default directory.".bold + " (\(localFolder.path)/lowmad/own_commands)".lightBlack
+        let prompt = "? ".green.bold + "\(description) Leave empty for default directory.".bold + " (\(homeFolder.path)/lowmad/own_commands)".lightBlack
 
         let installationPath = Current.readLine(prompt, false, [.custom("Not a valid directory, try again.", { (input) -> Bool in
                 do {
@@ -801,7 +809,7 @@ public class Lowmad {
             ownCommandsFolder = try Folder(path: installationPath)
         }
 
-        let environmentFile = try localFolder.subfolder(named: Lowmad.name).createFile(named: "environment.json")
+        let environmentFile = try homeFolder.subfolder(named: Lowmad.name).createFile(named: "environment.json")
         let environment = Environment(ownCommandsPath: ownCommandsFolder.path)
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]

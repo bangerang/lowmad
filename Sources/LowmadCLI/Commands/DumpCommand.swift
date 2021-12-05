@@ -12,6 +12,7 @@ class DumpCommand: LowmadCommand {
     }
 
     override func execute() throws {
+        try lowmad.runMigration()
         try lowmad.hasBeenInitialized()
         try lowmad.runDump()
     }

@@ -12,6 +12,7 @@ class ListCommand: LowmadCommand {
     }
 
     override func execute() throws {
+        try lowmad.runMigration()
         try lowmad.hasBeenInitialized()
         try lowmad.runList()
     }

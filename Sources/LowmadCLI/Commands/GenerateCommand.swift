@@ -16,6 +16,7 @@ class GenerateCommand: LowmadCommand {
     }
 
     override func execute() throws {
+        try lowmad.runMigration()
         try lowmad.hasBeenInitialized()
         try lowmad.runGenerate(name: commandName, path: path)
     }
