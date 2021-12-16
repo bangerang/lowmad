@@ -50,37 +50,6 @@ public class Lowmad {
     }
     
     public func runInit() throws {
-        let lldbInitScript = """
-        import lldb
-        import os
-        import json
-
-        def __lldb_init_module(debugger, internal_dict):
-            file_path = os.path.realpath(__file__)
-            dir_name = os.path.dirname(file_path)
-            load_python_scripts_dir(dir_name)
-            try:
-                with open('/usr/local/lib/lowmad/environment.json') as json_file:
-                    data = json.load(json_file)
-                    commandsPath = os.path.realpath(data['ownCommandsPath'])
-                    if not dir_name in commandsPath:
-                        load_python_scripts_dir(commandsPath)
-            except IOError:
-                print("environment.json not accessible")
-
-        def load_python_scripts_dir(dir_name):
-            this_files_basename = os.path.basename(__file__)
-            cmd = ''
-            for r, d, f in os.walk(dir_name):
-                for file in f:
-                    if '.py' in file:
-                        cmd = 'command script import '
-                    else:
-                        continue
-                    if file != this_files_basename:
-                        fullpath = os.path.join(r, file)
-                        lldb.debugger.HandleCommand(cmd + fullpath)
-        """
 
         let homeFolder = Current.homeFolder()
 
@@ -91,6 +60,7 @@ public class Lowmad {
         Print.info("Creating \(Lowmad.name) import file...")
 
         let lowmadFile = try lowmadFolder.createFile(named: "\(Lowmad.name).py")
+        let lldbInitScript = try makeLLDBInitScript()
         try lowmadFile.write(lldbInitScript)
 
         if !homeFolder.containsSubfolder(at: Lowmad.name) {
@@ -330,6 +300,41 @@ public class Lowmad {
 
         Print.done("Content has been synced 💯")
 
+    }
+    
+    private func makeLLDBInitScript() throws -> String {
+        let path = try Current.lowmadFolder().path
+        return """
+        import lldb
+        import os
+        import json
+
+        def __lldb_init_module(debugger, internal_dict):
+            file_path = os.path.realpath(__file__)
+            dir_name = os.path.dirname(file_path)
+            load_python_scripts_dir(dir_name)
+            try:
+                with open('\(path)environment.json') as json_file:
+                    data = json.load(json_file)
+                    commandsPath = os.path.realpath(data['ownCommandsPath'])
+                    if not dir_name in commandsPath:
+                        load_python_scripts_dir(commandsPath)
+            except IOError:
+                print("environment.json not accessible")
+
+        def load_python_scripts_dir(dir_name):
+            this_files_basename = os.path.basename(__file__)
+            cmd = ''
+            for r, d, f in os.walk(dir_name):
+                for file in f:
+                    if '.py' in file:
+                        cmd = 'command script import '
+                    else:
+                        continue
+                    if file != this_files_basename:
+                        fullpath = os.path.join(r, file)
+                        lldb.debugger.HandleCommand(cmd + fullpath)
+        """
     }
 
     private func deleteCommandsFromManifest(subset: [String]) throws {
